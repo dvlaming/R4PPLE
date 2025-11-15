@@ -1,4 +1,4 @@
-# Embedding R analyses in an R Markdown document
+# The basics of datawrangling in the `tidyverse`
 
 ## Installing packages
 
@@ -26,16 +26,23 @@ NameOfPackageThatIReallyWant::FunctionFromThePackage(ArgumentsForTheFunction)
 
 ```
 
-For the following demonstrations, we will install the `tidyverse` package, which is actually a compendium of many extremely useful packages. Executing the following commands will install and load the package.
+For the following demonstrations, we will install the [`tidyverse` package](https://tidyverse.org/), which is actually a compendium of many extremely useful packages. Executing the following commands will install and load the package.
 
-```{r RequiredPackages, warning = FALSE, message=FALSE}
+```{r RequiredPackages, eval=FALSE}
 
-# install.packages("tidyverse")
+install.packages("tidyverse")
 library(tidyverse) 
 
 ```
 
-## Working with data within the `tidyverse`
+
+```{r RequiredPackages_1, echo=FALSE, message=FALSE}
+
+library(tidyverse) 
+
+```
+
+## Working with data
 
 The `dplyr` sub-package from `tidyverse` includes the "Starwars characters" dataset, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: `name_of_my_object <- stuff_to_go_into_my_object`. The `<-` is R's **assignment operator**, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.
 
@@ -57,7 +64,7 @@ dplyr::glimpse(my_starwars)
 
 ```
 
-The `dplyr::glimpse` function tells the name of all column variables in the dataset (these are displayed as rows with a `$` prefix), the total number of Rows (i.e., the number of characters) and the total number of column variables. As you should see, this dataset includes 87 characters with values on 14 variables.
+The `dplyr::glimpse` function shows the total number of rows (i.e., the number of characters) in the dataframe, the total number of column variables, and the name of all column variables (these are displayed - somewhat confusingly - as rows with a `$` prefix). As you should see, this dataset includes 87 characters with values on 14 variables.
 
 ### `filter`ing on values of a specific variable, and `pull`ing only the variable of interest
 
@@ -132,4 +139,11 @@ my_starwars
 
 ## Summary
 
-Of all the things....
+In this chapter, we have introduced some key functions ("verbs") from the `tidyverse` package:
+
+* `filter` allows you to select rows (which in the above examples, represent characters) based on their variable values
+* `pull` extracts a single, named variable and converts this to a simple vector
+* `mutate` can be used to add new variables to a dataframe, or to modify existing variables
+* `select` takes a subset of variables from an existing dataframe and arranges these into a new dataframe
+
+We also learned about the role of the pipe (`%>%`) operator in building chains of function calls among the `tidyverse` packages. 

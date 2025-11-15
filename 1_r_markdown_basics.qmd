@@ -145,4 +145,8 @@ When executed, the above appears in your document as:
 
 ## Summary
 
-Of all the things....
+In this chapter, we have covered:  
+
+* Installation of R and R Studio
+* Creating new R Projects and Markdown files
+* The basics of writing with R Markdown

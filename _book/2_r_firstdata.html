@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Embedding R analyses in an R Markdown document – R for the PPL(E)</title>
+<title>2&nbsp; The basics of datawrangling in the tidyverse – R for the PPL(E)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./3_r_plotting.html" rel="next">
 <link href="./1_r_markdown_basics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_r_firstdata.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Embedding R analyses in an R Markdown document</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_r_firstdata.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The basics of datawrangling in the <code>tidyverse</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -186,13 +186,19 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2_r_firstdata.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Embedding R analyses in an R Markdown document</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The basics of datawrangling in the <code>tidyverse</code></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3_r_plotting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">An introduction to graphics with <code>ggplot2</code></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -212,7 +218,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link active" data-scroll-target="#installing-packages"><span class="header-section-number">2.1</span> Installing packages</a></li>
-  <li><a href="#working-with-data-within-the-tidyverse" id="toc-working-with-data-within-the-tidyverse" class="nav-link" data-scroll-target="#working-with-data-within-the-tidyverse"><span class="header-section-number">2.2</span> Working with data within the <code>tidyverse</code></a>
+  <li><a href="#working-with-data" id="toc-working-with-data" class="nav-link" data-scroll-target="#working-with-data"><span class="header-section-number">2.2</span> Working with data</a>
   <ul class="collapse">
   <li><a href="#taking-a-glimpse" id="toc-taking-a-glimpse" class="nav-link" data-scroll-target="#taking-a-glimpse"><span class="header-section-number">2.2.1</span> Taking a <code>glimpse</code>…</a></li>
   <li><a href="#filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest" id="toc-filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest" class="nav-link" data-scroll-target="#filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest"><span class="header-section-number">2.2.2</span> <code>filter</code>ing on values of a specific variable, and <code>pull</code>ing only the variable of interest</a></li>
@@ -228,7 +234,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Embedding R analyses in an R Markdown document</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The basics of datawrangling in the <code>tidyverse</code></span></h1>
 </div>
 
 
@@ -259,24 +265,35 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>NameOfPackageThatIReallyWant<span class="sc">::</span><span class="fu">FunctionFromThePackage</span>(ArgumentsForTheFunction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For the following demonstrations, we will install the <code>tidyverse</code> package, which is actually a compendium of many extremely useful packages. Executing the following commands will install and load the package.</p>
+<p>For the following demonstrations, we will install the <a href="https://tidyverse.org/"><code>tidyverse</code> package</a>, which is actually a compendium of many extremely useful packages. Executing the following commands will install and load the package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse")</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'purrr' was built under R version 4.4.3</code></pre>
+</div>
+</div>
 </section>
-<section id="working-with-data-within-the-tidyverse" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="working-with-data-within-the-tidyverse"><span class="header-section-number">2.2</span> Working with data within the <code>tidyverse</code></h2>
+<section id="working-with-data" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="working-with-data"><span class="header-section-number">2.2</span> Working with data</h2>
 <p>The <code>dplyr</code> sub-package from <code>tidyverse</code> includes the “Starwars characters” dataset, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: <code>name_of_my_object &lt;- stuff_to_go_into_my_object</code>. The <code>&lt;-</code> is R’s <strong>assignment operator</strong>, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="ot">&lt;-</span>dplyr<span class="sc">::</span>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="ot">&lt;-</span>dplyr<span class="sc">::</span>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This creates an R object named <code>my_starwars</code> which is of the “dataframe” class. We don’t need to discuss this further, other than to say that it is a tabular class (i.e., like .csv, .xls, and the like) where rows represent observations and columns represent variables. In this example, the rows correspond to different characters, whereas the columns hold values for each character across a range of characteristics.</p>
 <section id="taking-a-glimpse" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="taking-a-glimpse"><span class="header-section-number">2.2.1</span> Taking a <code>glimpse</code>…</h3>
 <p>Now that we have created our object, we can take a peek:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(my_starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(my_starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 87
 Columns: 14
@@ -296,15 +313,15 @@ $ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;&g
 $ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TIE Advanced x1",…</code></pre>
 </div>
 </div>
-<p>The <code>dplyr::glimpse</code> function tells the name of all column variables in the dataset (these are displayed as rows with a <code>$</code> prefix), the total number of Rows (i.e., the number of characters) and the total number of column variables. As you should see, this dataset includes 87 characters with values on 14 variables.</p>
+<p>The <code>dplyr::glimpse</code> function shows the total number of rows (i.e., the number of characters) in the dataframe, the total number of column variables, and the name of all column variables (these are displayed - somewhat confusingly - as rows with a <code>$</code> prefix). As you should see, this dataset includes 87 characters with values on 14 variables.</p>
 </section>
 <section id="filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest"><span class="header-section-number">2.2.2</span> <code>filter</code>ing on values of a specific variable, and <code>pull</code>ing only the variable of interest</h3>
 <p>Say that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age from our dataset:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>yoda_age <span class="ot">&lt;-</span> my_starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Yoda"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(birth_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>yoda_age <span class="ot">&lt;-</span> my_starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Yoda"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(birth_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Reveal to us, this does, that Yoda 896 years old is.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -335,13 +352,13 @@ BMI = \frac{weight(kg)}{height(m)^2}
 \]</span></p>
 <p>So, to calculate this value, we need to use the <code>height</code> (measured in cm) and <code>mass</code> (in kg) fields.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="ot">&lt;-</span> my_starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">BMI =</span> mass<span class="sc">/</span>(height<span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="ot">&lt;-</span> my_starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">BMI =</span> mass<span class="sc">/</span>(height<span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As above, we use the pipe to pass <code>my_starwars</code> on to <code>mutate</code>. We create the variable <code>BMI</code> inside the call to <code>mutate</code>, and then perform our calculations.</p>
 <p>To check the operation performed correctly, you can just call up the new variable.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="sc">$</span>BMI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="sc">$</span>BMI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  26.02758  26.89232  34.72222  33.33007  21.77778  37.87401  27.54821
  [8]  34.00999  25.08286  23.24598  23.76641        NA  21.54509  24.69136
@@ -376,10 +393,10 @@ Note
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="select-ing-a-subset-of-variables-from-an-existing-data-frame"><span class="header-section-number">2.2.4</span> <code>select</code>-ing a subset of variables from an existing data frame</h3>
 <p>To end this section, let’s reduce our dataframe to only the names of our character and their BMIs. To do this, we can use the <code>select</code> function, followed by calling up the whole dataframe to check the output.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="ot">&lt;-</span>my_starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,BMI)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>my_starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="ot">&lt;-</span>my_starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,BMI)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>my_starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 87 × 2
    name                 BMI
@@ -401,7 +418,14 @@ Note
 </section>
 <section id="summary" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">2.3</span> Summary</h2>
-<p>Of all the things….</p>
+<p>In this chapter, we have introduced some key functions (“verbs”) from the <code>tidyverse</code> package:</p>
+<ul>
+<li><code>filter</code> allows you to select rows (which in the above examples, represent characters) based on their variable values</li>
+<li><code>pull</code> extracts a single, named variable and converts this to a simple vector</li>
+<li><code>mutate</code> can be used to add new variables to a dataframe, or to modify existing variables</li>
+<li><code>select</code> takes a subset of variables from an existing dataframe and arranges these into a new dataframe</li>
+</ul>
+<p>We also learned about the role of the pipe (<code>%&gt;%</code>) operator in building chains of function calls among the <code>tidyverse</code> packages.</p>
 
 
 </section>
@@ -813,8 +837,8 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./3_r_plotting.html" class="pagination-link" aria-label="An introduction to graphics with `ggplot2`">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">An introduction to graphics with <code>ggplot2</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

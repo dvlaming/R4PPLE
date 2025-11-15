@@ -62,11 +62,11 @@
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "3  Summary",
+    "title": "4  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
@@ -272,11 +272,11 @@
   {
     "objectID": "2_r_firstdata.html",
     "href": "2_r_firstdata.html",
-    "title": "2  Embedding R analyses in an R Markdown document",
+    "title": "2  The basics of datawrangling in the tidyverse",
     "section": "",
-    "text": "2.1 Installing packages\nWhile the base R language is powerful and versatile, we can substantially (IOHO) improve our user experience with a few extra packages. Extension packages can be added with the install.packages function in the following manner:\ninstall.packages(\"NameOfPackageThatIReallyWant\")\nInstalled packages can be loaded by using the library function:\nlibrary(NameOfPackageThatIReallyWant) # note that the quotes around the package name are not necessary for `library` to work\nAlternatively, functions from a previously installed package can be called by naming the package and function explicitly and separating these with two consecutive colons, without the need to load the package with library. The benefit of this ‘explicit coding’ is that it minimizes the chance that you will see a confusing error message arising from a function naming conflict. (That is, when the same name is given to functions from different packages which expect different input arguments.)\nNameOfPackageThatIReallyWant::FunctionFromThePackage(ArgumentsForTheFunction)\nFor the following demonstrations, we will install the tidyverse package, which is actually a compendium of many extremely useful packages. Executing the following commands will install and load the package.\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)",
+    "text": "2.1 Installing packages\nWhile the base R language is powerful and versatile, we can substantially (IOHO) improve our user experience with a few extra packages. Extension packages can be added with the install.packages function in the following manner:\ninstall.packages(\"NameOfPackageThatIReallyWant\")\nInstalled packages can be loaded by using the library function:\nlibrary(NameOfPackageThatIReallyWant) # note that the quotes around the package name are not necessary for `library` to work\nAlternatively, functions from a previously installed package can be called by naming the package and function explicitly and separating these with two consecutive colons, without the need to load the package with library. The benefit of this ‘explicit coding’ is that it minimizes the chance that you will see a confusing error message arising from a function naming conflict. (That is, when the same name is given to functions from different packages which expect different input arguments.)\nNameOfPackageThatIReallyWant::FunctionFromThePackage(ArgumentsForTheFunction)\nFor the following demonstrations, we will install the tidyverse package, which is actually a compendium of many extremely useful packages. Executing the following commands will install and load the package.\ninstall.packages(\"tidyverse\")\nlibrary(tidyverse)\nWarning: package 'ggplot2' was built under R version 4.4.3\n\n\nWarning: package 'tibble' was built under R version 4.4.3\n\n\nWarning: package 'purrr' was built under R version 4.4.3",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Embedding R analyses in an R Markdown document</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The basics of datawrangling in the `tidyverse`</span>"
     ]
   },
   {
@@ -312,11 +312,11 @@
   {
     "objectID": "2_r_firstdata.html#summary",
     "href": "2_r_firstdata.html#summary",
-    "title": "2  Embedding R analyses in an R Markdown document",
+    "title": "2  The basics of datawrangling in the tidyverse",
     "section": "2.3 Summary",
-    "text": "2.3 Summary\nOf all the things….",
+    "text": "2.3 Summary\nIn this chapter, we have introduced some key functions (“verbs”) from the tidyverse package:\n\nfilter allows you to select rows (which in the above examples, represent characters) based on their variable values\npull extracts a single, named variable and converts this to a simple vector\nmutate can be used to add new variables to a dataframe, or to modify existing variables\nselect takes a subset of variables from an existing dataframe and arranges these into a new dataframe\n\nWe also learned about the role of the pipe (%&gt;%) operator in building chains of function calls among the tidyverse packages.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Embedding R analyses in an R Markdown document</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The basics of datawrangling in the `tidyverse`</span>"
     ]
   },
   {
@@ -324,9 +324,59 @@
     "href": "1_r_markdown_basics.html#summary",
     "title": "1  Installation and introduction to R Markdown documents",
     "section": "1.3 Summary",
-    "text": "1.3 Summary\nOf all the things….",
+    "text": "1.3 Summary\nIn this chapter, we have covered:\n\nInstallation of R and R Studio\nCreating new R Projects and Markdown files\nThe basics of writing with R Markdown",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and introduction to R Markdown documents</span>"
+    ]
+  },
+  {
+    "objectID": "2_r_firstdata.html#working-with-data",
+    "href": "2_r_firstdata.html#working-with-data",
+    "title": "2  The basics of datawrangling in the tidyverse",
+    "section": "2.2 Working with data",
+    "text": "2.2 Working with data\nThe dplyr sub-package from tidyverse includes the “Starwars characters” dataset, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: name_of_my_object &lt;- stuff_to_go_into_my_object. The &lt;- is R’s assignment operator, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.\n\nmy_starwars&lt;-dplyr::starwars\n\nThis creates an R object named my_starwars which is of the “dataframe” class. We don’t need to discuss this further, other than to say that it is a tabular class (i.e., like .csv, .xls, and the like) where rows represent observations and columns represent variables. In this example, the rows correspond to different characters, whereas the columns hold values for each character across a range of characteristics.\n\n2.2.1 Taking a glimpse…\nNow that we have created our object, we can take a peek:\n\ndplyr::glimpse(my_starwars)\n\nRows: 87\nColumns: 14\n$ name       &lt;chr&gt; \"Luke Skywalker\", \"C-3PO\", \"R2-D2\", \"Darth Vader\", \"Leia Or…\n$ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…\n$ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…\n$ hair_color &lt;chr&gt; \"blond\", NA, NA, \"none\", \"brown\", \"brown, grey\", \"brown\", N…\n$ skin_color &lt;chr&gt; \"fair\", \"gold\", \"white, blue\", \"white\", \"light\", \"light\", \"…\n$ eye_color  &lt;chr&gt; \"blue\", \"yellow\", \"red\", \"yellow\", \"brown\", \"blue\", \"blue\",…\n$ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …\n$ sex        &lt;chr&gt; \"male\", \"none\", \"none\", \"male\", \"female\", \"male\", \"female\",…\n$ gender     &lt;chr&gt; \"masculine\", \"masculine\", \"masculine\", \"masculine\", \"femini…\n$ homeworld  &lt;chr&gt; \"Tatooine\", \"Tatooine\", \"Naboo\", \"Tatooine\", \"Alderaan\", \"T…\n$ species    &lt;chr&gt; \"Human\", \"Droid\", \"Droid\", \"Human\", \"Human\", \"Human\", \"Huma…\n$ films      &lt;list&gt; &lt;\"A New Hope\", \"The Empire Strikes Back\", \"Return of the J…\n$ vehicles   &lt;list&gt; &lt;\"Snowspeeder\", \"Imperial Speeder Bike\"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, \"Imp…\n$ starships  &lt;list&gt; &lt;\"X-wing\", \"Imperial shuttle\"&gt;, &lt;&gt;, &lt;&gt;, \"TIE Advanced x1\",…\n\n\nThe dplyr::glimpse function shows the total number of rows (i.e., the number of characters) in the dataframe, the total number of column variables, and the name of all column variables (these are displayed - somewhat confusingly - as rows with a $ prefix). As you should see, this dataset includes 87 characters with values on 14 variables.\n\n\n2.2.2 filtering on values of a specific variable, and pulling only the variable of interest\nSay that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age from our dataset:\n\nyoda_age &lt;- my_starwars %&gt;% \n  dplyr::filter(name == \"Yoda\") %&gt;% \n  dplyr::pull(birth_year)\n\nReveal to us, this does, that Yoda 896 years old is.\n\n\n\n\n\n\nUsing the “pipe” operator (%&gt;%)\n\n\n\nBefore going further, we must discuss the use of the so-called pipe (%&gt;%) above. This allows you to chain different functions together without having to call the object you want to manipulate for every function. Let’s break down the above chunk line-by-line:\n\nYoda_age &lt;- my_starwars %&gt;% - this copies my_starwars to a new object named yoda_age, and %&gt;% passes yoda_age onto the next operation.\ndplyr::filter(name == \"Yoda\") %&gt;% - this feeds yoda_age into the function dplyr::filter, which then searches the variable name for the text string “Yoda”, and discards characters with names which are not Yoda. As before, the %&gt;% moves the output along to the next line of code.\ndplyr::pull(age) - this “pulls” out the age column variable for Yoda and throws everything else away, leaving us with a value of 896 stored inside yoda_age.\n\n\n\n\n\n2.2.3 mutate-ing your data frame\nLet’s imagine that we want to calculate every character’s body mass index (BMI) of every listed character and add this value to their row in the dataframe. The mutate function allows us to easily create new variables, or add existing ones.\nWe define BMI as:\n\\[\nBMI = \\frac{weight(kg)}{height(m)^2}\n\\]\nSo, to calculate this value, we need to use the height (measured in cm) and mass (in kg) fields.\n\nmy_starwars &lt;- my_starwars %&gt;% \n  dplyr::mutate(BMI = mass/(height/100)^2)\n\nAs above, we use the pipe to pass my_starwars on to mutate. We create the variable BMI inside the call to mutate, and then perform our calculations.\nTo check the operation performed correctly, you can just call up the new variable.\n\nmy_starwars$BMI\n\n [1]  26.02758  26.89232  34.72222  33.33007  21.77778  37.87401  27.54821\n [8]  34.00999  25.08286  23.24598  23.76641        NA  21.54509  24.69136\n[15]  24.72518 443.42857  26.64360  33.95062  39.02663  25.95156  23.35095\n[22]  35.00000  31.30194  25.21625  25.79592  25.61728        NA        NA\n[29]  25.82645  26.56250  23.89326  24.67038        NA  13.14828  17.18034\n[36]  16.34247        NA        NA        NA  31.88776        NA        NA\n[43]  26.12245        NA  17.35892  24.03461  50.92802        NA  24.46460\n[50]  23.76641  20.91623  22.64681        NA  14.76843        NA        NA\n[57]  22.63468        NA  24.83565        NA        NA  23.88844  19.44637\n[64]  18.14487        NA  21.47709        NA  23.58984  19.48696  26.01775\n[71]  16.78076        NA        NA        NA  12.88625        NA  17.99015\n[78]  34.07922  24.83746  22.35174  15.14960  18.85192        NA        NA\n[85]        NA        NA        NA\n\n\n\n\n\n\n\n\nNote\n\n\n\nYou can index an existing column variable in a dataframe and display simply by typing name_of_dataframe$name_of_column into the R console\n\n\n\n\n2.2.4 select-ing a subset of variables from an existing data frame\nTo end this section, let’s reduce our dataframe to only the names of our character and their BMIs. To do this, we can use the select function, followed by calling up the whole dataframe to check the output.\n\nmy_starwars&lt;-my_starwars %&gt;% \n  dplyr::select(name,BMI)\n\nmy_starwars\n\n# A tibble: 87 × 2\n   name                 BMI\n   &lt;chr&gt;              &lt;dbl&gt;\n 1 Luke Skywalker      26.0\n 2 C-3PO               26.9\n 3 R2-D2               34.7\n 4 Darth Vader         33.3\n 5 Leia Organa         21.8\n 6 Owen Lars           37.9\n 7 Beru Whitesun Lars  27.5\n 8 R5-D4               34.0\n 9 Biggs Darklighter   25.1\n10 Obi-Wan Kenobi      23.2\n# ℹ 77 more rows",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>The basics of datawrangling in the `tidyverse`</span>"
+    ]
+  },
+  {
+    "objectID": "3_r_plotting.html",
+    "href": "3_r_plotting.html",
+    "title": "3  An introduction to graphics with ggplot2",
+    "section": "",
+    "text": "3.1 Installing packages\nIn this chapter, we will again load tidyverse package, which contains the ggplot2 function which we will use for plotting.\ninstall.packages(\"tidyverse\")\nlibrary(tidyverse)\nWarning: package 'ggplot2' was built under R version 4.4.3\n\n\nWarning: package 'tibble' was built under R version 4.4.3\n\n\nWarning: package 'purrr' was built under R version 4.4.3",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>An introduction to graphics with `ggplot2`</span>"
+    ]
+  },
+  {
+    "objectID": "3_r_plotting.html#building-up-a-ggplot",
+    "href": "3_r_plotting.html#building-up-a-ggplot",
+    "title": "3  An introduction to graphics with ggplot2",
+    "section": "3.2 Building up a ggplot",
+    "text": "3.2 Building up a ggplot\nggplot works in layers. You first call an empty plot, and then you simply add graphics on top.\n\ndplyr::starwars %&gt;% \n  dplyr::filter(species == \"Human\") %&gt;%\n  ggplot2::ggplot(mapping = aes(x = height, y = mass, colour = name)) + \n  ggplot2::geom_point()\n\nWarning: Removed 15 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nLet’s walk through the above:\n\ndplyr::starwars %&gt;% - calls the starwars data and moves it along with the pipe\ndplyr::filter(species == \"Human\") %&gt;% - filters on only human characters\nggplot2::ggplot(mapping = aes(x = height, y = mass, colour = name)) + - calls an empty ggplot and maps the height variable to the x axis, mass to the y axis and colour to name, meaning that the colour of plot objects (e.g., lines, points, etc) will vary by the character names. Note that mapping variables using aes() (for “aesthetic”) means that the assignments will carry on to subsequent layers, unless we change these.\n+ - using a similar logic to the pipe, we use + within ggplot2 to pass plot layers forward for further building. (Note that the pipe doesn’t work within ggplot2, and you will receive error messages if this is substituted for +!)\ngeom_point() - this calls a basic scatterplot, taking on the aesthetics that we set in the first layer. height and weight are mapped to the correct axes, and we can see a legend showing the colour which has been assigned to each human character.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>An introduction to graphics with `ggplot2`</span>"
+    ]
+  },
+  {
+    "objectID": "3_r_plotting.html#plot-types",
+    "href": "3_r_plotting.html#plot-types",
+    "title": "3  An introduction to graphics with ggplot2",
+    "section": "3.3 Plot types",
+    "text": "3.3 Plot types\nMore information on the myriad plots you can generate with ggplot2 can be found on the package website, but we will summarize those which you will most frequently encounter or wish to use.\n\ndplyr::starwars %&gt;% \n  ggplot2::ggplot(aes(x = height)) +\n  ggplot2::geom_histogram() +\n  ggplot2::ggtitle(\"Histogram of character weight\")+\n  ggplot2::ylab(\"Count\")\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 6 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\n\n\ndplyr::starwars %&gt;% \n  dplyr::filter(!is.na(gender) & !is.na(height)) %&gt;% \n  dplyr::group_by(gender) %&gt;% \n  dplyr::summarize(mean_height = mean(height), se_height = sd(height)/n()) %&gt;% \n  ggplot2::ggplot(aes(x = gender, y = mean_height, fill = gender))+\n  ggplot2::geom_bar(stat=\"identity\") +\n  ggplot2::geom_errorbar(aes(ymin = mean_height - se_height, ymax = mean_height + se_height),width = .5) +\n  ggplot2::ggtitle(\"Bar chart of mean height by gender\")\n\n\n\n\n\n\n\n\n\n\ndplyr::starwars %&gt;% \n  dplyr::filter(!is.na(gender) & !is.na(height)) %&gt;% \n  ggplot2::ggplot(aes(x = gender, y = height, fill = gender))+\n  ggplot2::geom_boxplot() +\n  ggplot2::ggtitle(\"Box plot of height by gender\")\n\n\n\n\n\n\n\n\n\n\ndplyr::starwars %&gt;% \n  dplyr::filter(!is.na(gender) & !is.na(height)) %&gt;% \n  ggplot2::ggplot(aes(x = gender, y = height, fill = gender))+\n  ggplot2::geom_violin() +\n  ggplot2::ggtitle(\"Violin plot of height by gender\")",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>An introduction to graphics with `ggplot2`</span>"
+    ]
+  },
+  {
+    "objectID": "3_r_plotting.html#summary",
+    "href": "3_r_plotting.html#summary",
+    "title": "3  An introduction to graphics with ggplot2",
+    "section": "3.4 Summary",
+    "text": "3.4 Summary\nOf the things….",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>An introduction to graphics with `ggplot2`</span>"
     ]
   }
 ]

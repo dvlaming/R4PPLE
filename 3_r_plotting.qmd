@@ -1,0 +1,92 @@
+# An introduction to graphics with `ggplot2`
+
+## Installing packages
+
+In this chapter, we will again load [`tidyverse` package](https://tidyverse.org/), which contains the `ggplot2` function which we will use for plotting.
+
+```{r RequiredPackages, eval=FALSE}
+
+install.packages("tidyverse")
+library(tidyverse) 
+
+```
+
+```{r RequiredPackages_1, echo=FALSE, message=FALSE}
+
+library(tidyverse) 
+
+```
+
+## Building up a `ggplot`
+
+`ggplot` works in layers. You first call an empty plot, and then you simply add graphics on top.
+
+```{r basicPlot}
+
+dplyr::starwars %>% 
+  dplyr::filter(species == "Human") %>%
+  ggplot2::ggplot(mapping = aes(x = height, y = mass, colour = name)) + 
+  ggplot2::geom_point()
+
+```
+
+Let's walk through the above:
+
+1. `dplyr::starwars %>%` - calls the starwars data and moves it along with the pipe
+2. `dplyr::filter(species == "Human") %>%` - filters on only human characters
+3. `ggplot2::ggplot(mapping = aes(x = height, y = mass, colour = name)) +` - calls an empty ggplot and maps the `height` variable to the x axis, `mass` to the y axis and colour to `name`, meaning that the colour of plot objects (e.g., lines, points, etc) will vary by the character names. Note that mapping variables using `aes()` (for "aesthetic") means that the assignments will carry on to subsequent layers, unless we change these.
+4. `+` - using a similar logic to the pipe, we use `+` within `ggplot2` to pass plot layers forward for further building. (Note that the pipe doesn't work within `ggplot2`, and you will receive error messages if this is substituted for `+`!)
+5. `geom_point()` - this calls a basic scatterplot, taking on the aesthetics that we set in the first layer. `height` and `weight` are mapped to the correct axes, and we can see a legend showing the colour which has been assigned to each human character.
+
+## Plot types
+
+More information on the myriad plots you can generate with `ggplot2` can be found on the package [website](https://ggplot2.tidyverse.org/), but we will summarize those which you will most frequently encounter or wish to use.
+
+```{r hist}
+
+dplyr::starwars %>% 
+  ggplot2::ggplot(aes(x = height)) +
+  ggplot2::geom_histogram() +
+  ggplot2::ggtitle("Histogram of character weight")+
+  ggplot2::ylab("Count")
+
+```
+
+<br>
+
+```{r bar}
+dplyr::starwars %>% 
+  dplyr::filter(!is.na(gender) & !is.na(height)) %>% 
+  dplyr::group_by(gender) %>% 
+  dplyr::summarize(mean_height = mean(height), se_height = sd(height)/n()) %>% 
+  ggplot2::ggplot(aes(x = gender, y = mean_height, fill = gender))+
+  ggplot2::geom_bar(stat="identity") +
+  ggplot2::geom_errorbar(aes(ymin = mean_height - se_height, ymax = mean_height + se_height),width = .5) +
+  ggplot2::ggtitle("Bar chart of mean height by gender")
+```
+
+<br>
+
+```{r boxplot}
+dplyr::starwars %>% 
+  dplyr::filter(!is.na(gender) & !is.na(height)) %>% 
+  ggplot2::ggplot(aes(x = gender, y = height, fill = gender))+
+  ggplot2::geom_boxplot() +
+  ggplot2::ggtitle("Box plot of height by gender")
+```
+
+<br>
+
+
+```{r violinplot}
+dplyr::starwars %>% 
+  dplyr::filter(!is.na(gender) & !is.na(height)) %>% 
+  ggplot2::ggplot(aes(x = gender, y = height, fill = gender))+
+  ggplot2::geom_violin() +
+  ggplot2::ggtitle("Violin plot of height by gender")
+```
+
+
+## Summary
+
+Of the things....
