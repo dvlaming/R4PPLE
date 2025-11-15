@@ -1,0 +1,135 @@
+# Embedding R analyses in an R Markdown document
+
+## Installing packages
+
+While the base R language is powerful and versatile, we can substantially (IOHO) improve our user experience with a few extra packages. Extension packages can be added with the `install.packages` function in the following manner:
+
+```{r installpackagesEx, eval=FALSE}
+
+install.packages("NameOfPackageThatIReallyWant")
+
+```
+
+Installed packages can be loaded by using the `library` function:
+
+```{r libraryEx, eval=FALSE}
+
+library(NameOfPackageThatIReallyWant) # note that the quotes around the package name are not necessary for `library` to work
+
+```
+
+Alternatively, functions from a previously installed package can be called by naming the package and function explicitly and separating these with two consecutive colons, without the need to load the package with `library`. The benefit of this 'explicit coding' is that it minimizes the chance that you will see a confusing error message arising from a function naming conflict. (That is, when the same name is given to functions from different packages which expect different input arguments.)
+
+```{r explicitEx, eval=FALSE}
+
+NameOfPackageThatIReallyWant::FunctionFromThePackage(ArgumentsForTheFunction)
+
+```
+
+For the following demonstrations, we will install the `tidyverse` package, which is actually a compendium of many extremely useful packages. Executing the following commands will install and load the package.
+
+```{r RequiredPackages, warning = FALSE, message=FALSE}
+
+# install.packages("tidyverse")
+library(tidyverse) 
+
+```
+
+## Working with data within the `tidyverse`
+
+The `dplyr` sub-package from `tidyverse` includes the "Starwars characters" dataset, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: `name_of_my_object <- stuff_to_go_into_my_object`. The `<-` is R's **assignment operator**, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.
+
+```{r data_assign}
+
+my_starwars<-dplyr::starwars
+
+```
+
+This creates an R object named `my_starwars` which is of the "dataframe" class. We don't need to discuss this further, other than to say that it is a tabular class (i.e., like .csv, .xls, and the like) where rows represent observations and columns represent variables. In this example, the rows correspond to different characters, whereas the columns hold values for each character across a range of characteristics.
+
+### Taking a `glimpse`...
+
+Now that we have created our object, we can take a peek:
+
+```{r data_glimpse}
+
+dplyr::glimpse(my_starwars)
+
+```
+
+The `dplyr::glimpse` function tells the name of all column variables in the dataset (these are displayed as rows with a `$` prefix), the total number of Rows (i.e., the number of characters) and the total number of column variables. As you should see, this dataset includes 87 characters with values on 14 variables.
+
+### `filter`ing on values of a specific variable, and `pull`ing only the variable of interest
+
+Say that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age from our dataset:
+
+```{r yoda_age}
+
+yoda_age <- my_starwars %>% 
+  dplyr::filter(name == "Yoda") %>% 
+  dplyr::pull(birth_year)
+
+```
+
+Reveal to us, this does, that Yoda `{r} yoda_age` years old is.
+
+::: callout-note
+### Using the "pipe" operator (%\>%)
+
+Before going further, we must discuss the use of the so-called pipe (`%>%`) above. This allows you to chain different functions together without having to call the object you want to manipulate for every function. Let's break down the above chunk line-by-line:
+
+1.  `Yoda_age <- my_starwars %>%` - this copies `my_starwars` to a new object named `yoda_age`, and `%>%` passes `yoda_age` onto the next operation.
+2.  `dplyr::filter(name == "Yoda") %>%` - this feeds `yoda_age` into the function `dplyr::filter`, which then searches the variable `name` for the text string "Yoda", and discards characters with names which are *not* Yoda. As before, the `%>%` moves the output along to the next line of code.
+3.  `dplyr::pull(age)` - this "pulls" out the age column variable for Yoda and throws everything else away, leaving us with a value of `{r} yoda_age` stored inside `yoda_age`.
+:::
+
+### `mutate`-ing your data frame
+
+Let's imagine that we want to calculate every character's body mass index (BMI) of every listed character and add this value to their row in the dataframe. The `mutate` function allows us to easily create new variables, or add existing ones.
+
+We define BMI as:
+
+$$
+BMI = \frac{weight(kg)}{height(m)^2}
+$$
+
+So, to calculate this value, we need to use the `height` (measured in cm) and `mass` (in kg) fields.
+
+```{r BMI}
+
+my_starwars <- my_starwars %>% 
+  dplyr::mutate(BMI = mass/(height/100)^2)
+
+```
+
+As above, we use the pipe to pass `my_starwars` on to `mutate`. We create the variable `BMI` inside the call to `mutate`, and then perform our calculations.
+
+To check the operation performed correctly, you can just call up the new variable.
+
+```{r BMIcheck}
+
+my_starwars$BMI
+
+```
+
+::: callout-note
+You can index an existing column variable in a dataframe and display simply by typing `name_of_dataframe$name_of_column` into the R console
+:::
+
+### `select`-ing a subset of variables from an existing data frame
+
+To end this section, let's reduce our dataframe to only the names of our character and their BMIs. To do this, we can use the `select` function, followed by calling up the whole dataframe to check the output.
+
+```{r select}
+
+my_starwars<-my_starwars %>% 
+  dplyr::select(name,BMI)
+
+my_starwars
+
+```
+
+
+## Summary
+
+Of all the things....

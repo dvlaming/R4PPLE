@@ -2,12 +2,13 @@ project:
   type: book
 
 book:
-  title: "R4PPLE"
-  author: "Norah Jones"
-  date: "14-11-2025"
+  title: "R for the PPL(E)"
+  author: "David Fleming"
+  date: "{r} `Sys.Date()`"
   chapters:
     - index.qmd
-    - intro.qmd
+    - 1_r_markdown_basics.qmd
+    - 2_r_firstdata.qmd
     - summary.qmd
     - references.qmd
 
@@ -18,8 +19,6 @@ format:
     theme:
       - cosmo
       - brand
-  pdf:
-    documentclass: scrreprt
 
 editor: visual
 

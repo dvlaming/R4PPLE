@@ -1,0 +1,332 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R for the PPL(E)",
+    "section": "",
+    "text": "Preface\nWelcome to this book! We hope that you fill find it a helpful companion as you begin your journey into R programming and statistical analysis.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#why-am-i-learning-how-to-programme",
+    "href": "index.html#why-am-i-learning-how-to-programme",
+    "title": "R4PPLE",
+    "section": "Why am I learning how to programme?",
+    "text": "Why am I learning how to programme?\nWhile there are many excellent “click-and-point” statistical analysis packages available, it’s worth highlighting some of the benefits that come with using R (Markdown):\n\nYou can record and document all analysis steps (i.e., from raw data processing/wrangling, to inferential statistics and visualization) in a series of scripts, meaning that you don’t have to remember which sequence of buttons and drop down menus you followed to get to your analysis outputs. This facilitates complete reproducibility of your analysis pipeline and results.\nWriting your research papers and assignments with R Markdown means that all analysis outputs (e.g., descriptive statistics, test statistics, figures, tables, etc.) can be embedded without the need for pasting information from your statistics software into a separate word processor.\nYou gain more power to customize your analysis, rather than relying on the narrow range of defaults included in some statistical packages.\nIt’s free!",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#ok-but-why-am-i-learning-r-instead-of-say-python",
+    "href": "index.html#ok-but-why-am-i-learning-r-instead-of-say-python",
+    "title": "R for the PPL(E)",
+    "section": "OK, but why am I learning R instead of, say, Python?",
+    "text": "OK, but why am I learning R instead of, say, Python?\nThe main reasons for teaching this course in R are:\n\nIt is specialized for statistical computing and data visualization\n\nIt is very widely used by quantitative social scientists, meaning that accessible tutorials and answers to questions are often only a google away\nOur (informal) impression is that R has a relatively low bar for entry, when compared with more general-purpose languages like Python",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#chapter-overview",
+    "href": "index.html#chapter-overview",
+    "title": "R for the PPL(E)",
+    "section": "Chapter overview",
+    "text": "Chapter overview\nIn chapters 1 - 4, we will introduce R and R Markdown, along with some very useful packages for data-wrangling and plotting. From there, chapters 5 - 11 will align with the main outcomes of the Year 1 Introduction to Statistical Analysis course. Chapters 12 - ? will cover some more advanced statistical techniques and topics which are beyond the scope of ISA. While these have been written mainly with Politics and Psychology majors in mind, these may also be of interest to Economics or Law majors who would like to know more about analyzing (quantitative) experimental or survey data.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#lastly.",
+    "href": "index.html#lastly.",
+    "title": "R for the PPL(E)",
+    "section": "Lastly….",
+    "text": "Lastly….\nIt is not our intention to provide a comprehensive introduction to R or R Markdown. (There are already excellent resources freely available for that purpose, some of which we will refer to in due course.) Rather, the principal aim is to build your comfort and confidence in using a small set of operations which will enable you to perform both confirmatory and exploratory statistical analyses with quantitative data typical of the social sciences, and to write a basic scientific document in which the outputs of those analyses can be embedded. There is, therefore, the risk that we give too light of a treatment to areas which you might find difficult; if so, please get in touch to provide some welcome feedback on this living document, or to ask questions.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Installation and getting started",
+    "section": "",
+    "text": "1.1 Creating a new R Project\nBefore we go any further, you should first install R.\nOpening R up after installation will probably result in some mild disappointment; the console is ugly and uninspiring. Luckily, there are many good integrated development environments (IDEs) available for R which can make things look a little nicer. The current market leader is R Studio, which you can download here. (Note that R Studio will not run unless you already have R installed, so be sure to do this first!)\nHopefully you agree that R Studio at the very least makes R look a little bit more pleasant. Beyond that, it provides an environment where you can use the included R Markdown language to create documents with embedded analysis code, and store these in self-contained project folders which will ensure that your analyses can easily be reproduced without having to change directory names when you switch computers. (See this link for more on the utility of using R projects.) To open a new R project, click File &gt; NewProject. The ‘New Project Wizard’ will pop up, prompting you to specify where you would like to create your project. For now, the best choice would be one of the following:\nAfter you have chosen your project folder, a project link will appear in that folder, which looks like this:\nClicking on it will open up a new R Studio session with your designated project folder as its starting directory. You can now move all data necessary for your project to this folder, where it can be easily found by R.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and getting started</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "3  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "intro.html#creating-a-new-r-project",
+    "href": "intro.html#creating-a-new-r-project",
+    "title": "1  Installation and getting started",
+    "section": "",
+    "text": "New Directory. Create a completely new folder in which to base your project.\n\nExisting Directory. Name an already existing folder as your project base.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and getting started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#creating-a-new-r-markdown-document",
+    "href": "intro.html#creating-a-new-r-markdown-document",
+    "title": "1  Installation and getting started",
+    "section": "1.2 Creating a new R Markdown document",
+    "text": "1.2 Creating a new R Markdown document\n \nClick File &gt; NewFile &gt; R Markdown and you will see a prompt which asks for a Title, Author and Date. You can leave these blank initially, safe in the knowledge that these fields can always be updated later by modifying the YAML header which appears at the top of the markdown document. Likewise, you can always modify the document output format later, but you do need to initially select something under ‘Default Output Format’ to allow R to create your Markdown file. If you are not reading the R Markdown (.Rmd) script associated with this guide, then you are reading the .html (HyperText Markup Language) version. For your thesis, you will want to switch the output to either PDF (which requires installation of an extra package1 or Word.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and getting started</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#footnotes",
+    "href": "intro.html#footnotes",
+    "title": "1  Installation and getting started",
+    "section": "",
+    "text": "Specifically, a LaTeX distribution called TinyTeX↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and getting started</span>"
+    ]
+  },
+  {
+    "objectID": "2_r_markdown_basics.html",
+    "href": "2_r_markdown_basics.html",
+    "title": "1  Installation and introduction to R Markdown documents",
+    "section": "",
+    "text": "1.1 Getting started with Projects and Files\nYou should now install R. Opening it up after installation will probably result in some mild disappointment; the console is ugly and uninspiring. Luckily, there are many good integrated development environments (IDEs) available for R which can make things look a little nicer. The current market leader is R Studio, which you can download here. (Note that R Studio will not run unless you already have R installed, so be sure to do this first!)\nNow, let’s briefly distinguish some components:\nAs suggested in the introductory chapter, it is not the place of this book to provide a full, ‘bottom-up’ introduction to any of the above elements. Rather, in these opening chapters we will highlight the essentials to get you swiftly up and running with importing existing data and processing it for further statistical analysis and visualization.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and introduction to R Markdown documents</span>"
+    ]
+  },
+  {
+    "objectID": "2_r_markdown_basics.html#getting-started-with-data",
+    "href": "2_r_markdown_basics.html#getting-started-with-data",
+    "title": "2  Writing in R Markdown",
+    "section": "2.1 Getting started with data",
+    "text": "2.1 Getting started with data\nSo far, so good, but what we’re really interested in is the business of analyzing our data and calling the results into our document. Before that, we should briefly discuss what the core R language is, to distinguish it from R Markdown and R Studio, which run on top of it.\nR is a free and open-source programming language which is specialized for statistical computing and data visualization. Its base functions are supported by a vast (and perpetually expanding) database of user-generated extension packages which covers just about every data analysis scenario you would care to imagine. As I mentioned in the preamble, it is not the place of this document to provide a full, ‘bottom-up’ introduction to R. Rather - as with the sections covering writing in Markdown - I will highlight only what you really need to know for use in your thesis research cycle. For those with a burning curiosity, I recommend looking at this e-book by Hadley Wickham, who - among his many other accomplishments - is author of the tidyverse suite of packages, which we use later in this tutorial.\n\n2.1.1 Packages\nAs mentioned earlier, R’s base functionality can be supplemented by the freely available extension packages. These can be installed in an R session by using the install.packages function in the following manner:\n\ninstall.packages(\"NameOfPackageThatIReallyWant\")\n\nInstalled packages can be loaded by using the library function:\n\nlibrary(NameOfPackageThatIReallyWant) # note that the quotes around the package name are not necessary for `library` to work\n\nAlternatively, functions from a previously installed package can be called by naming the package and function explicitly and separating these with two consecutive colons, without the need to load the package with library. The benefit of this ‘explicit coding’ is that it minimizes the chance that you will see a confusing error message arising from a function naming conflict. (That is, when the same name is given to functions from different packages which expect different input arguments.)\n\nNameOfPackageThatIReallyWant::FunctionFromThePackage(ArgumentsForTheFunction)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Writing in R Markdown</span>"
+    ]
+  },
+  {
+    "objectID": "1_install.html",
+    "href": "1_install.html",
+    "title": "1  Installation and getting started",
+    "section": "",
+    "text": "1.1 Creating a new R Project\nBefore we go any further, you should first install R.\nOpening R up after installation will probably result in some mild disappointment; the console is ugly and uninspiring. Luckily, there are many good integrated development environments (IDEs) available for R which can make things look a little nicer. The current market leader is R Studio, which you can download here. (Note that R Studio will not run unless you already have R installed, so be sure to do this first!)\nHopefully you agree that R Studio at the very least makes R look a little bit more pleasant. Beyond that, it provides an environment where you can use the included R Markdown language to create documents with embedded analysis code, and store these in self-contained project folders which will ensure that your analyses can easily be reproduced without having to change directory names when you switch computers. (See this link for more on the utility of using R projects.)\nTo open a new R project, click File &gt; NewProject. The ‘New Project Wizard’ will pop up, prompting you to specify where you would like to create your project. For now, the best choice would be one of the following:\nAfter you have chosen your project folder, a project link will appear in that folder, which looks like this:\nClicking on it will open up a new R Studio session with your designated project folder as its starting directory. You can now move all data necessary for your project to this folder, where it can be easily found by R.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and getting started</span>"
+    ]
+  },
+  {
+    "objectID": "1_install.html#creating-a-new-r-project",
+    "href": "1_install.html#creating-a-new-r-project",
+    "title": "1  Installation and getting started",
+    "section": "",
+    "text": "New Directory. Create a completely new folder in which to base your project.\n\nExisting Directory. Name an already existing folder as your project base.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and getting started</span>"
+    ]
+  },
+  {
+    "objectID": "1_install.html#creating-a-new-r-markdown-document",
+    "href": "1_install.html#creating-a-new-r-markdown-document",
+    "title": "1  Installation and getting started",
+    "section": "1.2 Creating a new R Markdown document",
+    "text": "1.2 Creating a new R Markdown document\nClick File &gt; NewFile &gt; R Markdown and you will see a prompt which asks for a Title, Author and Date. You can leave these blank initially, safe in the knowledge that these fields can always be updated later by modifying the YAML header which appears at the top of the markdown document. Likewise, you can always modify the document output format later, but you do need to initially select something under ‘Default Output Format’ to allow R to create your Markdown file. The document type will depend on the assignment, course, and your teacher’s preferences. For your assignments for ISA, .html will be fine, but for other assignment (e.g., your final thesis), you should switch the output to either PDF (which requires installation of an extra package1 or Word.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and getting started</span>"
+    ]
+  },
+  {
+    "objectID": "1_install.html#footnotes",
+    "href": "1_install.html#footnotes",
+    "title": "1  Installation and getting started",
+    "section": "",
+    "text": "Specifically, a LaTeX distribution called TinyTeX↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and getting started</span>"
+    ]
+  },
+  {
+    "objectID": "3_r_firstdata.html",
+    "href": "3_r_firstdata.html",
+    "title": "2  Embedding R analyses in an R Markdown document",
+    "section": "",
+    "text": "2.1 Installing packages\nWhile the base R language is powerful and versatile, we can substantially (IOHO) improve our user experience with a few extra packages. Extension packages can be added with the install.packages function in the following manner:\ninstall.packages(\"NameOfPackageThatIReallyWant\")\nInstalled packages can be loaded by using the library function:\nlibrary(NameOfPackageThatIReallyWant) # note that the quotes around the package name are not necessary for `library` to work\nAlternatively, functions from a previously installed package can be called by naming the package and function explicitly and separating these with two consecutive colons, without the need to load the package with library. The benefit of this ‘explicit coding’ is that it minimizes the chance that you will see a confusing error message arising from a function naming conflict. (That is, when the same name is given to functions from different packages which expect different input arguments.)\nNameOfPackageThatIReallyWant::FunctionFromThePackage(ArgumentsForTheFunction)\nFor the following demonstrations, we will install the tidyverse package, which is actually a compendium of many extremely useful packages. Executing the following commands will install and load the package.\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Embedding R analyses in an R Markdown document</span>"
+    ]
+  },
+  {
+    "objectID": "3_r_firstdata.html#working-with-data",
+    "href": "3_r_firstdata.html#working-with-data",
+    "title": "3  Embedding R analyses in an R Markdown document",
+    "section": "3.2 Working with data",
+    "text": "3.2 Working with data\nThe dplyr sub-package from tidyverse includes the “Starwars characters” dataset, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: name_of_my_object &lt;- stuff_to_go_into_my_object. The &lt;- is R’s assignment operator, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.\n\nmyobject&lt;-dplyr::starwars\n\nThis creates an R object named myobject which is of the “dataframe” class. We don’t need to discuss this further, other than to say that it is a tabular class (i.e., like .csv, .xls, and the like) where rows represent observations and columns represent variables. In this example, the rows correspond to different characters, whereas the columns hold values for each character across a range of characteristics.\n\n3.2.1 Taking a glimpse…\nNow that we have created our object, we can take a peek:\n\ndplyr::glimpse(myobject)\n\nRows: 87\nColumns: 14\n$ name       &lt;chr&gt; \"Luke Skywalker\", \"C-3PO\", \"R2-D2\", \"Darth Vader\", \"Leia Or…\n$ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…\n$ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…\n$ hair_color &lt;chr&gt; \"blond\", NA, NA, \"none\", \"brown\", \"brown, grey\", \"brown\", N…\n$ skin_color &lt;chr&gt; \"fair\", \"gold\", \"white, blue\", \"white\", \"light\", \"light\", \"…\n$ eye_color  &lt;chr&gt; \"blue\", \"yellow\", \"red\", \"yellow\", \"brown\", \"blue\", \"blue\",…\n$ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …\n$ sex        &lt;chr&gt; \"male\", \"none\", \"none\", \"male\", \"female\", \"male\", \"female\",…\n$ gender     &lt;chr&gt; \"masculine\", \"masculine\", \"masculine\", \"masculine\", \"femini…\n$ homeworld  &lt;chr&gt; \"Tatooine\", \"Tatooine\", \"Naboo\", \"Tatooine\", \"Alderaan\", \"T…\n$ species    &lt;chr&gt; \"Human\", \"Droid\", \"Droid\", \"Human\", \"Human\", \"Human\", \"Huma…\n$ films      &lt;list&gt; &lt;\"A New Hope\", \"The Empire Strikes Back\", \"Return of the J…\n$ vehicles   &lt;list&gt; &lt;\"Snowspeeder\", \"Imperial Speeder Bike\"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, \"Imp…\n$ starships  &lt;list&gt; &lt;\"X-wing\", \"Imperial shuttle\"&gt;, &lt;&gt;, &lt;&gt;, \"TIE Advanced x1\",…\n\n\nThe dplyr::glimpse function tells the name of all column variables in the dataset (these are displayed as rows with a $ prefix), the total number of Rows (i.e., the number of characters) and the total number of column variables. As you should see, this dataset includes 87 characters with values on 14 variables.\n\n\n3.2.2 filtering on values of a specific variable, and pulling only the variable of interest\nSay that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age from our dataset:\n\nyoda_age &lt;- myobject %&gt;% \n  dplyr::filter(name == \"Yoda\") %&gt;% \n  dplyr::pull(birth_year)\n\nReveal to us, this does, that Yoda 896 years old is.\n\n3.2.2.1 Tidyverse packages and the “pipe” operator (%&gt;%)\nBefore going further, we must discuss the use of the so-called pipe (%&gt;%) above. This allows you to chain different functions together without having to call the object you want to manipulate for every function. Let’s break down the above chunk line-by-line: 1. Yoda_age &lt;- myobject %&gt;% - this copies myobject to a new object named yoda_age, and %&gt;% passes yoda_age onto the next operation. 2. dplyr::filter(name == \"Yoda\") %&gt;% - this feeds yoda_age into the function dplyr::filter, which then searches the variable name for the text string “Yoda”, and discards characters with names which are not Yoda. As before, the %&gt;% moves the output along to the next line of code. 3. dplyr::pull(age) - this “pulls” out the age column variable for Yoda and throws everything else away, leaving us with a value of 896 stored inside yoda_age.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Embedding R analyses in an R Markdown document</span>"
+    ]
+  },
+  {
+    "objectID": "2_r_markdown_basics.html#getting-started-with-projects-and-files",
+    "href": "2_r_markdown_basics.html#getting-started-with-projects-and-files",
+    "title": "1  Installation and introduction to R Markdown documents",
+    "section": "",
+    "text": "1.1.1 Creating a new R Project\nR Studio provides an environment where you can use R Markdown to create documents with embedded analysis outputs, and store these in self-contained project folders which will ensure that your analyses can easily be reproduced without having to change directory names when you switch computers. (See this link for more on the utility of using R projects.)\nTo open a new R project, click File &gt; NewProject. The ‘New Project Wizard’ will pop up, prompting you to specify where you would like to create your project. For now, the best choice would be one of the following:\n\nNew Directory. Create a completely new folder in which to base your project.\n\nExisting Directory. Name an already existing folder as your project base.\n\nAfter you have chosen your project folder, a project link will appear in that folder, which looks like this:\n\nClicking on it outside of R will open up a new R Studio session with your designated project folder as its starting directory. You can now move all data necessary for your project to this folder, where it can be easily found by R.\n\n\n1.1.2 Creating a new R Markdown document\nTo open a new R Markdown document within R Studio, click File &gt; NewFile &gt; R Markdown and you will see a prompt which asks for a Title, Author and Date. You can leave these blank initially, safe in the knowledge that these fields can always be updated later. Likewise, you can always modify the document output format later, but you do need to initially select something under ‘Default Output Format’ to allow R to create your Markdown file. The document type will depend on the assignment, course, and your teacher’s preferences. For your assignments for ISA, .html will be fine, but for other assignment (e.g., your final thesis), you should switch the output to either PDF (which requires installation of an extra package1 or Word.\nAn editor window will spring open with a new, as yet untitled, .Rmd file. Before going further, you should save this (Ctrl/Cmd + S) with a sensible name2. At the top of the document, you will see the YAML header where settings for document output can be added or modified.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and introduction to R Markdown documents</span>"
+    ]
+  },
+  {
+    "objectID": "2_r_markdown_basics.html#writing-in-r-markdown",
+    "href": "2_r_markdown_basics.html#writing-in-r-markdown",
+    "title": "1  Installation and introduction to R Markdown documents",
+    "section": "1.2 Writing in R Markdown",
+    "text": "1.2 Writing in R Markdown\nR Markdown is an extremely rich and powerful tool and you can browse the definitive guide from one of the main authors of the package to help you get the most out of it. For the most part, you can use it as you would any other typesetting/word-processing tool, and we summarize here some basic yet essential features.\n\n1.2.1 New lines\nBeginning a new line works in exactly the same way as with any other word processor. Simply hit Enter/Return and carry on typing.\n\n\n1.2.2 Headings\nHeadings are created with the hash key (#) and the number of hashes modifies the heading level. R Markdown has six levels:\n\n# Huge\n## Big\n### Not so big\n#### Small\n##### Tiny\n###### Piddly\n\n\n\n1.2.3 Lists\nLists with multiple levels of indentation can be created with numbers, letters, and symbols:\n\n1. Number 1\n    a. 1a\n        + 1aplus\n2. Number 2\n\nThe above code appears as:\n\nNumber 1\n\n1a\n\n1aplus\n\n\nNumber 2\n\n\n\n1.2.4 Equations\nEquations can be nicely formatted in one of two ways:\n\nFirstly, this is the inline method which produces: $E = mc^2$\n\nFirstly, this is the inline method which produces: \\(E = mc^2\\)\n\nAlternatively, you can ident equations:\n$$\nP(A|B) = \\frac{P(B | A) P(A)}{P(B)}\n$$\n\nAlternatively, you can indent equations:\n\\[\nP(A|B) = \\frac{P(B | A) P(A)}{P(B)}\n\\]\n\n\n1.2.5 Code chunks\nCode chunks are used to tell R to perform operations (e.g., load packages or data, do some analysis, etc.) within the document. They look like this:\n\n{r chunkTitle, echo=TRUE, eval=FALSE}\n\n  DoSomething&lt;-'OK' # create a variable ('character' vector)\n    \n  print(DoSomething) # print the contents of that variable\n    \n  # I set 'eval' to 'FALSE', meaning that these commands will be printed, but not actually run.\n\nIn R Markdown documents, you can execute the embedded R code chunk-by-chunk, which will create output in your R (Studio) terminal and/or workspace. This is useful for debugging purposes, as ‘knitting’ the document - which we discuss later - will execute the code ‘silently’, and as a whole, meaning that interim outputs will not be written to your workspace and only the final product (i.e., your full document) will be generated.\nWhether the reader sees code chunks or not in your final output document depends on whether the echo parameter inside the curly braces is set to ‘TRUE’ (‘show’ - the default) or ‘FALSE’ (‘don’t show’). For writing documents like your thesis, you will likely want much of the code to be suppressed in the PDF/Word version, and readers interested in viewing the code and reproducing your findings can view and execute an .Rmd version of the document in which you do your coding and writing. New code chunks can be created by pressing Ctrl/Cmd + Alt + I. Chunk parameters are contained inside curly braces and the first argument inside the braces is simply ‘r’; to give a chunk a title, you leave a space - but NOT a comma. To start adding ‘TRUE’/‘FALSE’ values for chunk parameters, you type a comma after the ‘r chunkTitle’ arguments, and then separate each subsequent chunk parameter/value pair with more commas\n\n\n1.2.6 Inline code\nInline code is useful for printing values deriving from your analysis directly into your document, thereby minimizing errors which might arise from manual entry or copy-paste. Let’s first create some variables:\n\nChipWeekend&lt;-'Salt and Vinegar'\nChipWeek&lt;-'Paprika'\n\nWe can then call the contents of these variables and weave them into the main body of our document by opening backticks and inserting the variable we want to call after r:\n\nOn Tuesdays, I buy `r ChipWeek` chips, but on Saturdays I get `r ChipWeekend`.\n\nWhen executed, the above appears in your document as:\n\nOn Tuesdays, I buy Paprika chips, but on Saturdays I get Salt and Vinegar.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and introduction to R Markdown documents</span>"
+    ]
+  },
+  {
+    "objectID": "2_r_markdown_basics.html#footnotes",
+    "href": "2_r_markdown_basics.html#footnotes",
+    "title": "1  Installation and introduction to R Markdown documents",
+    "section": "",
+    "text": "Specifically, a LaTeX distribution called TinyTeX↩︎\nIf following this step directly after creating/opening an R project, then the project directory you assigned will be the default for saving.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and introduction to R Markdown documents</span>"
+    ]
+  },
+  {
+    "objectID": "3_r_firstdata.html#working-with-data-within-the-tidyverse",
+    "href": "3_r_firstdata.html#working-with-data-within-the-tidyverse",
+    "title": "2  Embedding R analyses in an R Markdown document",
+    "section": "2.2 Working with data within the tidyverse",
+    "text": "2.2 Working with data within the tidyverse\nThe dplyr sub-package from tidyverse includes the “Starwars characters” dataset, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: name_of_my_object &lt;- stuff_to_go_into_my_object. The &lt;- is R’s assignment operator, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.\n\nmy_starwars&lt;-dplyr::starwars\n\nThis creates an R object named my_starwars which is of the “dataframe” class. We don’t need to discuss this further, other than to say that it is a tabular class (i.e., like .csv, .xls, and the like) where rows represent observations and columns represent variables. In this example, the rows correspond to different characters, whereas the columns hold values for each character across a range of characteristics.\n\n2.2.1 Taking a glimpse…\nNow that we have created our object, we can take a peek:\n\ndplyr::glimpse(my_starwars)\n\nRows: 87\nColumns: 14\n$ name       &lt;chr&gt; \"Luke Skywalker\", \"C-3PO\", \"R2-D2\", \"Darth Vader\", \"Leia Or…\n$ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…\n$ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…\n$ hair_color &lt;chr&gt; \"blond\", NA, NA, \"none\", \"brown\", \"brown, grey\", \"brown\", N…\n$ skin_color &lt;chr&gt; \"fair\", \"gold\", \"white, blue\", \"white\", \"light\", \"light\", \"…\n$ eye_color  &lt;chr&gt; \"blue\", \"yellow\", \"red\", \"yellow\", \"brown\", \"blue\", \"blue\",…\n$ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …\n$ sex        &lt;chr&gt; \"male\", \"none\", \"none\", \"male\", \"female\", \"male\", \"female\",…\n$ gender     &lt;chr&gt; \"masculine\", \"masculine\", \"masculine\", \"masculine\", \"femini…\n$ homeworld  &lt;chr&gt; \"Tatooine\", \"Tatooine\", \"Naboo\", \"Tatooine\", \"Alderaan\", \"T…\n$ species    &lt;chr&gt; \"Human\", \"Droid\", \"Droid\", \"Human\", \"Human\", \"Human\", \"Huma…\n$ films      &lt;list&gt; &lt;\"A New Hope\", \"The Empire Strikes Back\", \"Return of the J…\n$ vehicles   &lt;list&gt; &lt;\"Snowspeeder\", \"Imperial Speeder Bike\"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, \"Imp…\n$ starships  &lt;list&gt; &lt;\"X-wing\", \"Imperial shuttle\"&gt;, &lt;&gt;, &lt;&gt;, \"TIE Advanced x1\",…\n\n\nThe dplyr::glimpse function tells the name of all column variables in the dataset (these are displayed as rows with a $ prefix), the total number of Rows (i.e., the number of characters) and the total number of column variables. As you should see, this dataset includes 87 characters with values on 14 variables.\n\n\n2.2.2 filtering on values of a specific variable, and pulling only the variable of interest\nSay that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age from our dataset:\n\nyoda_age &lt;- my_starwars %&gt;% \n  dplyr::filter(name == \"Yoda\") %&gt;% \n  dplyr::pull(birth_year)\n\nReveal to us, this does, that Yoda 896 years old is.\n\n\n\n\n\n\nUsing the “pipe” operator (%&gt;%)\n\n\n\nBefore going further, we must discuss the use of the so-called pipe (%&gt;%) above. This allows you to chain different functions together without having to call the object you want to manipulate for every function. Let’s break down the above chunk line-by-line:\n\nYoda_age &lt;- my_starwars %&gt;% - this copies my_starwars to a new object named yoda_age, and %&gt;% passes yoda_age onto the next operation.\ndplyr::filter(name == \"Yoda\") %&gt;% - this feeds yoda_age into the function dplyr::filter, which then searches the variable name for the text string “Yoda”, and discards characters with names which are not Yoda. As before, the %&gt;% moves the output along to the next line of code.\ndplyr::pull(age) - this “pulls” out the age column variable for Yoda and throws everything else away, leaving us with a value of 896 stored inside yoda_age.\n\n\n\n\n\n2.2.3 mutate-ing your data frame\nLet’s imagine that we want to calculate every character’s body mass index (BMI) of every listed character and add this value to their row in the dataframe. The mutate function allows us to easily create new variables, or add existing ones.\nWe define BMI as:\n\\[\nBMI = \\frac{weight(kg)}{height(m)^2}\n\\]\nSo, to calculate this value, we need to use the height (measured in cm) and mass (in kg) fields.\n\nmy_starwars &lt;- my_starwars %&gt;% \n  dplyr::mutate(BMI = mass/(height/100)^2)\n\nAs above, we use the pipe to pass my_starwars on to mutate. We create the variable BMI inside the call to mutate, and then perform our calculations.\nTo check the operation performed correctly, you can just call up the new variable.\n\nmy_starwars$BMI\n\n [1]  26.02758  26.89232  34.72222  33.33007  21.77778  37.87401  27.54821\n [8]  34.00999  25.08286  23.24598  23.76641        NA  21.54509  24.69136\n[15]  24.72518 443.42857  26.64360  33.95062  39.02663  25.95156  23.35095\n[22]  35.00000  31.30194  25.21625  25.79592  25.61728        NA        NA\n[29]  25.82645  26.56250  23.89326  24.67038        NA  13.14828  17.18034\n[36]  16.34247        NA        NA        NA  31.88776        NA        NA\n[43]  26.12245        NA  17.35892  24.03461  50.92802        NA  24.46460\n[50]  23.76641  20.91623  22.64681        NA  14.76843        NA        NA\n[57]  22.63468        NA  24.83565        NA        NA  23.88844  19.44637\n[64]  18.14487        NA  21.47709        NA  23.58984  19.48696  26.01775\n[71]  16.78076        NA        NA        NA  12.88625        NA  17.99015\n[78]  34.07922  24.83746  22.35174  15.14960  18.85192        NA        NA\n[85]        NA        NA        NA\n\n\n\n\n\n\n\n\nNote\n\n\n\nYou can index an existing column variable in a dataframe and display simply by typing name_of_dataframe$name_of_column into the R console\n\n\n\n\n2.2.4 select-ing a subset of variables from an existing data frame\nTo end this section, let’s reduce our dataframe to only the names of our character and their BMIs. To do this, we can use the select function, followed by calling up the whole dataframe to check the output.\n\nmy_starwars&lt;-my_starwars %&gt;% \n  dplyr::select(name,BMI)\n\nmy_starwars\n\n# A tibble: 87 × 2\n   name                 BMI\n   &lt;chr&gt;              &lt;dbl&gt;\n 1 Luke Skywalker      26.0\n 2 C-3PO               26.9\n 3 R2-D2               34.7\n 4 Darth Vader         33.3\n 5 Leia Organa         21.8\n 6 Owen Lars           37.9\n 7 Beru Whitesun Lars  27.5\n 8 R5-D4               34.0\n 9 Biggs Darklighter   25.1\n10 Obi-Wan Kenobi      23.2\n# ℹ 77 more rows",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Embedding R analyses in an R Markdown document</span>"
+    ]
+  },
+  {
+    "objectID": "1_r_markdown_basics.html",
+    "href": "1_r_markdown_basics.html",
+    "title": "1  Installation and introduction to R Markdown documents",
+    "section": "",
+    "text": "1.1 Getting started with Projects and Files\nYou should now install R. Opening it up after installation will probably result in some mild disappointment; the console is ugly and uninspiring. Luckily, there are many good integrated development environments (IDEs) available for R which can make things look a little nicer. The current market leader is R Studio, which you can download here. (Note that R Studio will not run unless you already have R installed, so be sure to do this first!)\nNow, let’s briefly distinguish some components:\nAs suggested in the introductory chapter, it is not the place of this book to provide a full, ‘bottom-up’ introduction to any of the above elements. Rather, in these opening chapters we will highlight the essentials to get you swiftly up and running with importing existing data and processing it for further statistical analysis and visualization.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and introduction to R Markdown documents</span>"
+    ]
+  },
+  {
+    "objectID": "1_r_markdown_basics.html#getting-started-with-projects-and-files",
+    "href": "1_r_markdown_basics.html#getting-started-with-projects-and-files",
+    "title": "1  Installation and introduction to R Markdown documents",
+    "section": "",
+    "text": "1.1.1 Creating a new R Project\nR Studio provides an environment where you can use R Markdown to create documents with embedded analysis outputs, and store these in self-contained project folders which will ensure that your analyses can easily be reproduced without having to change directory names when you switch computers. (See this link for more on the utility of using R projects.)\nTo open a new R project, click File &gt; NewProject. The ‘New Project Wizard’ will pop up, prompting you to specify where you would like to create your project. For now, the best choice would be one of the following:\n\nNew Directory. Create a completely new folder in which to base your project.\n\nExisting Directory. Name an already existing folder as your project base.\n\nAfter you have chosen your project folder, a project link will appear in that folder, which looks like this:\n\nClicking on it outside of R will open up a new R Studio session with your designated project folder as its starting directory. You can now move all data necessary for your project to this folder, where it can be easily found by R.\n\n\n1.1.2 Creating a new R Markdown document\nTo open a new R Markdown document within R Studio, click File &gt; NewFile &gt; R Markdown and you will see a prompt which asks for a Title, Author and Date. You can leave these blank initially, safe in the knowledge that these fields can always be updated later. Likewise, you can always modify the document output format later, but you do need to initially select something under ‘Default Output Format’ to allow R to create your Markdown file. The document type will depend on the assignment, course, and your teacher’s preferences. For your assignments for ISA, .html will be fine, but for other assignment (e.g., your final thesis), you should switch the output to either PDF (which requires installation of an extra package1 or Word.\nAn editor window will spring open with a new, as yet untitled, .Rmd file. Before going further, you should save this (Ctrl/Cmd + S) with a sensible name2. At the top of the document, you will see the YAML header where settings for document output can be added or modified.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and introduction to R Markdown documents</span>"
+    ]
+  },
+  {
+    "objectID": "1_r_markdown_basics.html#writing-in-r-markdown",
+    "href": "1_r_markdown_basics.html#writing-in-r-markdown",
+    "title": "1  Installation and introduction to R Markdown documents",
+    "section": "1.2 Writing in R Markdown",
+    "text": "1.2 Writing in R Markdown\nR Markdown is an extremely rich and powerful tool and you can browse the definitive guide from one of the main authors of the package to help you get the most out of it. For the most part, you can use it as you would any other typesetting/word-processing tool, and we summarize here some basic yet essential features.\n\n1.2.1 New lines\nBeginning a new line works in exactly the same way as with any other word processor. Simply hit Enter/Return and carry on typing.\n\n\n1.2.2 Headings\nHeadings are created with the hash key (#) and the number of hashes modifies the heading level. R Markdown has six levels:\n\n# Huge\n## Big\n### Not so big\n#### Small\n##### Tiny\n###### Piddly\n\n\n\n1.2.3 Lists\nLists with multiple levels of indentation can be created with numbers, letters, and symbols:\n\n1. Number 1\n    a. 1a\n        + 1aplus\n2. Number 2\n\nThe above code appears as:\n\nNumber 1\n\n1a\n\n1aplus\n\n\nNumber 2\n\n\n\n1.2.4 Equations\nEquations can be nicely formatted in one of two ways:\n\nFirstly, this is the inline method which produces: $E = mc^2$\n\nFirstly, this is the inline method which produces: \\(E = mc^2\\)\n\nAlternatively, you can ident equations:\n$$\nP(A|B) = \\frac{P(B | A) P(A)}{P(B)}\n$$\n\nAlternatively, you can indent equations:\n\\[\nP(A|B) = \\frac{P(B | A) P(A)}{P(B)}\n\\]\n\n\n1.2.5 Code chunks\nCode chunks are used to tell R to perform operations (e.g., load packages or data, do some analysis, etc.) within the document. They look like this:\n\n{r chunkTitle, echo=TRUE, eval=FALSE}\n\n  DoSomething&lt;-'OK' # create a variable ('character' vector)\n    \n  print(DoSomething) # print the contents of that variable\n    \n  # I set 'eval' to 'FALSE', meaning that these commands will be printed, but not actually run.\n\nIn R Markdown documents, you can execute the embedded R code chunk-by-chunk, which will create output in your R (Studio) terminal and/or workspace. This is useful for debugging purposes, as ‘knitting’ the document - which we discuss later - will execute the code ‘silently’, and as a whole, meaning that interim outputs will not be written to your workspace and only the final product (i.e., your full document) will be generated.\nWhether the reader sees code chunks or not in your final output document depends on whether the echo parameter inside the curly braces is set to ‘TRUE’ (‘show’ - the default) or ‘FALSE’ (‘don’t show’). For writing documents like your thesis, you will likely want much of the code to be suppressed in the PDF/Word version, and readers interested in viewing the code and reproducing your findings can view and execute an .Rmd version of the document in which you do your coding and writing. New code chunks can be created by pressing Ctrl/Cmd + Alt + I. Chunk parameters are contained inside curly braces and the first argument inside the braces is simply ‘r’; to give a chunk a title, you leave a space - but NOT a comma. To start adding ‘TRUE’/‘FALSE’ values for chunk parameters, you type a comma after the ‘r chunkTitle’ arguments, and then separate each subsequent chunk parameter/value pair with more commas\n\n\n1.2.6 Inline code\nInline code is useful for printing values deriving from your analysis directly into your document, thereby minimizing errors which might arise from manual entry or copy-paste. Let’s first create some variables:\n\nChipWeekend&lt;-'Salt and Vinegar'\nChipWeek&lt;-'Paprika'\n\nWe can then call the contents of these variables and weave them into the main body of our document by opening backticks and inserting the variable we want to call after r:\n\nOn Tuesdays, I buy `r ChipWeek` chips, but on Saturdays I get `r ChipWeekend`.\n\nWhen executed, the above appears in your document as:\n\nOn Tuesdays, I buy Paprika chips, but on Saturdays I get Salt and Vinegar.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and introduction to R Markdown documents</span>"
+    ]
+  },
+  {
+    "objectID": "1_r_markdown_basics.html#footnotes",
+    "href": "1_r_markdown_basics.html#footnotes",
+    "title": "1  Installation and introduction to R Markdown documents",
+    "section": "",
+    "text": "Specifically, a LaTeX distribution called TinyTeX↩︎\nIf following this step directly after creating/opening an R project, then the project directory you assigned will be the default for saving.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and introduction to R Markdown documents</span>"
+    ]
+  },
+  {
+    "objectID": "2_r_firstdata.html",
+    "href": "2_r_firstdata.html",
+    "title": "2  Embedding R analyses in an R Markdown document",
+    "section": "",
+    "text": "2.1 Installing packages\nWhile the base R language is powerful and versatile, we can substantially (IOHO) improve our user experience with a few extra packages. Extension packages can be added with the install.packages function in the following manner:\ninstall.packages(\"NameOfPackageThatIReallyWant\")\nInstalled packages can be loaded by using the library function:\nlibrary(NameOfPackageThatIReallyWant) # note that the quotes around the package name are not necessary for `library` to work\nAlternatively, functions from a previously installed package can be called by naming the package and function explicitly and separating these with two consecutive colons, without the need to load the package with library. The benefit of this ‘explicit coding’ is that it minimizes the chance that you will see a confusing error message arising from a function naming conflict. (That is, when the same name is given to functions from different packages which expect different input arguments.)\nNameOfPackageThatIReallyWant::FunctionFromThePackage(ArgumentsForTheFunction)\nFor the following demonstrations, we will install the tidyverse package, which is actually a compendium of many extremely useful packages. Executing the following commands will install and load the package.\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Embedding R analyses in an R Markdown document</span>"
+    ]
+  },
+  {
+    "objectID": "2_r_firstdata.html#working-with-data-within-the-tidyverse",
+    "href": "2_r_firstdata.html#working-with-data-within-the-tidyverse",
+    "title": "2  Embedding R analyses in an R Markdown document",
+    "section": "2.2 Working with data within the tidyverse",
+    "text": "2.2 Working with data within the tidyverse\nThe dplyr sub-package from tidyverse includes the “Starwars characters” dataset, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: name_of_my_object &lt;- stuff_to_go_into_my_object. The &lt;- is R’s assignment operator, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.\n\nmy_starwars&lt;-dplyr::starwars\n\nThis creates an R object named my_starwars which is of the “dataframe” class. We don’t need to discuss this further, other than to say that it is a tabular class (i.e., like .csv, .xls, and the like) where rows represent observations and columns represent variables. In this example, the rows correspond to different characters, whereas the columns hold values for each character across a range of characteristics.\n\n2.2.1 Taking a glimpse…\nNow that we have created our object, we can take a peek:\n\ndplyr::glimpse(my_starwars)\n\nRows: 87\nColumns: 14\n$ name       &lt;chr&gt; \"Luke Skywalker\", \"C-3PO\", \"R2-D2\", \"Darth Vader\", \"Leia Or…\n$ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…\n$ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…\n$ hair_color &lt;chr&gt; \"blond\", NA, NA, \"none\", \"brown\", \"brown, grey\", \"brown\", N…\n$ skin_color &lt;chr&gt; \"fair\", \"gold\", \"white, blue\", \"white\", \"light\", \"light\", \"…\n$ eye_color  &lt;chr&gt; \"blue\", \"yellow\", \"red\", \"yellow\", \"brown\", \"blue\", \"blue\",…\n$ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …\n$ sex        &lt;chr&gt; \"male\", \"none\", \"none\", \"male\", \"female\", \"male\", \"female\",…\n$ gender     &lt;chr&gt; \"masculine\", \"masculine\", \"masculine\", \"masculine\", \"femini…\n$ homeworld  &lt;chr&gt; \"Tatooine\", \"Tatooine\", \"Naboo\", \"Tatooine\", \"Alderaan\", \"T…\n$ species    &lt;chr&gt; \"Human\", \"Droid\", \"Droid\", \"Human\", \"Human\", \"Human\", \"Huma…\n$ films      &lt;list&gt; &lt;\"A New Hope\", \"The Empire Strikes Back\", \"Return of the J…\n$ vehicles   &lt;list&gt; &lt;\"Snowspeeder\", \"Imperial Speeder Bike\"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, \"Imp…\n$ starships  &lt;list&gt; &lt;\"X-wing\", \"Imperial shuttle\"&gt;, &lt;&gt;, &lt;&gt;, \"TIE Advanced x1\",…\n\n\nThe dplyr::glimpse function tells the name of all column variables in the dataset (these are displayed as rows with a $ prefix), the total number of Rows (i.e., the number of characters) and the total number of column variables. As you should see, this dataset includes 87 characters with values on 14 variables.\n\n\n2.2.2 filtering on values of a specific variable, and pulling only the variable of interest\nSay that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age from our dataset:\n\nyoda_age &lt;- my_starwars %&gt;% \n  dplyr::filter(name == \"Yoda\") %&gt;% \n  dplyr::pull(birth_year)\n\nReveal to us, this does, that Yoda 896 years old is.\n\n\n\n\n\n\nUsing the “pipe” operator (%&gt;%)\n\n\n\nBefore going further, we must discuss the use of the so-called pipe (%&gt;%) above. This allows you to chain different functions together without having to call the object you want to manipulate for every function. Let’s break down the above chunk line-by-line:\n\nYoda_age &lt;- my_starwars %&gt;% - this copies my_starwars to a new object named yoda_age, and %&gt;% passes yoda_age onto the next operation.\ndplyr::filter(name == \"Yoda\") %&gt;% - this feeds yoda_age into the function dplyr::filter, which then searches the variable name for the text string “Yoda”, and discards characters with names which are not Yoda. As before, the %&gt;% moves the output along to the next line of code.\ndplyr::pull(age) - this “pulls” out the age column variable for Yoda and throws everything else away, leaving us with a value of 896 stored inside yoda_age.\n\n\n\n\n\n2.2.3 mutate-ing your data frame\nLet’s imagine that we want to calculate every character’s body mass index (BMI) of every listed character and add this value to their row in the dataframe. The mutate function allows us to easily create new variables, or add existing ones.\nWe define BMI as:\n\\[\nBMI = \\frac{weight(kg)}{height(m)^2}\n\\]\nSo, to calculate this value, we need to use the height (measured in cm) and mass (in kg) fields.\n\nmy_starwars &lt;- my_starwars %&gt;% \n  dplyr::mutate(BMI = mass/(height/100)^2)\n\nAs above, we use the pipe to pass my_starwars on to mutate. We create the variable BMI inside the call to mutate, and then perform our calculations.\nTo check the operation performed correctly, you can just call up the new variable.\n\nmy_starwars$BMI\n\n [1]  26.02758  26.89232  34.72222  33.33007  21.77778  37.87401  27.54821\n [8]  34.00999  25.08286  23.24598  23.76641        NA  21.54509  24.69136\n[15]  24.72518 443.42857  26.64360  33.95062  39.02663  25.95156  23.35095\n[22]  35.00000  31.30194  25.21625  25.79592  25.61728        NA        NA\n[29]  25.82645  26.56250  23.89326  24.67038        NA  13.14828  17.18034\n[36]  16.34247        NA        NA        NA  31.88776        NA        NA\n[43]  26.12245        NA  17.35892  24.03461  50.92802        NA  24.46460\n[50]  23.76641  20.91623  22.64681        NA  14.76843        NA        NA\n[57]  22.63468        NA  24.83565        NA        NA  23.88844  19.44637\n[64]  18.14487        NA  21.47709        NA  23.58984  19.48696  26.01775\n[71]  16.78076        NA        NA        NA  12.88625        NA  17.99015\n[78]  34.07922  24.83746  22.35174  15.14960  18.85192        NA        NA\n[85]        NA        NA        NA\n\n\n\n\n\n\n\n\nNote\n\n\n\nYou can index an existing column variable in a dataframe and display simply by typing name_of_dataframe$name_of_column into the R console\n\n\n\n\n2.2.4 select-ing a subset of variables from an existing data frame\nTo end this section, let’s reduce our dataframe to only the names of our character and their BMIs. To do this, we can use the select function, followed by calling up the whole dataframe to check the output.\n\nmy_starwars&lt;-my_starwars %&gt;% \n  dplyr::select(name,BMI)\n\nmy_starwars\n\n# A tibble: 87 × 2\n   name                 BMI\n   &lt;chr&gt;              &lt;dbl&gt;\n 1 Luke Skywalker      26.0\n 2 C-3PO               26.9\n 3 R2-D2               34.7\n 4 Darth Vader         33.3\n 5 Leia Organa         21.8\n 6 Owen Lars           37.9\n 7 Beru Whitesun Lars  27.5\n 8 R5-D4               34.0\n 9 Biggs Darklighter   25.1\n10 Obi-Wan Kenobi      23.2\n# ℹ 77 more rows",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Embedding R analyses in an R Markdown document</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#thanks-for-the-warm-welcome-but-why-am-i-learning-r",
+    "href": "index.html#thanks-for-the-warm-welcome-but-why-am-i-learning-r",
+    "title": "R for the PPL(E)",
+    "section": "Thanks for the warm welcome, but why am I learning R?",
+    "text": "Thanks for the warm welcome, but why am I learning R?\nWhile there are many excellent “click-and-point” statistical analysis packages available, it’s worth highlighting some of the benefits that come with using R (Markdown):\n\nYou can record and document all analysis steps (i.e., from raw data processing/wrangling, to inferential statistics and visualization) in a series of scripts, meaning that you don’t have to remember which sequence of buttons and drop down menus you followed to get to your analysis outputs. This facilitates complete reproducibility of your analysis pipeline and results.\nWriting your research papers and assignments with R Markdown means that all analysis outputs (e.g., descriptive statistics, test statistics, figures, tables, etc.) can be embedded without the need for pasting information from your statistics software into a separate word processor.\nYou gain more power to customize your analysis, rather than relying on the narrow range of defaults included in some statistical packages.\nIt’s free!",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#right-but-i-have-like-zero-background-in-programming",
+    "href": "index.html#right-but-i-have-like-zero-background-in-programming",
+    "title": "R for the PPL(E)",
+    "section": "Right, but I have, like, zero background in programming!",
+    "text": "Right, but I have, like, zero background in programming!\nWe hear you, but we think that you will be pleasantly surprised by how quickly you can get up and running. While this will be challenging, bear in mind that we are here to help, and we strongly believe that you are capable of doing very well, with a bit of application and effort.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "2_r_firstdata.html#summary",
+    "href": "2_r_firstdata.html#summary",
+    "title": "2  Embedding R analyses in an R Markdown document",
+    "section": "2.3 Summary",
+    "text": "2.3 Summary\nOf all the things….",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Embedding R analyses in an R Markdown document</span>"
+    ]
+  },
+  {
+    "objectID": "1_r_markdown_basics.html#summary",
+    "href": "1_r_markdown_basics.html#summary",
+    "title": "1  Installation and introduction to R Markdown documents",
+    "section": "1.3 Summary",
+    "text": "1.3 Summary\nOf all the things….",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation and introduction to R Markdown documents</span>"
+    ]
+  }
+]

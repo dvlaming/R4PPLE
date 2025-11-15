@@ -1,0 +1,148 @@
+# Installation and introduction to R Markdown documents
+
+You should now [install R](https://cran.rstudio.com/). Opening it up after installation will probably result in some mild disappointment; the console is ugly and uninspiring. Luckily, there are many good integrated development environments (IDEs) available for R which can make things look a little nicer. The current market leader is R Studio, which you can download [here](https://posit.co/download/rstudio-desktop/). (**Note that R Studio will not run unless you already have R installed, so be sure to do this first!**)
+
+Now, let's briefly distinguish some components:
+
+-   **R** is a free and open-source programming language which is specialized for statistical computing and data visualization. The base functions of the language can be supplemented by a vast (and perpetually expanding) database of user-generated extension packages which covers just about every data analysis scenario you would care to imagine.
+-   **R Studio** is an *integrated development environment* (IDE) which, in short, runs on top of base R to make it look a bit nicer.
+-   **R Markdown** is a typesetting language bundled with R Studio which allows us to prepare documents with - among other things - interwoven code, figures, formulae, analysis outputs and tables.
+
+As suggested in the introductory chapter, it is not the place of this book to provide a full, 'bottom-up' introduction to any of the above elements. Rather, in these opening chapters we will highlight the essentials to get you swiftly up and running with importing existing data and processing it for further statistical analysis and visualization.
+
+## Getting started with Projects and Files
+
+### Creating a new R Project
+
+R Studio provides an environment where you can use R Markdown to create documents with embedded analysis outputs, and store these in self-contained project folders which will ensure that your analyses can easily be reproduced without having to change directory names when you switch computers. (See [this link](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) for more on the utility of using R projects.)
+
+To open a new R project, click *File* \> *NewProject*. The 'New Project Wizard' will pop up, prompting you to specify where you would like to create your project. For now, the best choice would be one of the following:
+
+1.  **New Directory**. Create a completely new folder in which to base your project.\
+2.  **Existing Directory**. Name an already existing folder as your project base.
+
+After you have chosen your project folder, a project link will appear in that folder, which looks like this:
+
+![](RProjectImg.png)
+
+Clicking on it outside of R will open up a new R Studio session with your designated project folder as its starting directory. You can now move all data necessary for your project to this folder, where it can be easily found by R.
+
+### Creating a new R Markdown document
+
+To open a new R Markdown document within R Studio, click *File* \> *NewFile* \> *R Markdown* and you will see a prompt which asks for a Title, Author and Date. You can leave these blank initially, safe in the knowledge that these fields can always be updated later. Likewise, you can always modify the document output format later, but you do need to initially select something under 'Default Output Format' to allow R to create your Markdown file. The document type will depend on the assignment, course, and your teacher's preferences. For your assignments for ISA, .html will be fine, but for other assignment (e.g., your final thesis), you should switch the output to either PDF (which requires installation of an extra package[^1_r_markdown_basics-1] or Word.
+
+[^1_r_markdown_basics-1]: Specifically, a LaTeX distribution called [TinyTeX](https://yihui.org/tinytex/)
+
+An editor window will spring open with a new, as yet untitled, .Rmd file. Before going further, you should save this (`Ctrl/Cmd + S`) with a sensible name[^1_r_markdown_basics-2]. At the top of the document, you will see the [YAML header](https://bookdown.org/yihui/rmarkdown-cookbook/rmarkdown-anatomy.html) where settings for document output can be added or modified.
+
+[^1_r_markdown_basics-2]: If following this step directly after creating/opening an R project, then the project directory you assigned will be the default for saving.
+
+## Writing in R Markdown
+
+R Markdown is an extremely rich and powerful tool and you can browse the [definitive guide](https://bookdown.org/yihui/rmarkdown/) from one of the main authors of the package to help you get the most out of it. For the most part, you can use it as you would any other typesetting/word-processing tool, and we summarize here some basic yet essential features.
+
+### New lines
+
+Beginning a new line works in exactly the same way as with any other word processor. Simply hit `Enter/Return` and carry on typing.
+
+### Headings
+
+Headings are created with the hash key (`#`) and the number of hashes modifies the heading level. R Markdown has six levels:
+
+```{r heading, eval=FALSE}
+
+# Huge
+## Big
+### Not so big
+#### Small
+##### Tiny
+###### Piddly
+```
+
+### Lists
+
+Lists with multiple levels of indentation can be created with numbers, letters, and symbols:
+
+```{r lists, eval=FALSE}
+
+1. Number 1
+    a. 1a
+        + 1aplus
+2. Number 2
+```
+
+The above code appears as:
+
+1.  Number 1
+    a.  1a
+        -   1aplus
+2.  Number 2
+
+### Equations
+
+Equations can be nicely formatted in one of two ways:
+
+```{r inlineEq, eval=FALSE}
+Firstly, this is the inline method which produces: $E = mc^2$
+```
+
+Firstly, this is the inline method which produces: $E = mc^2$
+
+```{r indentedEq, eval=FALSE}
+Alternatively, you can ident equations:
+$$
+P(A|B) = \frac{P(B | A) P(A)}{P(B)}
+$$
+```
+
+Alternatively, you can indent equations:
+
+$$
+P(A|B) = \frac{P(B | A) P(A)}{P(B)}
+$$
+
+### Code chunks
+
+**Code chunks** are used to tell R to perform operations (e.g., load packages or data, do some analysis, etc.) within the document. They look like this:
+
+```{r chunkDemo, echo=TRUE,eval=FALSE}
+
+{r chunkTitle, echo=TRUE, eval=FALSE}
+
+  DoSomething<-'OK' # create a variable ('character' vector)
+    
+  print(DoSomething) # print the contents of that variable
+    
+  # I set 'eval' to 'FALSE', meaning that these commands will be printed, but not actually run.
+```
+
+In R Markdown documents, you can execute the embedded R code chunk-by-chunk, which will create output in your R (Studio) terminal and/or workspace. This is useful for debugging purposes, as 'knitting' the document - which we discuss later - will execute the code 'silently', and as a whole, meaning that interim outputs will not be written to your workspace and only the final product (i.e., your full document) will be generated.
+
+Whether the reader sees code chunks or not in your final output document depends on whether the `echo` parameter inside the curly braces is set to 'TRUE' ('show' - the default) or 'FALSE' ('don't show'). For writing documents like your thesis, you will likely want much of the code to be suppressed in the PDF/Word version, and readers interested in viewing the code and reproducing your findings can view and execute an .Rmd version of the document in which you do your coding and writing. New code chunks can be created by pressing `Ctrl/Cmd + Alt + I`. Chunk parameters are contained inside curly braces and the first argument inside the braces is simply 'r'; to give a chunk a title, you leave a space - but NOT a comma. To start adding 'TRUE'/'FALSE' values for chunk parameters, you type a comma after the 'r chunkTitle' arguments, and then separate each subsequent chunk parameter/value pair with more commas
+
+### Inline code
+
+**Inline code** is useful for printing values deriving from your analysis directly into your document, thereby minimizing errors which might arise from manual entry or copy-paste. Let's first create some variables:
+
+```{r inlineDemo}
+
+ChipWeekend<-'Salt and Vinegar'
+ChipWeek<-'Paprika'
+
+```
+
+We can then call the contents of these variables and weave them into the main body of our document by opening backticks and inserting the variable we want to call after `r`:
+
+```{r inlineDemo_2, eval=FALSE}
+
+On Tuesdays, I buy `r ChipWeek` chips, but on Saturdays I get `r ChipWeekend`.
+
+```
+
+When executed, the above appears in your document as:
+
+> On Tuesdays, I buy `{r} ChipWeek` chips, but on Saturdays I get `{r} ChipWeekend`.
+
+## Summary
+
+Of all the things....
