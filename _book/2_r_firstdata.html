@@ -270,30 +270,19 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tibble' was built under R version 4.4.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'purrr' was built under R version 4.4.3</code></pre>
-</div>
-</div>
 </section>
 <section id="working-with-data" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="working-with-data"><span class="header-section-number">2.2</span> Working with data</h2>
-<p>The <code>dplyr</code> sub-package from <code>tidyverse</code> includes the “Starwars characters” dataset, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: <code>name_of_my_object &lt;- stuff_to_go_into_my_object</code>. The <code>&lt;-</code> is R’s <strong>assignment operator</strong>, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.</p>
+<p>The <code>dplyr</code> sub-package from <code>tidyverse</code> includes an abridged version of the <a href="https://swapi.py4e.com/">“Starwars characters” dataset</a>, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: <code>name_of_my_object &lt;- stuff_to_go_into_my_object</code>. The <code>&lt;-</code> is R’s <strong>assignment operator</strong>, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="ot">&lt;-</span>dplyr<span class="sc">::</span>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="ot">&lt;-</span>dplyr<span class="sc">::</span>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This creates an R object named <code>my_starwars</code> which is of the “dataframe” class. We don’t need to discuss this further, other than to say that it is a tabular class (i.e., like .csv, .xls, and the like) where rows represent observations and columns represent variables. In this example, the rows correspond to different characters, whereas the columns hold values for each character across a range of characteristics.</p>
 <section id="taking-a-glimpse" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="taking-a-glimpse"><span class="header-section-number">2.2.1</span> Taking a <code>glimpse</code>…</h3>
 <p>Now that we have created our object, we can take a peek:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(my_starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(my_starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 87
 Columns: 14
@@ -317,20 +306,20 @@ $ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&g
 </section>
 <section id="filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest"><span class="header-section-number">2.2.2</span> <code>filter</code>ing on values of a specific variable, and <code>pull</code>ing only the variable of interest</h3>
-<p>Say that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age from our dataset:</p>
+<p>Say that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> from our dataset:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>yoda_age <span class="ot">&lt;-</span> my_starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Yoda"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(birth_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>yoda_age <span class="ot">&lt;-</span> my_starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Yoda"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(birth_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Reveal to us, this does, that Yoda 896 years old is.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div id="nte-pipe" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Using the “pipe” operator (%&gt;%)
+Note&nbsp;2.1: Using the “pipe” operator (%&gt;%)
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -352,13 +341,13 @@ BMI = \frac{weight(kg)}{height(m)^2}
 \]</span></p>
 <p>So, to calculate this value, we need to use the <code>height</code> (measured in cm) and <code>mass</code> (in kg) fields.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="ot">&lt;-</span> my_starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">BMI =</span> mass<span class="sc">/</span>(height<span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="ot">&lt;-</span> my_starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">BMI =</span> mass<span class="sc">/</span>(height<span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As above, we use the pipe to pass <code>my_starwars</code> on to <code>mutate</code>. We create the variable <code>BMI</code> inside the call to <code>mutate</code>, and then perform our calculations.</p>
 <p>To check the operation performed correctly, you can just call up the new variable.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="sc">$</span>BMI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="sc">$</span>BMI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  26.02758  26.89232  34.72222  33.33007  21.77778  37.87401  27.54821
  [8]  34.00999  25.08286  23.24598  23.76641        NA  21.54509  24.69136
@@ -375,17 +364,18 @@ BMI = \frac{weight(kg)}{height(m)^2}
 [85]        NA        NA        NA</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<p>(In general, you can index an existing column variable in a dataframe and display it simply by typing <code>name_of_dataframe$name_of_column</code> into the R console.)</p>
+<div id="nte-na" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Note&nbsp;2.2: What does <code>NA</code> mean?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You can index an existing column variable in a dataframe and display simply by typing <code>name_of_dataframe$name_of_column</code> into the R console</p>
+<p>In the <code>BMI</code> printout above, you will see values of <code>NA</code> which means that there is no value available for that character. This has arisen because values of <code>NA</code> were present for that character’s height, mass, or both. If <code>NA</code> values are used as inputs in calculations, then the output will also be <code>NA</code>.</p>
 </div>
 </div>
 </section>
@@ -393,10 +383,10 @@ Note
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="select-ing-a-subset-of-variables-from-an-existing-data-frame"><span class="header-section-number">2.2.4</span> <code>select</code>-ing a subset of variables from an existing data frame</h3>
 <p>To end this section, let’s reduce our dataframe to only the names of our character and their BMIs. To do this, we can use the <code>select</code> function, followed by calling up the whole dataframe to check the output.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="ot">&lt;-</span>my_starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,BMI)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>my_starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="ot">&lt;-</span>my_starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,BMI)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>my_starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 87 × 2
    name                 BMI
@@ -428,6 +418,12 @@ Note
 <p>We also learned about the role of the pipe (<code>%&gt;%</code>) operator in building chains of function calls among the <code>tidyverse</code> packages.</p>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>this is held in the variable <code>birth_year</code> and reflects how many years before the <a href="https://en.wikipedia.org/wiki/Battle_of_Yavin">Battle of Yavin</a> the character was born<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

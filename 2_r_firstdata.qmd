@@ -36,7 +36,7 @@ library(tidyverse)
 ```
 
 
-```{r RequiredPackages_1, echo=FALSE, message=FALSE}
+```{r RequiredPackages_1, echo=FALSE, message=FALSE, warning=FALSE}
 
 library(tidyverse) 
 
@@ -44,7 +44,7 @@ library(tidyverse)
 
 ## Working with data
 
-The `dplyr` sub-package from `tidyverse` includes the "Starwars characters" dataset, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: `name_of_my_object <- stuff_to_go_into_my_object`. The `<-` is R's **assignment operator**, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.
+The `dplyr` sub-package from `tidyverse` includes an abridged version of the ["Starwars characters" dataset](https://swapi.py4e.com/), which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: `name_of_my_object <- stuff_to_go_into_my_object`. The `<-` is R's **assignment operator**, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.
 
 ```{r data_assign}
 
@@ -68,7 +68,7 @@ The `dplyr::glimpse` function shows the total number of rows (i.e., the number o
 
 ### `filter`ing on values of a specific variable, and `pull`ing only the variable of interest
 
-Say that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age from our dataset:
+Say that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age^[this is held in the variable `birth_year` and reflects how many years before the [Battle of Yavin](https://en.wikipedia.org/wiki/Battle_of_Yavin) the character was born] from our dataset:
 
 ```{r yoda_age}
 
@@ -80,7 +80,7 @@ yoda_age <- my_starwars %>%
 
 Reveal to us, this does, that Yoda `{r} yoda_age` years old is.
 
-::: callout-note
+::: {#nte-pipe .callout-note}
 ### Using the "pipe" operator (%\>%)
 
 Before going further, we must discuss the use of the so-called pipe (`%>%`) above. This allows you to chain different functions together without having to call the object you want to manipulate for every function. Let's break down the above chunk line-by-line:
@@ -119,9 +119,14 @@ my_starwars$BMI
 
 ```
 
-::: callout-note
-You can index an existing column variable in a dataframe and display simply by typing `name_of_dataframe$name_of_column` into the R console
+(In general, you can index an existing column variable in a dataframe and display it simply by typing `name_of_dataframe$name_of_column` into the R console.) 
+
+::: {#nte-na .callout-note}
+### What does `NA` mean?
+
+In the `BMI` printout above, you will see values of `NA` which means that there is no value available for that character. This has arisen because values of `NA` were present for that character's height, mass, or both. If `NA` values are used as inputs in calculations, then the output will also be `NA`. 
 :::
+
 
 ### `select`-ing a subset of variables from an existing data frame
 

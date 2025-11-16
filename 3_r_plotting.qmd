@@ -4,14 +4,14 @@
 
 In this chapter, we will again load [`tidyverse` package](https://tidyverse.org/), which contains the `ggplot2` function which we will use for plotting.
 
-```{r RequiredPackages, eval=FALSE}
+```{r plottingRequiredPackages, eval=FALSE}
 
 install.packages("tidyverse")
 library(tidyverse) 
 
 ```
 
-```{r RequiredPackages_1, echo=FALSE, message=FALSE}
+```{r plottingRequiredPackages1, echo=FALSE, message=FALSE, warning=FALSE}
 
 library(tidyverse) 
 
@@ -21,7 +21,11 @@ library(tidyverse)
 
 `ggplot` works in layers. You first call an empty plot, and then you simply add graphics on top.
 
-```{r basicPlot}
+```{r basicPlot,}
+#| label: fig-scatter
+#| fig-cap: "Scatterplot of height vs. mass" 
+#| message: FALSE 
+#| warning: FALSE
 
 dplyr::starwars %>% 
   dplyr::filter(species == "Human") %>%
@@ -42,51 +46,114 @@ Let's walk through the above:
 
 More information on the myriad plots you can generate with `ggplot2` can be found on the package [website](https://ggplot2.tidyverse.org/), but we will summarize those which you will most frequently encounter or wish to use.
 
+### Histograms & Density plots
+
 ```{r hist}
+#| label: fig-hisdens
+#| fig-cap: "Histograms and density plots of height" 
+#| fig-subcap:
+#|   - "Histogram"
+#|   - "Density plot" 
+#| layout-ncol: 2
+#| message: FALSE 
+#| warning: FALSE
 
 dplyr::starwars %>% 
   ggplot2::ggplot(aes(x = height)) +
-  ggplot2::geom_histogram() +
-  ggplot2::ggtitle("Histogram of character weight")+
-  ggplot2::ylab("Count")
+  ggplot2::geom_histogram(fill="pink") +
+  ggplot2::ylab("Frequency")
+
+dplyr::starwars %>% 
+  ggplot2::ggplot(aes(x = height)) +
+  ggplot2::geom_density(fill="pink") +
+  ggplot2::ylab("Density")
 
 ```
 
-<br>
+Histograms and density plots provide information about the distribution of your data. **Histograms** create ranged bins for the frequency variable (here `height`) and the height of the bars indicates how many observations fall into a particular bin. **Density plots** show a smoothed version of the same data, making them particularly informative for continuous data.
+
+### Barcharts
 
 ```{r bar}
-dplyr::starwars %>% 
-  dplyr::filter(!is.na(gender) & !is.na(height)) %>% 
+#| label: fig-bar
+#| fig-cap: "Barchart of mean height by character gender. Error bars represent +/- 1 SE" 
+#| message: FALSE 
+#| warning: FALSE
+
+dplyr::starwars %>%
+  dplyr::filter(!is.na(gender) & !is.na(height)) %>%
   dplyr::group_by(gender) %>% 
-  dplyr::summarize(mean_height = mean(height), se_height = sd(height)/n()) %>% 
+  dplyr::summarize(mean_height = mean(height, na.rm = T), se_height = sd(height, na.rm = T)/n()) %>% 
   ggplot2::ggplot(aes(x = gender, y = mean_height, fill = gender))+
-  ggplot2::geom_bar(stat="identity") +
-  ggplot2::geom_errorbar(aes(ymin = mean_height - se_height, ymax = mean_height + se_height),width = .5) +
-  ggplot2::ggtitle("Bar chart of mean height by gender")
+  ggplot2::geom_bar(stat="identity", width = .75) +
+  ggplot2::geom_errorbar(aes(ymin = mean_height - se_height, ymax = mean_height + se_height),width = .5)
 ```
 
-<br>
+**Barcharts** show a summary statistic (typically - and in this case - the mean) and should include error or confidence bars around the statistic as an estimate of uncertainty.  
+
+You will notice the code above contains some extra steps compared to some of the other plots shown:  
+
+1. `dplyr::filter(!is.na(gender) & !is.na(height))` - we discussed `NA` values in @nte-na; we use `dplyr::filter` to remove characters who have a value of `NA`  for either `gender` or `height` (i.e., by saying: "keep only characters who do NOT have a value of `NA` for **both** `gender` and `height`"). In this way, we save only characters with complete information on the variables of interest.  
+2. `dplyr::group_by(gender)` - we tell `dplyr` to group characters by the levels of `gender` in the dataset. On its own, this has no apparent effect on the dataset, but it provides instructions for how subsequent operations should be performed.
+3. `dplyr::summarize(mean_height = mean(height, na.rm = T), se_height = sd(height, na.rm = T)/n())` - the `dplyr::summarize` function reduces a dataset to a requested set of summary statistics. This is where `group_by` comes into play - because we grouped by `gender`, summary statistics will now be created _per gender grouping_. Inside `summarize`, we declare the new variables `mean_height` (which gives mean height) and `se_height` (standard error for height) which will be passed on to create the barchart.
+4. `ggplot2::ggplot(aes(x = gender, y = mean_height, fill = gender))` - creates an empty plot, sets `gender` as the x variable, and the newly-created `mean_height` variable as the y variable. 
+5. `ggplot2::geom_bar(stat="identity")` - this creates the barchart based on the aesthetics previously supplied. The `stat = "identity"` call simply tells `ggplot2` to create the plot based on the values as they are, without further summarizing or processing.
+6. `ggplot2::geom_errorbar(aes(ymin = mean_height - se_height, ymax = mean_height + se_height),width = .5)` - this draws our errorbars, based on values of mean +/- one standard error. The `width` argument sets the width of the horizontal "handles"
+
+### Boxplots
+
+
+```{r buildbox}
+#| message: FALSE 
+#| warning: FALSE
+#| echo: FALSE
+
+starbuild<-dplyr::starwars %>% 
+  dplyr::filter(!is.na(gender) & !is.na(height)) %>%
+  ggplot2::ggplot(aes(x = gender, y = height, fill = gender), na.rm = FALSE)+
+  ggplot2::geom_boxplot(width = .4)
+
+starbuild<-ggplot2::ggplot_build(starbuild)
+constant<-7.5
+boxlabels<-tibble::tibble(labels = c("Minimum", "Quartile 1\n(25th percentile)",
+                          "Quartile 2\\median\n(50th percentile)","Quartile 3\n(75th percentile)","Maximum"), height = c(starbuild$data[[1]]$ymin_final[2],starbuild$data[[1]]$lower[2]-constant,starbuild$data[[1]]$middle[2],starbuild$data[[1]]$upper[2]+constant,starbuild$data[[1]]$ymax_final[2]),
+                          horz = c(2.15,1.62,2.4,1.62,2.15))
+```
+
+
 
 ```{r boxplot}
+#| label: fig-box
+#| fig-cap: "Boxplot of height by character gender."
+#| message: FALSE 
+#| warning: FALSE
+
 dplyr::starwars %>% 
-  dplyr::filter(!is.na(gender) & !is.na(height)) %>% 
-  ggplot2::ggplot(aes(x = gender, y = height, fill = gender))+
-  ggplot2::geom_boxplot() +
-  ggplot2::ggtitle("Box plot of height by gender")
+  dplyr::filter(!is.na(gender) & !is.na(height)) %>%
+  ggplot2::ggplot(aes(x = gender, y = height, fill = gender), na.rm = FALSE)+
+  ggplot2::geom_boxplot(width = .4) +
+  ggplot2::geom_label(data = boxlabels, aes(x = horz, y = height, label = labels),inherit.aes = FALSE, size = 2.5)
 ```
 
-<br>
+**Boxplots** visualize the five-figure summary of a dataset, and provide a more informative means of comparing groups than barplots.
 
+### Violinplots
 
 ```{r violinplot}
+#| label: fig-violin
+#| fig-cap: "Violinplot of height by character gender."
+#| message: FALSE 
+#| warning: FALSE
+
 dplyr::starwars %>% 
-  dplyr::filter(!is.na(gender) & !is.na(height)) %>% 
-  ggplot2::ggplot(aes(x = gender, y = height, fill = gender))+
-  ggplot2::geom_violin() +
-  ggplot2::ggtitle("Violin plot of height by gender")
+  dplyr::filter(!is.na(gender) & !is.na(height)) %>%
+  ggplot2::ggplot(aes(x = gender, y = height, fill = gender), na.rm = FALSE)+
+  ggplot2::geom_violin()
 ```
+
+**Violinplots** are mirrored-density plots which can sometimes slightly resemble violins. The wider the plot, the greater the number of observations that cluster around particular values of the variable of interest (`height`). As with boxplots, you gain more information with these than with a barplot, as the full range of the data is shown, along with the density.       
 
 
 ## Summary
 
-Of the things....
+In this chapter, we have introduced `ggplot2` and several common plot types. For now, we concentrate only on the essentials to get started and leave more advanced customization options until they become necessary. If you are keen to learn more about visualization using `ggplot2`, you can consult the [package website](https://ggplot2.tidyverse.org/index.html) or [this book](https://ggplot2-book.org/) written by the developers.  
