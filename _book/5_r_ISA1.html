@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="David Fleming">
 
-<title>R for the PPL(E)</title>
+<title>5&nbsp; ISA 1 – R for the PPL(E)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1_r_markdown_basics.html" rel="next">
+<link href="./summary.html" rel="next">
+<link href="./4_r_knitting.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -82,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5_r_ISA1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -109,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -139,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./5_r_ISA1.html" class="sidebar-item-text sidebar-link">
+  <a href="./5_r_ISA1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1</span></span></a>
   </div>
 </li>
@@ -165,14 +200,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
-  <ul class="collapse">
-  <li><a href="#thanks-for-the-warm-welcome-but-why-am-i-learning-r" id="toc-thanks-for-the-warm-welcome-but-why-am-i-learning-r" class="nav-link" data-scroll-target="#thanks-for-the-warm-welcome-but-why-am-i-learning-r">Thanks for the warm welcome, but why am I learning R?</a></li>
-  <li><a href="#right-but-i-have-like-zero-background-in-programming" id="toc-right-but-i-have-like-zero-background-in-programming" class="nav-link" data-scroll-target="#right-but-i-have-like-zero-background-in-programming">Right, but I have, like, zero background in programming!</a></li>
-  <li><a href="#ok-but-why-am-i-learning-r-instead-of-say-python" id="toc-ok-but-why-am-i-learning-r-instead-of-say-python" class="nav-link" data-scroll-target="#ok-but-why-am-i-learning-r-instead-of-say-python">OK, but why am I learning R instead of, say, Python?</a></li>
-  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link" data-scroll-target="#chapter-overview">Chapter overview</a></li>
-  <li><a href="#lastly." id="toc-lastly." class="nav-link" data-scroll-target="#lastly.">Lastly….</a></li>
-  </ul></li>
+  <li><a href="#r-outcomes" id="toc-r-outcomes" class="nav-link active" data-scroll-target="#r-outcomes"><span class="header-section-number">5.1</span> R outcomes</a></li>
+  <li><a href="#required-packages" id="toc-required-packages" class="nav-link" data-scroll-target="#required-packages"><span class="header-section-number">5.2</span> Required packages</a></li>
+  <li><a href="#creating-data" id="toc-creating-data" class="nav-link" data-scroll-target="#creating-data"><span class="header-section-number">5.3</span> Creating data</a></li>
+  <li><a href="#to-do" id="toc-to-do" class="nav-link" data-scroll-target="#to-do"><span class="header-section-number">5.4</span> To-do:</a></li>
   </ul>
 </nav>
     </div>
@@ -181,19 +212,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R for the PPL(E)</h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>David Fleming </p>
-          </div>
-  </div>
     
   
     
@@ -204,43 +229,59 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>Welcome, PPLE students! We hope that you fill find this book to be a helpful companion as you begin your journey into R programming and statistical analysis.</p>
-<section id="thanks-for-the-warm-welcome-but-why-am-i-learning-r" class="level2">
-<h2 class="anchored" data-anchor-id="thanks-for-the-warm-welcome-but-why-am-i-learning-r">Thanks for the warm welcome, but why am I learning R?</h2>
-<p>While there are many excellent “click-and-point” statistical analysis packages available, it’s worth highlighting some of the benefits that come with using R (Markdown):</p>
-<ol type="1">
-<li>You can record and document all analysis steps (i.e., from raw data processing/wrangling, to inferential statistics and visualization) in a series of scripts, meaning that you don’t have to remember which sequence of buttons and drop down menus you followed to get to your analysis outputs. This facilitates complete reproducibility of your analysis pipeline and results.</li>
-<li>Writing your research papers and assignments with R Markdown means that all analysis outputs (e.g., descriptive statistics, test statistics, figures, tables, etc.) can be embedded without the need for pasting information from your statistics software into a separate word processor.</li>
-<li>You gain more power to customize your analysis, rather than relying on the narrow range of defaults included in some statistical packages.</li>
-<li>It’s free!</li>
-</ol>
+<p>Welcome to your first ISA tutorial! We assume that you have familiarized yourselves with the content from the previous four chapters, but, if not, you will have the time today to catch up on this.</p>
+<section id="r-outcomes" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="r-outcomes"><span class="header-section-number">5.1</span> R outcomes</h2>
+<p>After this tutorial, you can: 1. Enter new data 2. Import and work with existing data 3. Create frequency tables 4. Select subsets of data using <code>dplyr::filter</code></p>
 </section>
-<section id="right-but-i-have-like-zero-background-in-programming" class="level2">
-<h2 class="anchored" data-anchor-id="right-but-i-have-like-zero-background-in-programming">Right, but I have, like, zero background in programming!</h2>
-<p>We hear you, but we think that you will be pleasantly surprised by how quickly you can get up and running. While this will be challenging, bear in mind that we are here to help, and we strongly believe that you are capable of doing very well, with a bit of application and effort.</p>
-</section>
-<section id="ok-but-why-am-i-learning-r-instead-of-say-python" class="level2">
-<h2 class="anchored" data-anchor-id="ok-but-why-am-i-learning-r-instead-of-say-python">OK, but why am I learning R instead of, say, Python?</h2>
-<p>The main reasons for teaching this course in R are:</p>
+<section id="required-packages" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="required-packages"><span class="header-section-number">5.2</span> Required packages</h2>
+<p>You will need the following additional packages:</p>
 <ul>
-<li>It is specialized for statistical computing and data visualization<br>
-</li>
-<li>It is <strong>very</strong> widely used by quantitative social scientists, meaning that accessible tutorials and answers to questions are often only a google away</li>
-<li>Our (informal) impression is that R has a relatively low bar for entry, when compared with more general-purpose languages like Python</li>
+<li><code>dplyr</code> (can also be added by installing the <code>tidyverse</code> collection)</li>
+<li><code>haven</code></li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="chapter-overview" class="level2">
-<h2 class="anchored" data-anchor-id="chapter-overview">Chapter overview</h2>
-<p>In chapters 1 - 4, we will introduce R and R Markdown, along with some very useful packages for data-wrangling and plotting. From there, chapters 5 - 11 will align with the main outcomes of the Year 1 <em>Introduction to Statistical Analysis</em> course and will guide you through the tutorials. Chapters 12 - TBA will cover some more advanced statistical techniques and topics which are beyond the scope of ISA. While these have been written mainly with Politics and Psychology majors in mind, these may also be of interest to Economics or Law majors who would like to know more about analyzing (quantitative) experimental or survey data.</p>
+<section id="creating-data" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="creating-data"><span class="header-section-number">5.3</span> Creating data</h2>
+<p>We will work almost exclusively with dataframes on this course. These are essentially tables, where rows correspond to observations on the <em>unit of analysis</em> (e.g., mice, people, countries), and columns correspond to variables (e.g., fur colour, occupation, GDP per capita).</p>
+<p>Let’s create a new dataframe of student names and ages:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>students<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="st">"Matthew"</span>,<span class="st">"Mark"</span>,<span class="st">"Luke"</span>,<span class="st">"John"</span>), <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">18</span>,<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Above, we assigned a dataframe to the name <code>students</code> with the <code>&lt;-</code> operator (an alternative to “=” - which also works - used by R).We then told R that we wanted to create a dataframe with variables <code>names</code> and <code>age</code>, and we provided some values to both of those variables. Here, the <code>c()</code> is used to concatenate individual entries into a column vector.</p>
+<p>To see our new dataframe in all of its glory, we can simply type its name at the console:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    names age
+1 Matthew  18
+2    Mark  19
+3    Luke  18
+4    John  20</code></pre>
+</div>
+</div>
+<p>If we only want to show a particular variable from the frame, then we type the name of the dataframe and the name of the variable we want to see, separated by the <code>$</code> operator:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>students<span class="sc">$</span>age</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18 19 18 20</code></pre>
+</div>
+</div>
 </section>
-<section id="lastly." class="level2">
-<h2 class="anchored" data-anchor-id="lastly.">Lastly….</h2>
-<p>It is not our intention to provide a comprehensive introduction to R or R Markdown. (There are already excellent resources freely available for that purpose, some of which we will refer to in due course.) Rather, the principal aim is to build your comfort and confidence in using a small set of operations which will enable you to perform both confirmatory and exploratory statistical analyses with quantitative data typical of the social sciences, and to write a basic scientific document in which the outputs of those analyses can be embedded. There is, therefore, the risk that we give too light of a treatment to areas which you might find difficult; if so, please <a href="mailto:d.fleming@uva.nl">get in touch</a> to provide some welcome feedback on this living document, or to ask questions.</p>
+<section id="to-do" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="to-do"><span class="header-section-number">5.4</span> To-do:</h2>
+<ul>
+<li>import (ESS .sav)</li>
+<li>central tendency</li>
+<li>frequency table (<code>dplyr::starwars %&gt;% dplyr::group_by(height) %&gt;% dplyr::summarize(Frequency = dplyr::n())</code> - https://favtutor.com/blogs/frequency-table-in-r)</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -645,10 +686,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./4_r_knitting.html" class="pagination-link" aria-label="&quot;Knitting&quot; everything togther">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">“Knitting” everything togther</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1_r_markdown_basics.html" class="pagination-link" aria-label="Installation and introduction to R Markdown documents">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation and introduction to R Markdown documents</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

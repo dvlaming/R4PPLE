@@ -10,6 +10,7 @@ book:
     - 2_r_firstdata.qmd
     - 3_r_plotting.qmd
     - 4_r_knitting.qmd
+    - 5_r_ISA1.qmd
     - summary.qmd
     - references.qmd
 

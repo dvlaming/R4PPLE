@@ -10,6 +10,15 @@ Now, let's briefly distinguish some components:
 
 As suggested in the introductory chapter, it is not the place of this book to provide a full, 'bottom-up' introduction to any of the above elements. Rather, in these opening chapters we will highlight the essentials to get you swiftly up and running with importing existing data and processing it for further statistical analysis and visualization.
 
+## General settings for reproducibility^[adapted from https://psyteachr.github.io/data-skills-v3/sec-intro.html]
+
+By default, R Studio may give you prompts to save your workspace when you quit a session. To ensure reproducibility of your pipelines, you should always start a new session with a clear workspace, and you should never save your workspace when you exit. The only things you want to save are your scripts, which you will do manually. Before going further, set the following:
+
+* _Tools_ > _Global Options_  
+* _General_ > uncheck the box _Restore .RData into workspace at startup_.
+* Set "Save workspace to .RData on exit" to "Never".
+
+
 ## Getting started with Projects and Files
 
 ### Creating a new R Project

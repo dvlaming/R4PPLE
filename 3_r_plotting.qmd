@@ -21,7 +21,7 @@ library(tidyverse)
 
 `ggplot` works in layers. You first call an empty plot, and then you simply add graphics on top.
 
-```{r basicPlot,}
+```{r}
 #| label: fig-scatter
 #| fig-cap: "Scatterplot of height vs. mass" 
 #| message: FALSE 
@@ -48,7 +48,7 @@ More information on the myriad plots you can generate with `ggplot2` can be foun
 
 ### Histograms & Density plots
 
-```{r hist}
+```{r}
 #| label: fig-hisdens
 #| fig-cap: "Histograms and density plots of height" 
 #| fig-subcap:
@@ -74,7 +74,7 @@ Histograms and density plots provide information about the distribution of your 
 
 ### Barcharts
 
-```{r bar}
+```{r}
 #| label: fig-bar
 #| fig-cap: "Barchart of mean height by character gender. Error bars represent +/- 1 SE" 
 #| message: FALSE 
@@ -122,7 +122,7 @@ boxlabels<-tibble::tibble(labels = c("Minimum", "Quartile 1\n(25th percentile)",
 
 
 
-```{r boxplot}
+```{r}
 #| label: fig-box
 #| fig-cap: "Boxplot of height by character gender."
 #| message: FALSE 
@@ -135,11 +135,11 @@ dplyr::starwars %>%
   ggplot2::geom_label(data = boxlabels, aes(x = horz, y = height, label = labels),inherit.aes = FALSE, size = 2.5)
 ```
 
-**Boxplots** visualize the five-figure summary of a dataset, and provide a more informative means of comparing groups than barplots.
+**Boxplots** visualize the five-figure summary of a dataset (more on this in _ISA_), and provide a more informative means of comparing groups than barplots.
 
 ### Violinplots
 
-```{r violinplot}
+```{r}
 #| label: fig-violin
 #| fig-cap: "Violinplot of height by character gender."
 #| message: FALSE 
@@ -152,6 +152,31 @@ dplyr::starwars %>%
 ```
 
 **Violinplots** are mirrored-density plots which can sometimes slightly resemble violins. The wider the plot, the greater the number of observations that cluster around particular values of the variable of interest (`height`). As with boxplots, you gain more information with these than with a barplot, as the full range of the data is shown, along with the density.       
+
+## Plotting with additional variables
+
+The examples above featured only two variables, but you will doubtless wish to go further. Let's imagine you want to look at the influence of `gender` **and** species on height. To keep things simple, we will simply create two species categories: human and non-human.
+
+```{r}
+#| label: fig-boxgenspec
+#| fig-cap: "Boxplot of height by character gender and species."
+#| message: FALSE 
+#| warning: FALSE
+
+dplyr::starwars %>% # <1>
+  dplyr::filter(!is.na(gender) & !is.na(height)) %>% # <2>
+  dplyr::mutate(species_new = case_when(species != "Human" ~ "Non-human", # <3>
+                                        .default = "Human")) %>%          # <3>
+  ggplot2::ggplot(aes(x = gender, y = height, fill = species_new), na.rm = FALSE)+ # <4>
+  ggplot2::geom_boxplot() # <5>
+
+```
+
+1. Take `starwars`
+2. Filter out `NA` values for `gender` and `height`
+3. Add a `species_new` variable which assigns every non-human in the dataset a value of `non-human`
+4. Build the empty plot, with `gender` on the x-axis, `height` on the y-axis and fill colour to `species_new`
+5. Add the boxplot layer
 
 
 ## Summary

@@ -1,0 +1,66 @@
+# ISA 1
+
+Welcome to your first ISA tutorial! We assume that you have familiarized yourselves with the content from the previous four chapters, but, if not, you will have the time today to catch up on this. 
+
+## R outcomes
+
+After this tutorial, you can:
+1. Enter new data
+2. Import and work with existing data
+3. Create frequency tables
+4. Select subsets of data using `dplyr::filter`
+
+## Required packages
+
+You will need the following additional packages:
+
+* `dplyr` (can also be added by installing the `tidyverse` collection)
+* `haven`
+
+```{r}
+#| label: install_load
+#| message: FALSE 
+#| warning: FALSE
+#| eval: FALSE
+
+library(dplyr)
+library(haven)
+
+```
+
+## Creating data
+
+We will work almost exclusively with dataframes on this course. These are essentially tables, where rows correspond to observations on the _unit of analysis_ (e.g., mice, people, countries), and columns correspond to variables (e.g., fur colour, occupation, GDP per capita).
+
+Let's create a new dataframe of student names and ages:
+
+```{r}
+#| label: gospels
+
+students<-data.frame(names = c("Matthew","Mark","Luke","John"), age = c(18,19,18,20))
+
+```
+
+Above, we assigned a dataframe to the name `students` with the `<-` operator (an alternative to "=" - which also works - used by R).We then told R that we wanted to create a dataframe with variables `names` and `age`, and we provided some values to both of those variables. Here, the `c()` is used to concatenate individual entries into a column vector.
+
+To see our new dataframe in all of its glory, we can simply type its name at the console:
+
+```{r}
+#| label: revelation
+
+students
+```
+
+If we only want to show a particular variable from the frame, then we type the name of the dataframe and the name of the variable we want to see, separated by the `$` operator:
+
+```{r}
+#| label: ages
+
+students$age
+```
+
+## To-do:
+
+* import (ESS .sav)
+* central tendency
+* frequency table (`dplyr::starwars %>% dplyr::group_by(height) %>% dplyr::summarize(Frequency = dplyr::n())` - https://favtutor.com/blogs/frequency-table-in-r)

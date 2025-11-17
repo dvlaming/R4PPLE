@@ -25,7 +25,7 @@ The main reasons for teaching this course in R are:
 
 ## Chapter overview
 
-In chapters 1 - 4, we will introduce R and R Markdown, along with some very useful packages for data-wrangling and plotting. From there, chapters 5 - 11 will align with the main outcomes of the Year 1 _Introduction to Statistical Analysis_ course. Chapters 12 - TBA will cover some more advanced statistical techniques and topics which are beyond the scope of ISA. While these have been written mainly with Politics and Psychology majors in mind, these may also be of interest to Economics or Law majors who would like to know more about analyzing (quantitative) experimental or survey data.
+In chapters 1 - 4, we will introduce R and R Markdown, along with some very useful packages for data-wrangling and plotting. From there, chapters 5 - 11 will align with the main outcomes of the Year 1 _Introduction to Statistical Analysis_ course and will guide you through the tutorials. Chapters 12 - TBA will cover some more advanced statistical techniques and topics which are beyond the scope of ISA. While these have been written mainly with Politics and Psychology majors in mind, these may also be of interest to Economics or Law majors who would like to know more about analyzing (quantitative) experimental or survey data.
 
 ## Lastly....
 

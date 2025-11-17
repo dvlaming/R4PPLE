@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./4_r_knitting.html" rel="next">
 <link href="./2_r_firstdata.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -168,8 +168,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./4_r_knitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">“Knitting” everything togther</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5_r_ISA1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -197,7 +209,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"><span class="header-section-number">3.3.3</span> Boxplots</a></li>
   <li><a href="#violinplots" id="toc-violinplots" class="nav-link" data-scroll-target="#violinplots"><span class="header-section-number">3.3.4</span> Violinplots</a></li>
   </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.4</span> Summary</a></li>
+  <li><a href="#plotting-with-additional-variables" id="toc-plotting-with-additional-variables" class="nav-link" data-scroll-target="#plotting-with-additional-variables"><span class="header-section-number">3.4</span> Plotting with additional variables</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.5</span> Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -368,7 +381,7 @@ Figure&nbsp;3.4: Boxplot of height by character gender.
 </div>
 </div>
 </div>
-<p><strong>Boxplots</strong> visualize the five-figure summary of a dataset, and provide a more informative means of comparing groups than barplots.</p>
+<p><strong>Boxplots</strong> visualize the five-figure summary of a dataset (more on this in <em>ISA</em>), and provide a more informative means of comparing groups than barplots.</p>
 </section>
 <section id="violinplots" class="level3" data-number="3.3.4">
 <h3 data-number="3.3.4" class="anchored" data-anchor-id="violinplots"><span class="header-section-number">3.3.4</span> Violinplots</h3>
@@ -393,8 +406,56 @@ Figure&nbsp;3.5: Violinplot of height by character gender.
 <p><strong>Violinplots</strong> are mirrored-density plots which can sometimes slightly resemble violins. The wider the plot, the greater the number of observations that cluster around particular values of the variable of interest (<code>height</code>). As with boxplots, you gain more information with these than with a barplot, as the full range of the data is shown, along with the density.</p>
 </section>
 </section>
-<section id="summary" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.4</span> Summary</h2>
+<section id="plotting-with-additional-variables" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="plotting-with-additional-variables"><span class="header-section-number">3.4</span> Plotting with additional variables</h2>
+<p>The examples above featured only two variables, but you will doubtless wish to go further. Let’s imagine you want to look at the influence of <code>gender</code> <strong>and</strong> species on height. To keep things simple, we will simply create two species categories: human and non-human.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span>starwars <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gender) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(height)) <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">species_new =</span> <span class="fu">case_when</span>(species <span class="sc">!=</span> <span class="st">"Human"</span> <span class="sc">~</span> <span class="st">"Non-human"</span>,</span>
+<span id="annotated-cell-7-4"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">.default =</span> <span class="st">"Human"</span>)) <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-7-5" class="code-annotation-target"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">y =</span> height, <span class="at">fill =</span> species_new), <span class="at">na.rm =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-7-6" class="code-annotation-target"><a href="#annotated-cell-7-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="1" data-code-annotation="1">Take <code>starwars</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="2">Filter out <code>NA</code> values for <code>gender</code> and <code>height</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="3,4" data-code-annotation="3">Add a <code>species_new</code> variable which assigns every non-human in the dataset a value of <code>non-human</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="5" data-code-annotation="4">Build the empty plot, with <code>gender</code> on the x-axis, <code>height</code> on the y-axis and fill colour to <code>species_new</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="6" data-code-annotation="5">Add the boxplot layer</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<div id="fig-boxgenspec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxgenspec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="3_r_plotting_files/figure-html/fig-boxgenspec-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxgenspec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.6: Boxplot of height by character gender and species.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.5</span> Summary</h2>
 <p>In this chapter, we have introduced <code>ggplot2</code> and several common plot types. For now, we concentrate only on the essentials to get started and leave more advanced customization options until they become necessary. If you are keen to learn more about visualization using <code>ggplot2</code>, you can consult the <a href="https://ggplot2.tidyverse.org/index.html">package website</a> or <a href="https://ggplot2-book.org/">this book</a> written by the developers.</p>
 
 
@@ -807,8 +868,8 @@ Figure&nbsp;3.5: Violinplot of height by character gender.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./4_r_knitting.html" class="pagination-link" aria-label="&quot;Knitting&quot; everything togther">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">“Knitting” everything togther</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
