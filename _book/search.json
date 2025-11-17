@@ -62,11 +62,11 @@
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "4  Summary",
+    "title": "5  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
@@ -387,6 +387,26 @@
     "text": "this is held in the variable birth_year and reflects how many years before the Battle of Yavin the character was born↩︎",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>The basics of datawrangling in the `tidyverse`</span>"
+    ]
+  },
+  {
+    "objectID": "4_r_knitting.html",
+    "href": "4_r_knitting.html",
+    "title": "4  “Knitting” everything togther",
+    "section": "",
+    "text": "4.1 TBA….",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>\"Knitting\" everything togther</span>"
+    ]
+  },
+  {
+    "objectID": "4_r_knitting.html#summary",
+    "href": "4_r_knitting.html#summary",
+    "title": "4  “Knitting” everything togther",
+    "section": "4.2 Summary",
+    "text": "4.2 Summary\nIn this chapter, we have covered:\n\nthe things",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>\"Knitting\" everything togther</span>"
     ]
   }
 ]

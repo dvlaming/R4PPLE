@@ -9,6 +9,7 @@ book:
     - 1_r_markdown_basics.qmd
     - 2_r_firstdata.qmd
     - 3_r_plotting.qmd
+    - 4_r_knitting.qmd
     - summary.qmd
     - references.qmd
 
