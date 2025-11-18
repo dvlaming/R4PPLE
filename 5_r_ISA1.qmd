@@ -29,11 +29,11 @@ library(haven)
 
 ```
 
-## First thing - make a project!!
+## First, create a project!
 
-Do it now!
+Follow the [instructions in Chapter 1 of this book](1_r_markdown_basics.qmd#sec-newproj) to create a new R project where you can store all of your ISA scripts, assignments, and datasets. Opening an R Studio session with the newly-created project icon will set the project folder as your home directory, meaning that - if you store all the course datasets here - loading datasets can be performed smoothly without having to enter long directory pathnames to point R to the file you want to load.   
 
-## Creating data
+## Entering data
 
 We will work almost exclusively with dataframes on this course. These are essentially tables, where rows correspond to observations on the *unit of analysis* (e.g., mice, people, countries), and columns correspond to variables (e.g., fur colour, occupation, GDP per capita).
 
@@ -46,7 +46,7 @@ students<-data.frame(names = c("Matthew","Mark","Luke","John"), age = c(18,19,18
 
 ```
 
-Above, we assigned a dataframe to the name `students` with the `<-` operator (an alternative to "=" - which also works - used by R).We then told R that we wanted to create a dataframe with variables `names` and `age`, and we provided some values to both of those variables. Here, the `c()` is used to concatenate individual entries into a column vector.
+Above, we assigned a dataframe to the name `students` with the `<-` operator (an alternative to "=" - which also works - used by R). We then told R that we wanted to create a dataframe with variables `names` and `age`, and we provided some values to both of those variables. Here, the `c()` is used to concatenate individual entries into a column vector.
 
 To see our new dataframe in all of its glory, we can simply type its name at the console:
 
@@ -72,10 +72,13 @@ In this course, we will consider three measures of central tendency.
 
 This is usually represented by one of two formulae:
 
-1. $\bar{x} = \frac{1}{n} \sum\limits_{i = 1}^{n}x_i$
-2. $\bar{x} = \frac{\sum_{i = 1}^{n}x_i}{n}$
+(@)  $\bar{x} = \frac{1}{n} \sum\limits_{i = 1}^{n}x_i$
 
-Which, of course, amounts to: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the `mean` function:
+
+(@)  $\bar{x} = \frac{\sum_{i = 1}^{n}x_i}{n}$
+
+
+Straighforwardly: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the `mean` function:
 
 ```{r mean}
 
@@ -92,6 +95,8 @@ This is the 50th percentile in the dataset (i.e., it divides the data into a low
 For data $x$ with $n$ elements:
 
 * if $n$ is **odd**, $med(x) = x_{(n+1)/2}$
+  
+
 * if $n$ is **even**, $med(x) = \frac{x_{(n/2)} + x_{((n/2)+1)}}{2}$
 
 For example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use `median`:
@@ -110,10 +115,13 @@ Lastly, we turn to the mode, which is simply the most frequently occurring value
 
 ```{r modefun}
 
+#Hat-tip to #https://www.geeksforgeeks.org/r-language/convert-factor-to-numeric-and-numeric-to-factor-in-r-programming/ for the facto-to-numeric conversion 
+
 cusmode<-function(x){
   xf<-as.data.frame(table(x))
   modeframe<-xf[xf$Freq == max(xf$Freq),]
   names(modeframe)[1]<-"Mode(s)"
+  modeframe$`Mode(s)`<-as.numeric(as.character(modeframe$`Mode(s)`)) 
   names(modeframe)[2]<-"Frequency"
   return(modeframe)
 }
@@ -134,16 +142,60 @@ cusmode(students$age)
 
 The mode can be calculated for all measurement levels about which you have learned, but it is typically most informative when there are relatively few values which the data can take.
 
-## Importing and summarizing existing data
+## Importing existing data
 
 We will now import some data from the [European Social Survey](https://www.europeansocialsurvey.org/). The data is saved as .sav, which is a file format native to the SPSS software. We use this as it contains informative labels describing the variables, but the ESS data is also available in .csv and other formats.
 
 Ensure that you have the ESS data saved to your project folder and then run the following:
 
-```{r ESSload}
+```{r ESSload, eval = FALSE}
 
-ESS<-haven::read_sav("C:/Users/David/OneDrive - UvA/2025_2026/ISA_24_25/Datasets/ESS11.sav")
+ESS<-haven::read_sav("ESS11.sav")
 
 ```
 
--   frequency table (`dplyr::starwars %>% dplyr::group_by(height) %>% dplyr::summarize(Frequency = dplyr::n())` - https://favtutor.com/blogs/frequency-table-in-r)
+```{r ESSloadreal, echo = FALSE}
+ESS<-haven::read_sav("C:/Users/David/OneDrive - UvA/2025_2026/ISA_24_25/Datasets/ESS11.sav")
+```
+
+Running the `dplyr::glimpse` command will give us a quick look at the dataset, along with telling us the number of rows (human survey respondents) and columns (variables).
+
+## Summarizing data
+
+### Frequency tables
+
+Frequency give us information about how often each unique value of a variable occurs. In R, we can use the base `table` function to show us the frequency distribution of respondents' `agea`.
+
+```{r ESSage}
+
+table(ESS$agea)
+
+```
+
+### Summary descriptive statistics
+
+The base `summary` function gives us an overview of key descriptive statistics. The counts you see for `NA` (see @nte-na) reflect the number of respondents for whom no information about age was recorded.
+
+```{r ESSagesummary}
+
+summary(ESS$agea)
+
+```
+
+You will notice that the mode is missing, but we can add this to the output using the function `cusmode` we created above:
+
+```{r ESSagesummary_2}
+
+c(summary(ESS$agea),cusmode(ESS$agea))
+
+```
+
+This results in the output being forced to the slightly less reader-friendly list class, but this allows us to quickly display multiple modes where these arise.
+
+## Selecting subsets
+
+```{r filterNE}
+
+```
+
+Coming soon!

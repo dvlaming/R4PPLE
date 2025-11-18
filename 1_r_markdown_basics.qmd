@@ -21,7 +21,7 @@ By default, R Studio may give you prompts to save your workspace when you quit a
 
 ## Getting started with Projects and Files
 
-### Creating a new R Project
+### Creating a new R Project {#sec-newproj}
 
 R Studio provides an environment where you can use R Markdown to create documents with embedded analysis outputs, and store these in self-contained project folders which will ensure that your analyses can easily be reproduced without having to change directory names when you switch computers. (See [this link](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) for more on the utility of using R projects.)
 

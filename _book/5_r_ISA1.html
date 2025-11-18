@@ -253,15 +253,21 @@ window.Quarto = {
   <ul>
   <li><a href="#r-outcomes" id="toc-r-outcomes" class="nav-link active" data-scroll-target="#r-outcomes"><span class="header-section-number">5.1</span> R outcomes</a></li>
   <li><a href="#required-packages" id="toc-required-packages" class="nav-link" data-scroll-target="#required-packages"><span class="header-section-number">5.2</span> Required packages</a></li>
-  <li><a href="#first-thing---make-a-project" id="toc-first-thing---make-a-project" class="nav-link" data-scroll-target="#first-thing---make-a-project"><span class="header-section-number">5.3</span> First thing - make a project!!</a></li>
-  <li><a href="#creating-data" id="toc-creating-data" class="nav-link" data-scroll-target="#creating-data"><span class="header-section-number">5.4</span> Creating data</a></li>
+  <li><a href="#first-create-a-project" id="toc-first-create-a-project" class="nav-link" data-scroll-target="#first-create-a-project"><span class="header-section-number">5.3</span> First, create a project!</a></li>
+  <li><a href="#entering-data" id="toc-entering-data" class="nav-link" data-scroll-target="#entering-data"><span class="header-section-number">5.4</span> Entering data</a></li>
   <li><a href="#measures-of-central-tendency" id="toc-measures-of-central-tendency" class="nav-link" data-scroll-target="#measures-of-central-tendency"><span class="header-section-number">5.5</span> Measures of central tendency</a>
   <ul class="collapse">
   <li><a href="#the-arithmetic-mean" id="toc-the-arithmetic-mean" class="nav-link" data-scroll-target="#the-arithmetic-mean"><span class="header-section-number">5.5.1</span> The arithmetic mean</a></li>
   <li><a href="#the-median" id="toc-the-median" class="nav-link" data-scroll-target="#the-median"><span class="header-section-number">5.5.2</span> The median</a></li>
   <li><a href="#the-mode" id="toc-the-mode" class="nav-link" data-scroll-target="#the-mode"><span class="header-section-number">5.5.3</span> The mode</a></li>
   </ul></li>
-  <li><a href="#importing-and-summarizing-existing-data" id="toc-importing-and-summarizing-existing-data" class="nav-link" data-scroll-target="#importing-and-summarizing-existing-data"><span class="header-section-number">5.6</span> Importing and summarizing existing data</a></li>
+  <li><a href="#importing-existing-data" id="toc-importing-existing-data" class="nav-link" data-scroll-target="#importing-existing-data"><span class="header-section-number">5.6</span> Importing existing data</a></li>
+  <li><a href="#summarizing-data" id="toc-summarizing-data" class="nav-link" data-scroll-target="#summarizing-data"><span class="header-section-number">5.7</span> Summarizing data</a>
+  <ul class="collapse">
+  <li><a href="#frequency-tables" id="toc-frequency-tables" class="nav-link" data-scroll-target="#frequency-tables"><span class="header-section-number">5.7.1</span> Frequency tables</a></li>
+  <li><a href="#summary-descriptive-statistics" id="toc-summary-descriptive-statistics" class="nav-link" data-scroll-target="#summary-descriptive-statistics"><span class="header-section-number">5.7.2</span> Summary descriptive statistics</a></li>
+  </ul></li>
+  <li><a href="#selecting-subsets" id="toc-selecting-subsets" class="nav-link" data-scroll-target="#selecting-subsets"><span class="header-section-number">5.8</span> Selecting subsets</a></li>
   </ul>
 </nav>
     </div>
@@ -310,18 +316,18 @@ window.Quarto = {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="first-thing---make-a-project" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="first-thing---make-a-project"><span class="header-section-number">5.3</span> First thing - make a project!!</h2>
-<p>Do it now!</p>
+<section id="first-create-a-project" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="first-create-a-project"><span class="header-section-number">5.3</span> First, create a project!</h2>
+<p>Follow the <a href="./1_r_markdown_basics.html#sec-newproj">instructions in Chapter 1 of this book</a> to create a new R project where you can store all of your ISA scripts, assignments, and datasets. Opening an R Studio session with the newly-created project icon will set the project folder as your home directory, meaning that - if you store all the course datasets here - loading datasets can be performed smoothly without having to enter long directory pathnames to point R to the file you want to load.</p>
 </section>
-<section id="creating-data" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="creating-data"><span class="header-section-number">5.4</span> Creating data</h2>
+<section id="entering-data" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="entering-data"><span class="header-section-number">5.4</span> Entering data</h2>
 <p>We will work almost exclusively with dataframes on this course. These are essentially tables, where rows correspond to observations on the <em>unit of analysis</em> (e.g., mice, people, countries), and columns correspond to variables (e.g., fur colour, occupation, GDP per capita).</p>
 <p>Let’s create a new dataframe of student names and ages:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>students<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="st">"Matthew"</span>,<span class="st">"Mark"</span>,<span class="st">"Luke"</span>,<span class="st">"John"</span>), <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">18</span>,<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Above, we assigned a dataframe to the name <code>students</code> with the <code>&lt;-</code> operator (an alternative to “=” - which also works - used by R).We then told R that we wanted to create a dataframe with variables <code>names</code> and <code>age</code>, and we provided some values to both of those variables. Here, the <code>c()</code> is used to concatenate individual entries into a column vector.</p>
+<p>Above, we assigned a dataframe to the name <code>students</code> with the <code>&lt;-</code> operator (an alternative to “=” - which also works - used by R). We then told R that we wanted to create a dataframe with variables <code>names</code> and <code>age</code>, and we provided some values to both of those variables. Here, the <code>c()</code> is used to concatenate individual entries into a column vector.</p>
 <p>To see our new dataframe in all of its glory, we can simply type its name at the console:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -347,11 +353,11 @@ window.Quarto = {
 <section id="the-arithmetic-mean" class="level3" data-number="5.5.1">
 <h3 data-number="5.5.1" class="anchored" data-anchor-id="the-arithmetic-mean"><span class="header-section-number">5.5.1</span> The arithmetic mean</h3>
 <p>This is usually represented by one of two formulae:</p>
-<ol type="1">
-<li><span class="math inline">\(\bar{x} = \frac{1}{n} \sum\limits_{i = 1}^{n}x_i\)</span></li>
-<li><span class="math inline">\(\bar{x} = \frac{\sum_{i = 1}^{n}x_i}{n}\)</span></li>
+<ol class="example" type="1">
+<li><p><span class="math inline">\(\bar{x} = \frac{1}{n} \sum\limits_{i = 1}^{n}x_i\)</span></p></li>
+<li><p><span class="math inline">\(\bar{x} = \frac{\sum_{i = 1}^{n}x_i}{n}\)</span></p></li>
 </ol>
-<p>Which, of course, amounts to: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the <code>mean</code> function:</p>
+<p>Straighforwardly: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the <code>mean</code> function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(students<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -365,8 +371,8 @@ window.Quarto = {
 <p>This is the 50th percentile in the dataset (i.e., it divides the data into a lower half and an upper half). It is obtained by ranking scores and finding the value which divides the dataset in two.</p>
 <p>For data <span class="math inline">\(x\)</span> with <span class="math inline">\(n\)</span> elements:</p>
 <ul>
-<li>if <span class="math inline">\(n\)</span> is <strong>odd</strong>, <span class="math inline">\(med(x) = x_{(n+1)/2}\)</span></li>
-<li>if <span class="math inline">\(n\)</span> is <strong>even</strong>, <span class="math inline">\(med(x) = \frac{x_{(n/2)} + x_{((n/2)+1)}}{2}\)</span></li>
+<li><p>if <span class="math inline">\(n\)</span> is <strong>odd</strong>, <span class="math inline">\(med(x) = x_{(n+1)/2}\)</span></p></li>
+<li><p>if <span class="math inline">\(n\)</span> is <strong>even</strong>, <span class="math inline">\(med(x) = \frac{x_{(n/2)} + x_{((n/2)+1)}}{2}\)</span></p></li>
 </ul>
 <p>For example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use <code>median</code>:</p>
 <div class="cell">
@@ -381,15 +387,18 @@ window.Quarto = {
 <h3 data-number="5.5.3" class="anchored" data-anchor-id="the-mode"><span class="header-section-number">5.5.3</span> The mode</h3>
 <p>Lastly, we turn to the mode, which is simply the most frequently occurring value. At the time of writing, base R doesn’t have a function to compute the mode, so let’s write one ourselves:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cusmode<span class="ot">&lt;-</span><span class="cf">function</span>(x){</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  xf<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">table</span>(x))</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  modeframe<span class="ot">&lt;-</span>xf[xf<span class="sc">$</span>Freq <span class="sc">==</span> <span class="fu">max</span>(xf<span class="sc">$</span>Freq),]</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(modeframe)[<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Mode(s)"</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(modeframe)[<span class="dv">2</span>]<span class="ot">&lt;-</span><span class="st">"Frequency"</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(modeframe)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cusmode</span>(students<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Hat-tip to #https://www.geeksforgeeks.org/r-language/convert-factor-to-numeric-and-numeric-to-factor-in-r-programming/ for the facto-to-numeric conversion </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cusmode<span class="ot">&lt;-</span><span class="cf">function</span>(x){</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  xf<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">table</span>(x))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  modeframe<span class="ot">&lt;-</span>xf[xf<span class="sc">$</span>Freq <span class="sc">==</span> <span class="fu">max</span>(xf<span class="sc">$</span>Freq),]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(modeframe)[<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Mode(s)"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  modeframe<span class="sc">$</span><span class="st">`</span><span class="at">Mode(s)</span><span class="st">`</span><span class="ot">&lt;-</span><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(modeframe<span class="sc">$</span><span class="st">`</span><span class="at">Mode(s)</span><span class="st">`</span>)) </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(modeframe)[<span class="dv">2</span>]<span class="ot">&lt;-</span><span class="st">"Frequency"</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(modeframe)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cusmode</span>(students<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Mode(s) Frequency
 1      18         2</code></pre>
@@ -409,16 +418,83 @@ window.Quarto = {
 <p>The mode can be calculated for all measurement levels about which you have learned, but it is typically most informative when there are relatively few values which the data can take.</p>
 </section>
 </section>
-<section id="importing-and-summarizing-existing-data" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="importing-and-summarizing-existing-data"><span class="header-section-number">5.6</span> Importing and summarizing existing data</h2>
+<section id="importing-existing-data" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="importing-existing-data"><span class="header-section-number">5.6</span> Importing existing data</h2>
 <p>We will now import some data from the <a href="https://www.europeansocialsurvey.org/">European Social Survey</a>. The data is saved as .sav, which is a file format native to the SPSS software. We use this as it contains informative labels describing the variables, but the ESS data is also available in .csv and other formats.</p>
 <p>Ensure that you have the ESS data saved to your project folder and then run the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ESS<span class="ot">&lt;-</span>haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">"C:/Users/David/OneDrive - UvA/2025_2026/ISA_24_25/Datasets/ESS11.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ESS<span class="ot">&lt;-</span>haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">"ESS11.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li>frequency table (<code>dplyr::starwars %&gt;% dplyr::group_by(height) %&gt;% dplyr::summarize(Frequency = dplyr::n())</code> - https://favtutor.com/blogs/frequency-table-in-r)</li>
-</ul>
+<p>Running the <code>dplyr::glimpse</code> command will give us a quick look at the dataset, along with telling us the number of rows (human survey respondents) and columns (variables).</p>
+</section>
+<section id="summarizing-data" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="summarizing-data"><span class="header-section-number">5.7</span> Summarizing data</h2>
+<section id="frequency-tables" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="frequency-tables"><span class="header-section-number">5.7.1</span> Frequency tables</h3>
+<p>Frequency give us information about how often each unique value of a variable occurs. In R, we can use the base <code>table</code> function to show us the frequency distribution of respondents’ <code>agea</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ESS<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34 
+107 380 371 389 460 409 404 410 397 461 439 429 415 447 479 496 468 523 604 579 
+ 35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54 
+571 541 540 633 625 567 625 637 633 659 615 602 633 644 698 662 666 700 721 684 
+ 55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74 
+674 688 720 776 705 696 689 637 704 783 694 710 714 738 671 649 599 600 587 594 
+ 75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90 
+575 518 485 428 375 377 314 308 282 265 212 184 148 118 103 243 </code></pre>
+</div>
+</div>
+</section>
+<section id="summary-descriptive-statistics" class="level3" data-number="5.7.2">
+<h3 data-number="5.7.2" class="anchored" data-anchor-id="summary-descriptive-statistics"><span class="header-section-number">5.7.2</span> Summary descriptive statistics</h3>
+<p>The base <code>summary</code> function gives us an overview of key descriptive statistics. The counts you see for <code>NA</code> (see <a href="2_r_firstdata.html#nte-na" class="quarto-xref">Note&nbsp;<span>2.2</span></a>) reflect the number of respondents for whom no information about age was recorded.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ESS<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  15.00   37.00   53.00   51.69   67.00   90.00     270 </code></pre>
+</div>
+</div>
+<p>You will notice that the mode is missing, but we can add this to the output using the function <code>cusmode</code> we created above:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">summary</span>(ESS<span class="sc">$</span>agea),<span class="fu">cusmode</span>(ESS<span class="sc">$</span>agea))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Min.
+[1] 15
+
+$`1st Qu.`
+[1] 37
+
+$Median
+[1] 53
+
+$Mean
+[1] 51.69323
+
+$`3rd Qu.`
+[1] 67
+
+$Max.
+[1] 90
+
+$`NA's`
+[1] 270
+
+$`Mode(s)`
+[1] 64
+
+$Frequency
+[1] 783</code></pre>
+</div>
+</div>
+<p>This results in the output being forced to the slightly less reader-friendly list class, but this allows us to quickly display multiple modes where these arise.</p>
+</section>
+</section>
+<section id="selecting-subsets" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="selecting-subsets"><span class="header-section-number">5.8</span> Selecting subsets</h2>
+<p>Coming soon!</p>
 
 
 </section>
