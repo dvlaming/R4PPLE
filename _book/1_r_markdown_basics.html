@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1_r_markdown_basics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation and introduction to R Markdown documents</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1_r_markdown_basics.html">The basics</a></li><li class="breadcrumb-item"><a href="./1_r_markdown_basics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation and introduction to R Markdown documents</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,36 +177,58 @@ window.Quarto = {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">The basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./1_r_markdown_basics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation and introduction to R Markdown documents</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2_r_firstdata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The basics of datawrangling in the <code>tidyverse</code></span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./3_r_plotting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">An introduction to graphics with <code>ggplot2</code></span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./4_r_knitting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">“Knitting” everything togther</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">“Knitting” everything togther into a document</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to Statistical Analysis (Y1)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./5_r_ISA1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
@@ -251,7 +273,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1_r_markdown_basics.html">The basics</a></li><li class="breadcrumb-item"><a href="./1_r_markdown_basics.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation and introduction to R Markdown documents</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation and introduction to R Markdown documents</span></h1>
 </div>
@@ -270,11 +292,11 @@ window.Quarto = {
 </header>
 
 
-<p>You should now <a href="https://cran.rstudio.com/">install R</a>. Opening it up after installation will probably result in some mild disappointment; the console is ugly and uninspiring. Luckily, there are many good integrated development environments (IDEs) available for R which can make things look a little nicer. The current market leader is R Studio, which you can download <a href="https://posit.co/download/rstudio-desktop/">here</a>. (<strong>Note that R Studio will not run unless you already have R installed, so be sure to do this first!</strong>)</p>
+<p>Onto the first order of business: <a href="https://cran.rstudio.com/">installing R</a>. Opening it up after installation will probably result in some mild disappointment; the console is rather drab and uninspiring. Luckily, there are many good integrated development environments (IDEs) available for R which can make things look a little nicer. The current market leader is R Studio, which you can download <a href="https://posit.co/download/rstudio-desktop/">here</a>. (<strong>Note that R Studio will not run unless you already have R installed, so be sure to do this first!</strong>)</p>
 <p>Now, let’s briefly distinguish some components:</p>
 <ul>
 <li><strong>R</strong> is a free and open-source programming language which is specialized for statistical computing and data visualization. The base functions of the language can be supplemented by a vast (and perpetually expanding) database of user-generated extension packages which covers just about every data analysis scenario you would care to imagine.</li>
-<li><strong>R Studio</strong> is an <em>integrated development environment</em> (IDE) which, in short, runs on top of base R to make it look a bit nicer.</li>
+<li><strong>R Studio</strong> is an <em>integrated development environment</em> (IDE) which runs on top of base R, provides additional functionality, and makes things look a bit nicer.</li>
 <li><strong>R Markdown</strong> is a typesetting language bundled with R Studio which allows us to prepare documents with - among other things - interwoven code, figures, formulae, analysis outputs and tables.</li>
 </ul>
 <p>As suggested in the introductory chapter, it is not the place of this book to provide a full, ‘bottom-up’ introduction to any of the above elements. Rather, in these opening chapters we will highlight the essentials to get you swiftly up and running with importing existing data and processing it for further statistical analysis and visualization.</p>

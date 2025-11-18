@@ -1,21 +1,22 @@
 # ISA 1
 
-Welcome to your first ISA tutorial! We assume that you have familiarized yourselves with the content from the previous four chapters, but, if not, you will have the time today to catch up on this. 
+Welcome to your first ISA tutorial! We assume that you have familiarized yourselves with the content from the previous four chapters, but, if not, you will have the time today to catch up on this.
 
 ## R outcomes
 
-After this tutorial, you can:
-1. Enter new data
-2. Import and work with existing data
-3. Create frequency tables
+After this tutorial, you can: 
+
+1. Enter new data 
+2. Import and work with existing data 
+3. Create frequency tables 
 4. Select subsets of data using `dplyr::filter`
 
 ## Required packages
 
 You will need the following additional packages:
 
-* `dplyr` (can also be added by installing the `tidyverse` collection)
-* `haven`
+-   `dplyr` (can also be added by installing the `tidyverse` collection)
+-   `haven`
 
 ```{r}
 #| label: install_load
@@ -28,9 +29,13 @@ library(haven)
 
 ```
 
+## First thing - make a project!!
+
+Do it now!
+
 ## Creating data
 
-We will work almost exclusively with dataframes on this course. These are essentially tables, where rows correspond to observations on the _unit of analysis_ (e.g., mice, people, countries), and columns correspond to variables (e.g., fur colour, occupation, GDP per capita).
+We will work almost exclusively with dataframes on this course. These are essentially tables, where rows correspond to observations on the *unit of analysis* (e.g., mice, people, countries), and columns correspond to variables (e.g., fur colour, occupation, GDP per capita).
 
 Let's create a new dataframe of student names and ages:
 
@@ -59,8 +64,86 @@ If we only want to show a particular variable from the frame, then we type the n
 students$age
 ```
 
-## To-do:
+## Measures of central tendency
 
-* import (ESS .sav)
-* central tendency
-* frequency table (`dplyr::starwars %>% dplyr::group_by(height) %>% dplyr::summarize(Frequency = dplyr::n())` - https://favtutor.com/blogs/frequency-table-in-r)
+In this course, we will consider three measures of central tendency.
+
+### The arithmetic mean
+
+This is usually represented by one of two formulae:
+
+1. $\bar{x} = \frac{1}{n} \sum\limits_{i = 1}^{n}x_i$
+2. $\bar{x} = \frac{\sum_{i = 1}^{n}x_i}{n}$
+
+Which, of course, amounts to: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the `mean` function:
+
+```{r mean}
+
+mean(students$age)
+
+```
+
+Strictly speaking, the mean can only be sensibly calculated for interval/ratio level data. 
+
+### The median
+
+This is the 50th percentile in the dataset (i.e., it divides the data into a lower half and an upper half). It is obtained by ranking scores and finding the value which divides the dataset in two. 
+
+For data $x$ with $n$ elements:
+
+* if $n$ is **odd**, $med(x) = x_{(n+1)/2}$
+* if $n$ is **even**, $med(x) = \frac{x_{(n/2)} + x_{((n/2)+1)}}{2}$
+
+For example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use `median`:
+
+```{r median}
+
+median(students$age)
+
+```
+
+The median can be used to summarize both interval/ratio and ordinal variables.
+
+### The mode
+
+Lastly, we turn to the mode, which is simply the most frequently occurring value. At the time of writing, base R doesn't have a function to compute the mode, so let's write one ourselves:
+
+```{r modefun}
+
+cusmode<-function(x){
+  xf<-as.data.frame(table(x))
+  modeframe<-xf[xf$Freq == max(xf$Freq),]
+  names(modeframe)[1]<-"Mode(s)"
+  names(modeframe)[2]<-"Frequency"
+  return(modeframe)
+}
+
+cusmode(students$age)
+
+```
+
+Datasets can have multiple modes; for example, let's imagine a new student joins the party:
+
+```{r Billy}
+
+students[5,]<-c("Billy",20)
+
+cusmode(students$age)
+
+```
+
+The mode can be calculated for all measurement levels about which you have learned, but it is typically most informative when there are relatively few values which the data can take.
+
+## Importing and summarizing existing data
+
+We will now import some data from the [European Social Survey](https://www.europeansocialsurvey.org/). The data is saved as .sav, which is a file format native to the SPSS software. We use this as it contains informative labels describing the variables, but the ESS data is also available in .csv and other formats.
+
+Ensure that you have the ESS data saved to your project folder and then run the following:
+
+```{r ESSload}
+
+ESS<-haven::read_sav("C:/Users/David/OneDrive - UvA/2025_2026/ISA_24_25/Datasets/ESS11.sav")
+
+```
+
+-   frequency table (`dplyr::starwars %>% dplyr::group_by(height) %>% dplyr::summarize(Frequency = dplyr::n())` - https://favtutor.com/blogs/frequency-table-in-r)

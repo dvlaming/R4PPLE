@@ -1,9 +1,3 @@
-# "Knitting" everything togther
+# "Knitting" everything togther into a document
 
-## TBA....
-
-## Summary
-
-In this chapter, we have covered:  
-
-* the things
+Coming soon!
