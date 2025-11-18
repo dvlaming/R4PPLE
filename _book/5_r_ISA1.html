@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; ISA 1 – R for the PPL(E)</title>
+<title>5&nbsp; ISA 1: entering, importing, summarizing and subsetting data – R for the PPL(E)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5_r_ISA1.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./5_r_ISA1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5_r_ISA1.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./5_r_ISA1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,7 +224,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./5_r_ISA1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></span></a>
   </div>
 </li>
       </ul>
@@ -268,15 +268,16 @@ window.Quarto = {
   <li><a href="#summary-descriptive-statistics" id="toc-summary-descriptive-statistics" class="nav-link" data-scroll-target="#summary-descriptive-statistics"><span class="header-section-number">5.7.2</span> Summary descriptive statistics</a></li>
   </ul></li>
   <li><a href="#selecting-subsets" id="toc-selecting-subsets" class="nav-link" data-scroll-target="#selecting-subsets"><span class="header-section-number">5.8</span> Selecting subsets</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.9</span> Summary</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5_r_ISA1.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./5_r_ISA1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5_r_ISA1.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./5_r_ISA1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></h1>
 </div>
 
 
@@ -308,11 +309,11 @@ window.Quarto = {
 <h2 data-number="5.2" class="anchored" data-anchor-id="required-packages"><span class="header-section-number">5.2</span> Required packages</h2>
 <p>You will need the following additional packages:</p>
 <ul>
-<li><code>dplyr</code> (can also be added by installing the <code>tidyverse</code> collection)</li>
+<li><code>dplyr</code> (but we will simply install the <code>tidyverse</code> collection so that we also have the pipe operator - <code>%&gt;%</code> - loaded)</li>
 <li><code>haven</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -446,6 +447,349 @@ window.Quarto = {
 575 518 485 428 375 377 314 308 282 265 212 184 148 118 103 243 </code></pre>
 </div>
 </div>
+<p>This is a little difficult to see in the above output, but the first row shows the unique values of <code>agea</code>, while the second row gives the corresponding frequency. To make things a little more readable, let’s use some <code>dplyr</code> functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a>ESS <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(agea) <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-3" class="code-annotation-target"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="st">"Frequency"</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-11-4" class="code-annotation-target"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">align =</span> <span class="st">"c"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="2" data-code-annotation="1">Pass ESS into into <code>dplyr::group_by</code>, where we request for the data to be organized by the unique values of <code>agea</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="3" data-code-annotation="2">We use <code>dplyr::summarize</code> to reduce ESS to two variables: <code>Age</code> = the unique age values in the dataset; <code>Frequency</code> is the occurence count for each age value. <code>dplyr::n()</code> sums up all instances of a given value of <code>agea</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="4" data-code-annotation="3">We pass the output dataframe to the R Studio built-in <code>knitr::kable</code> function for generating tables, and tell it to center-justify the table columns (<code>align = "c"</code>).</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">agea</th>
+<th style="text-align: center;">Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">107</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">380</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">371</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">389</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">460</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">409</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">404</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">410</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">397</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">461</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">439</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">429</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">415</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">447</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">479</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">496</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">468</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">523</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">604</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">579</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">571</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">541</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">37</td>
+<td style="text-align: center;">540</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">633</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">625</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">567</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">41</td>
+<td style="text-align: center;">625</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">637</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">633</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">659</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">615</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">46</td>
+<td style="text-align: center;">602</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">633</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">644</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">49</td>
+<td style="text-align: center;">698</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">662</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">666</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">700</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">53</td>
+<td style="text-align: center;">721</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">54</td>
+<td style="text-align: center;">684</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">674</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">56</td>
+<td style="text-align: center;">688</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">57</td>
+<td style="text-align: center;">720</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">58</td>
+<td style="text-align: center;">776</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">59</td>
+<td style="text-align: center;">705</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">696</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">61</td>
+<td style="text-align: center;">689</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">62</td>
+<td style="text-align: center;">637</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">63</td>
+<td style="text-align: center;">704</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">783</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">65</td>
+<td style="text-align: center;">694</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">66</td>
+<td style="text-align: center;">710</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">67</td>
+<td style="text-align: center;">714</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">68</td>
+<td style="text-align: center;">738</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">69</td>
+<td style="text-align: center;">671</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">649</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">71</td>
+<td style="text-align: center;">599</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">72</td>
+<td style="text-align: center;">600</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">73</td>
+<td style="text-align: center;">587</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">74</td>
+<td style="text-align: center;">594</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">75</td>
+<td style="text-align: center;">575</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">76</td>
+<td style="text-align: center;">518</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">77</td>
+<td style="text-align: center;">485</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">428</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">79</td>
+<td style="text-align: center;">375</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">80</td>
+<td style="text-align: center;">377</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">81</td>
+<td style="text-align: center;">314</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">82</td>
+<td style="text-align: center;">308</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">83</td>
+<td style="text-align: center;">282</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">84</td>
+<td style="text-align: center;">265</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">85</td>
+<td style="text-align: center;">212</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">86</td>
+<td style="text-align: center;">184</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">87</td>
+<td style="text-align: center;">148</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">88</td>
+<td style="text-align: center;">118</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">89</td>
+<td style="text-align: center;">103</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">90</td>
+<td style="text-align: center;">243</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">270</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="summary-descriptive-statistics" class="level3" data-number="5.7.2">
 <h3 data-number="5.7.2" class="anchored" data-anchor-id="summary-descriptive-statistics"><span class="header-section-number">5.7.2</span> Summary descriptive statistics</h3>
@@ -457,7 +801,7 @@ window.Quarto = {
   15.00   37.00   53.00   51.69   67.00   90.00     270 </code></pre>
 </div>
 </div>
-<p>You will notice that the mode is missing, but we can add this to the output using the function <code>cusmode</code> we created above:</p>
+<p>You will notice that the mode is missing, but we can concatenate this with the output using the function <code>cusmode</code> we created above:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">summary</span>(ESS<span class="sc">$</span>agea),<span class="fu">cusmode</span>(ESS<span class="sc">$</span>agea))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -489,12 +833,215 @@ $Frequency
 [1] 783</code></pre>
 </div>
 </div>
-<p>This results in the output being forced to the slightly less reader-friendly list class, but this allows us to quickly display multiple modes where these arise.</p>
+<p>This results in the output being forced to the slightly less reader-friendly list class, but allows us to easily display multiple modes where these arise.</p>
 </section>
 </section>
 <section id="selecting-subsets" class="level2" data-number="5.8">
 <h2 data-number="5.8" class="anchored" data-anchor-id="selecting-subsets"><span class="header-section-number">5.8</span> Selecting subsets</h2>
-<p>Coming soon!</p>
+<p>Say we are interested only in the age of respondents from the Netherlands. Using the <code>dplyr::filter</code> function, we can pick those out and then summarize the <code>agea</code> variable. A useful feature of the .sav version of the ESS dataset is the variable labelling. If you enter <code>ESS$cntry</code> into the console, you get a list of the numeric values which code for different countries, but also a list of what those numeric values represent, at the bottom of the console output. However, we will ask <code>haven</code> to print only the labels for convenience.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>haven<span class="sc">::</span><span class="fu">print_labels</span>(ESS<span class="sc">$</span>cntry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Labels:
+ value          label
+     1        Austria
+     2        Belgium
+     3    Switzerland
+     4         Cyprus
+     5        Germany
+     6          Spain
+     7        Finland
+     8         France
+     9 United Kingdom
+    10         Greece
+    11        Croatia
+    12        Hungary
+    13        Ireland
+    14        Iceland
+    15          Italy
+    16      Lithuania
+    17    Netherlands
+    18         Norway
+    19         Poland
+    20       Portugal
+    21         Serbia
+    22         Sweden
+    23       Slovenia
+    24       Slovakia</code></pre>
+</div>
+</div>
+<p>We can see that the Netherlands is represented by the value 17 in the dataset. We could now filter on this number, but it might be more informative if the variable <strong>value</strong> was the same as variable <strong>label</strong>. Thankfully, the <code>haven</code> package which we used for the data import makes this easily achievable:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-1" class="code-annotation-target"><a href="#annotated-cell-15-1" aria-hidden="true" tabindex="-1"></a>ESS <span class="ot">&lt;-</span> ESS <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-15-2" class="code-annotation-target"><a href="#annotated-cell-15-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">cntry_text =</span> haven<span class="sc">::</span><span class="fu">as_factor</span>(cntry))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-15" data-code-lines="1" data-code-annotation="1">Reassign <code>ESS</code> so that the operations will be saved to the dataframe.</span>
+</dd>
+<dt data-target-cell="annotated-cell-15" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-15" data-code-lines="2" data-code-annotation="2">Use <code>dplyr::mutate</code> to create the new variable (as it is good practice <strong>NOT</strong> to write over existing variables) and <code>haven::as_factor(cntry)</code> to assign the text label of <code>cntry</code> to each participant, instead of the numerical value.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Now, we can filter in a more transparent manner:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-16-1" class="code-annotation-target"><a href="#annotated-cell-16-1" aria-hidden="true" tabindex="-1"></a>ESS_NL<span class="ot">&lt;-</span>ESS <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-16-2" class="code-annotation-target"><a href="#annotated-cell-16-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cntry_text <span class="sc">==</span> <span class="st">"Netherlands"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="1" data-code-annotation="1">Take <code>ESS</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="2" data-code-annotation="2">Use <code>dplyr::filter</code> to select only participants from the Netherlands. <code>cntry_text == "Netherlands"</code> asks the function to return only participants with a value on the variable <code>cntry_text</code> which is equal to “Netherlands”. Note the use of the <code>==</code> instead of <code>=</code>.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div id="nte-logoper" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note&nbsp;5.1: Use of logical operators when subsetting or selecting
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You will probably rely mostly on the following:</p>
+<ol type="1">
+<li><code>==</code> - searches for perfect matches, as in the example above.</li>
+<li><code>!=</code> - the complement of <code>==</code>. E.g, <code>dplyr::filter(cntry_text != "Netherlands")</code> means “give me all respondents who are NOT from the Netherlands”.</li>
+<li><code>&amp;</code> - used when you want the selected responses to satisfy multiple conditions. E.g., <code>dplyr::filter(cntry_text == "Netherlands" &amp; agea &gt; 22)</code> means “give me all respondents from the Netherlands <strong>who are also older than (&gt; = ”greater than”) 22</strong>”.</li>
+<li><code>|</code> - <strong>OR</strong> selection. Use this if you want to select responses which match at least one of the specified conditions. E.g., <code>dplyr::filter(cntry_text == "Netherlands" | agea &gt; 22)</code> will return participants who are either in the Netherlands, or older than 22, or both. Participants who meet neither criterion will be filtered out.</li>
+</ol>
+</div>
+</div>
+<p>Now that we have extracted Dutch respondents’ data, we can run create frequency tables and summary lists as previously.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ESS_NL<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 
+ 4 26 21 21 24 25 17 16 21 22 19 20 18 18 15 11 22 26 35 19 29 22 19 29 22 28 
+41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 
+29 28 30 22 15 26 18 23 35 29 32 38 30 34 23 34 31 25 30 25 33 28 32 33 34 29 
+67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 
+28 33 31 21 25 29 21 19 29 21 27  9 16 13 14 12 10  7  9  6  2  2  3  8 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">summary</span>(ESS_NL<span class="sc">$</span>agea),<span class="fu">cusmode</span>(ESS_NL<span class="sc">$</span>agea))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Min.
+[1] 15
+
+$`1st Qu.`
+[1] 35
+
+$Median
+[1] 52
+
+$Mean
+[1] 50.52249
+
+$`3rd Qu.`
+[1] 66
+
+$Max.
+[1] 90
+
+$`NA's`
+[1] 5
+
+$`Mode(s)`
+[1] 52
+
+$Frequency
+[1] 38</code></pre>
+</div>
+</div>
+<p>While this gives us everything we need, we might wish to have a neater looking summary table. <code>dplyr</code> can help us with that:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-19"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-19-1"><a href="#annotated-cell-19-1" aria-hidden="true" tabindex="-1"></a>ESS_NL <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="st">"N respondents"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
+<span id="annotated-cell-19-2"><a href="#annotated-cell-19-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Min. age"</span> <span class="ot">=</span> <span class="fu">min</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="annotated-cell-19-3"><a href="#annotated-cell-19-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Q1 age"</span> <span class="ot">=</span> <span class="fu">quantile</span>(agea, .<span class="dv">25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="annotated-cell-19-4"><a href="#annotated-cell-19-4" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Median age"</span> <span class="ot">=</span> <span class="fu">median</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="annotated-cell-19-5"><a href="#annotated-cell-19-5" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Q3 age"</span> <span class="ot">=</span> <span class="fu">quantile</span>(agea, .<span class="dv">75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="annotated-cell-19-6"><a href="#annotated-cell-19-6" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Max. age"</span> <span class="ot">=</span> <span class="fu">max</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="annotated-cell-19-7"><a href="#annotated-cell-19-7" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Mean age"</span> <span class="ot">=</span> <span class="fu">mean</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="annotated-cell-19-8"><a href="#annotated-cell-19-8" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Modal age"</span> <span class="ot">=</span> </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-19-9" class="code-annotation-target"><a href="#annotated-cell-19-9" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">paste</span>(<span class="fu">as.character</span>(<span class="fu">cusmode</span>(agea)<span class="sc">$</span><span class="st">`</span><span class="at">Mode(s)</span><span class="st">`</span>), <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="annotated-cell-19-10"><a href="#annotated-cell-19-10" aria-hidden="true" tabindex="-1"></a>                            ) <span class="sc">%&gt;%</span> </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-19-11" class="code-annotation-target"><a href="#annotated-cell-19-11" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">align =</span> <span class="st">"c"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="9" data-code-annotation="1">This line helps us create a single text string should we have multiple modes. <code>as.character</code> converts input to a text string, and the <code>paste</code> function with the added option <code>collapse = " "</code> folds the multiple modes into one text string separated by a space.</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="11" data-code-annotation="2">We pass the output dataframe to <code>knitr::kable</code> to make our table neater.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 11%">
+<col style="width: 9%">
+<col style="width: 14%">
+<col style="width: 9%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">N respondents</th>
+<th style="text-align: center;">Min. age</th>
+<th style="text-align: center;">Q1 age</th>
+<th style="text-align: center;">Median age</th>
+<th style="text-align: center;">Q3 age</th>
+<th style="text-align: center;">Max. age</th>
+<th style="text-align: center;">Mean age</th>
+<th style="text-align: center;">Modal age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1695</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">66</td>
+<td style="text-align: center;">90</td>
+<td style="text-align: center;">50.52249</td>
+<td style="text-align: center;">52</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="summary" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.9</span> Summary</h2>
+<p>In this chapter, we covered:</p>
+<ul>
+<li>Entering new data</li>
+<li>Importing existing data in .sav format</li>
+<li>Calculating frequencies and descriptive statistics</li>
+<li>Using <code>dplyr::filter</code> to select subsets of data</li>
+</ul>
 
 
 </section>

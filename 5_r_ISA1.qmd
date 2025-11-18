@@ -1,4 +1,4 @@
-# ISA 1
+# ISA 1: entering, importing, summarizing and subsetting data
 
 Welcome to your first ISA tutorial! We assume that you have familiarized yourselves with the content from the previous four chapters, but, if not, you will have the time today to catch up on this.
 
@@ -15,16 +15,15 @@ After this tutorial, you can:
 
 You will need the following additional packages:
 
--   `dplyr` (can also be added by installing the `tidyverse` collection)
+-   `dplyr` (but we will simply install the `tidyverse` collection so that we also have the pipe operator - `%>%` - loaded)
 -   `haven`
 
 ```{r}
 #| label: install_load
 #| message: FALSE 
 #| warning: FALSE
-#| eval: FALSE
 
-library(dplyr)
+library(tidyverse)
 library(haven)
 
 ```
@@ -172,6 +171,23 @@ table(ESS$agea)
 
 ```
 
+This is a little difficult to see in the above output, but the first row shows the unique values of `agea`, while the second row gives the corresponding frequency. To make things a little more readable, let's use some `dplyr` functions.
+
+```{r ESStidyage}
+
+ESS %>%
+  dplyr::group_by(agea) %>% # <1>
+  dplyr::summarize("Frequency" = dplyr::n()) %>% # <2>
+  knitr::kable(align = "c") # <3>
+  
+
+```
+
+1. Pass ESS into into `dplyr::group_by`, where we request for the data to be organized by the unique values of `agea`.
+2. We use `dplyr::summarize` to reduce ESS to two variables: `Age` = the unique age values in the dataset; `Frequency` is the occurence count for each age value. `dplyr::n()` sums up all instances of a given value of `agea`.
+3. We pass the output dataframe to the R Studio built-in `knitr::kable` function for generating tables, and tell it to center-justify the table columns (`align = "c"`).
+
+
 ### Summary descriptive statistics
 
 The base `summary` function gives us an overview of key descriptive statistics. The counts you see for `NA` (see @nte-na) reflect the number of respondents for whom no information about age was recorded.
@@ -182,7 +198,7 @@ summary(ESS$agea)
 
 ```
 
-You will notice that the mode is missing, but we can add this to the output using the function `cusmode` we created above:
+You will notice that the mode is missing, but we can concatenate this with the output using the function `cusmode` we created above:
 
 ```{r ESSagesummary_2}
 
@@ -190,12 +206,97 @@ c(summary(ESS$agea),cusmode(ESS$agea))
 
 ```
 
-This results in the output being forced to the slightly less reader-friendly list class, but this allows us to quickly display multiple modes where these arise.
+This results in the output being forced to the slightly less reader-friendly list class, but allows us to easily display multiple modes where these arise.
 
 ## Selecting subsets
 
-```{r filterNE}
+Say we are interested only in the age of respondents from the Netherlands. Using the `dplyr::filter` function, we can pick those out and then summarize the `agea` variable. A useful feature of the .sav version of the ESS dataset is the variable labelling. If you enter `ESS$cntry` into the console, you get a list of the numeric values which code for different countries, but also a list of what those numeric values represent, at the bottom of the console output. However, we will ask `haven` to print only the labels for convenience.  
+
+```{r cntryshow}
+
+haven::print_labels(ESS$cntry)
 
 ```
 
-Coming soon!
+We can see that the Netherlands is represented by the value 17 in the dataset. We could now filter on this number, but it might be more informative if the variable **value** was the same as variable **label**. Thankfully, the `haven` package which we used for the data import makes this easily achievable:
+
+```{r cntrylabel}
+
+ESS <- ESS %>% # <1> 
+  dplyr::mutate(cntry_text = haven::as_factor(cntry)) # <2>
+  
+
+```
+
+1. Reassign `ESS` so that the operations will be saved to the dataframe.
+2. Use `dplyr::mutate` to create the new variable (as it is good practice **NOT** to write over existing variables) and `haven::as_factor(cntry)` to assign the text label of `cntry` to each participant, instead of the numerical value.
+
+Now, we can filter in a more transparent manner:
+
+```{r cntryfilter}
+
+ESS_NL<-ESS %>% # <1>
+  dplyr::filter(cntry_text == "Netherlands") # <2>
+  
+
+```
+
+
+1. Take `ESS`
+2. Use `dplyr::filter` to select only participants from the Netherlands. `cntry_text == "Netherlands"` asks the function to return only participants with a value on the variable `cntry_text` which is equal to "Netherlands". Note the use of the `==` instead of `=`.
+
+::: {#nte-logoper .callout-note}
+### Use of logical operators when subsetting or selecting
+
+You will probably rely mostly on the following: 
+
+1.  `==` - searches for perfect matches, as in the example above.
+2.  `!=` - the complement of `==`. E.g, `dplyr::filter(cntry_text != "Netherlands")` means "give me all respondents who are NOT from the Netherlands".
+3.  `&` - used when you want the selected responses to satisfy multiple conditions. E.g., `dplyr::filter(cntry_text == "Netherlands" & agea > 22)` means "give me all respondents from the Netherlands **who are also older than (> = "greater than") 22**".
+4. `|` - **OR** selection. Use this if you want to select responses which match at least one of the specified conditions. E.g., `dplyr::filter(cntry_text == "Netherlands" | agea > 22)` will return participants who are either in the Netherlands, or older than 22, or both. Participants who meet neither criterion will be filtered out.
+:::
+
+Now that we have extracted Dutch respondents' data, we can run create frequency tables and summary lists as previously.
+
+```{r NLfreq}
+
+table(ESS_NL$agea)
+
+```
+
+
+```{r NLsummary}
+
+c(summary(ESS_NL$agea),cusmode(ESS_NL$agea))
+
+```
+
+While this gives us everything we need, we might wish to have a neater looking summary table. `dplyr` can help us with that:
+
+```{r NLtidysummary}
+
+ESS_NL %>% dplyr::summarize("N respondents" = n(),
+                            "Min. age" = min(agea, na.rm = TRUE), 
+                            "Q1 age" = quantile(agea, .25, na.rm = TRUE),
+                            "Median age" = median(agea, na.rm = TRUE),
+                            "Q3 age" = quantile(agea, .75, na.rm = TRUE),
+                            "Max. age" = max(agea, na.rm = TRUE),
+                            "Mean age" = mean(agea, na.rm = TRUE),
+                            "Modal age" = 
+                            paste(as.character(cusmode(agea)$`Mode(s)`), collapse = " ") # <1>
+                            ) %>% 
+  knitr::kable(align = "c") # <2>
+
+```
+
+1. This line helps us create a single text string should we have multiple modes. `as.character` converts input to a text string, and the `paste` function with the added option `collapse = " "` folds the multiple modes into one text string separated by a space.
+2. We pass the output dataframe to `knitr::kable` to make our table neater. 
+
+## Summary
+
+In this chapter, we covered:
+
+* Entering new data
+* Importing existing data in .sav format
+* Calculating frequencies and descriptive statistics
+* Using `dplyr::filter` to select subsets of data

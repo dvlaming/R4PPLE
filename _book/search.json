@@ -437,23 +437,23 @@
   {
     "objectID": "5_r_ISA1.html",
     "href": "5_r_ISA1.html",
-    "title": "5  ISA 1",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "",
     "text": "5.1 R outcomes\nWelcome to your first ISA tutorial! We assume that you have familiarized yourselves with the content from the previous four chapters, but, if not, you will have the time today to catch up on this.\nAfter this tutorial, you can:",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
     ]
   },
   {
     "objectID": "5_r_ISA1.html#required-packages",
     "href": "5_r_ISA1.html#required-packages",
-    "title": "5  ISA 1",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "5.2 Required packages",
-    "text": "5.2 Required packages\nYou will need the following additional packages:\n\ndplyr (can also be added by installing the tidyverse collection)\nhaven\n\n\nlibrary(dplyr)\nlibrary(haven)",
+    "text": "5.2 Required packages\nYou will need the following additional packages:\n\ndplyr (but we will simply install the tidyverse collection so that we also have the pipe operator - %&gt;% - loaded)\nhaven\n\n\nlibrary(tidyverse)\nlibrary(haven)",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
     ]
   },
   {
@@ -491,12 +491,12 @@
   {
     "objectID": "5_r_ISA1.html#r-outcomes",
     "href": "5_r_ISA1.html#r-outcomes",
-    "title": "5  ISA 1",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "",
     "text": "Enter new data\nImport and work with existing data\nCreate frequency tables\nSelect subsets of data using dplyr::filter",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
     ]
   },
   {
@@ -513,12 +513,12 @@
   {
     "objectID": "5_r_ISA1.html#measures-of-central-tendency",
     "href": "5_r_ISA1.html#measures-of-central-tendency",
-    "title": "5  ISA 1",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "5.5 Measures of central tendency",
     "text": "5.5 Measures of central tendency\nIn this course, we will consider three measures of central tendency.\n\n5.5.1 The arithmetic mean\nThis is usually represented by one of two formulae:\n\n\\(\\bar{x} = \\frac{1}{n} \\sum\\limits_{i = 1}^{n}x_i\\)\n\\(\\bar{x} = \\frac{\\sum_{i = 1}^{n}x_i}{n}\\)\n\nStraighforwardly: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the mean function:\n\nmean(students$age)\n\n[1] 18.75\n\n\nStrictly speaking, the mean can only be sensibly calculated for interval/ratio level data.\n\n\n5.5.2 The median\nThis is the 50th percentile in the dataset (i.e., it divides the data into a lower half and an upper half). It is obtained by ranking scores and finding the value which divides the dataset in two.\nFor data \\(x\\) with \\(n\\) elements:\n\nif \\(n\\) is odd, \\(med(x) = x_{(n+1)/2}\\)\nif \\(n\\) is even, \\(med(x) = \\frac{x_{(n/2)} + x_{((n/2)+1)}}{2}\\)\n\nFor example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use median:\n\nmedian(students$age)\n\n[1] 18.5\n\n\nThe median can be used to summarize both interval/ratio and ordinal variables.\n\n\n5.5.3 The mode\nLastly, we turn to the mode, which is simply the most frequently occurring value. At the time of writing, base R doesn’t have a function to compute the mode, so let’s write one ourselves:\n\n#Hat-tip to #https://www.geeksforgeeks.org/r-language/convert-factor-to-numeric-and-numeric-to-factor-in-r-programming/ for the facto-to-numeric conversion \n\ncusmode&lt;-function(x){\n  xf&lt;-as.data.frame(table(x))\n  modeframe&lt;-xf[xf$Freq == max(xf$Freq),]\n  names(modeframe)[1]&lt;-\"Mode(s)\"\n  modeframe$`Mode(s)`&lt;-as.numeric(as.character(modeframe$`Mode(s)`)) \n  names(modeframe)[2]&lt;-\"Frequency\"\n  return(modeframe)\n}\n\ncusmode(students$age)\n\n  Mode(s) Frequency\n1      18         2\n\n\nDatasets can have multiple modes; for example, let’s imagine a new student joins the party:\n\nstudents[5,]&lt;-c(\"Billy\",20)\n\ncusmode(students$age)\n\n  Mode(s) Frequency\n1      18         2\n3      20         2\n\n\nThe mode can be calculated for all measurement levels about which you have learned, but it is typically most informative when there are relatively few values which the data can take.",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
     ]
   },
   {
@@ -535,56 +535,67 @@
   {
     "objectID": "5_r_ISA1.html#first-create-a-project",
     "href": "5_r_ISA1.html#first-create-a-project",
-    "title": "5  ISA 1",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "5.3 First, create a project!",
     "text": "5.3 First, create a project!\nFollow the instructions in Chapter 1 of this book to create a new R project where you can store all of your ISA scripts, assignments, and datasets. Opening an R Studio session with the newly-created project icon will set the project folder as your home directory, meaning that - if you store all the course datasets here - loading datasets can be performed smoothly without having to enter long directory pathnames to point R to the file you want to load.",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
     ]
   },
   {
     "objectID": "5_r_ISA1.html#entering-data",
     "href": "5_r_ISA1.html#entering-data",
-    "title": "5  ISA 1",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "5.4 Entering data",
     "text": "5.4 Entering data\nWe will work almost exclusively with dataframes on this course. These are essentially tables, where rows correspond to observations on the unit of analysis (e.g., mice, people, countries), and columns correspond to variables (e.g., fur colour, occupation, GDP per capita).\nLet’s create a new dataframe of student names and ages:\n\nstudents&lt;-data.frame(names = c(\"Matthew\",\"Mark\",\"Luke\",\"John\"), age = c(18,19,18,20))\n\nAbove, we assigned a dataframe to the name students with the &lt;- operator (an alternative to “=” - which also works - used by R). We then told R that we wanted to create a dataframe with variables names and age, and we provided some values to both of those variables. Here, the c() is used to concatenate individual entries into a column vector.\nTo see our new dataframe in all of its glory, we can simply type its name at the console:\n\nstudents\n\n    names age\n1 Matthew  18\n2    Mark  19\n3    Luke  18\n4    John  20\n\n\nIf we only want to show a particular variable from the frame, then we type the name of the dataframe and the name of the variable we want to see, separated by the $ operator:\n\nstudents$age\n\n[1] 18 19 18 20",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
     ]
   },
   {
     "objectID": "5_r_ISA1.html#importing-existing-data",
     "href": "5_r_ISA1.html#importing-existing-data",
-    "title": "5  ISA 1",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "5.6 Importing existing data",
     "text": "5.6 Importing existing data\nWe will now import some data from the European Social Survey. The data is saved as .sav, which is a file format native to the SPSS software. We use this as it contains informative labels describing the variables, but the ESS data is also available in .csv and other formats.\nEnsure that you have the ESS data saved to your project folder and then run the following:\n\nESS&lt;-haven::read_sav(\"ESS11.sav\")\n\nRunning the dplyr::glimpse command will give us a quick look at the dataset, along with telling us the number of rows (human survey respondents) and columns (variables).",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
     ]
   },
   {
     "objectID": "5_r_ISA1.html#summarizing-data",
     "href": "5_r_ISA1.html#summarizing-data",
-    "title": "5  ISA 1",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "5.7 Summarizing data",
-    "text": "5.7 Summarizing data\n\n5.7.1 Frequency tables\nFrequency give us information about how often each unique value of a variable occurs. In R, we can use the base table function to show us the frequency distribution of respondents’ agea.\n\ntable(ESS$agea)\n\n\n 15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34 \n107 380 371 389 460 409 404 410 397 461 439 429 415 447 479 496 468 523 604 579 \n 35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54 \n571 541 540 633 625 567 625 637 633 659 615 602 633 644 698 662 666 700 721 684 \n 55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74 \n674 688 720 776 705 696 689 637 704 783 694 710 714 738 671 649 599 600 587 594 \n 75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90 \n575 518 485 428 375 377 314 308 282 265 212 184 148 118 103 243 \n\n\n\n\n5.7.2 Summary descriptive statistics\nThe base summary function gives us an overview of key descriptive statistics. The counts you see for NA (see Note 2.2) reflect the number of respondents for whom no information about age was recorded.\n\nsummary(ESS$agea)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  15.00   37.00   53.00   51.69   67.00   90.00     270 \n\n\nYou will notice that the mode is missing, but we can add this to the output using the function cusmode we created above:\n\nc(summary(ESS$agea),cusmode(ESS$agea))\n\n$Min.\n[1] 15\n\n$`1st Qu.`\n[1] 37\n\n$Median\n[1] 53\n\n$Mean\n[1] 51.69323\n\n$`3rd Qu.`\n[1] 67\n\n$Max.\n[1] 90\n\n$`NA's`\n[1] 270\n\n$`Mode(s)`\n[1] 64\n\n$Frequency\n[1] 783\n\n\nThis results in the output being forced to the slightly less reader-friendly list class, but this allows us to quickly display multiple modes where these arise.",
+    "text": "5.7 Summarizing data\n\n5.7.1 Frequency tables\nFrequency give us information about how often each unique value of a variable occurs. In R, we can use the base table function to show us the frequency distribution of respondents’ agea.\n\ntable(ESS$agea)\n\n\n 15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34 \n107 380 371 389 460 409 404 410 397 461 439 429 415 447 479 496 468 523 604 579 \n 35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54 \n571 541 540 633 625 567 625 637 633 659 615 602 633 644 698 662 666 700 721 684 \n 55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74 \n674 688 720 776 705 696 689 637 704 783 694 710 714 738 671 649 599 600 587 594 \n 75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90 \n575 518 485 428 375 377 314 308 282 265 212 184 148 118 103 243 \n\n\nThis is a little difficult to see in the above output, but the first row shows the unique values of agea, while the second row gives the corresponding frequency. To make things a little more readable, let’s use some dplyr functions.\n\nESS %&gt;%\n1  dplyr::group_by(agea) %&gt;%\n2  dplyr::summarize(\"Frequency\" = dplyr::n()) %&gt;%\n3  knitr::kable(align = \"c\")\n\n\n1\n\nPass ESS into into dplyr::group_by, where we request for the data to be organized by the unique values of agea.\n\n2\n\nWe use dplyr::summarize to reduce ESS to two variables: Age = the unique age values in the dataset; Frequency is the occurence count for each age value. dplyr::n() sums up all instances of a given value of agea.\n\n3\n\nWe pass the output dataframe to the R Studio built-in knitr::kable function for generating tables, and tell it to center-justify the table columns (align = \"c\").\n\n\n\n\n\n\n\nagea\nFrequency\n\n\n\n\n15\n107\n\n\n16\n380\n\n\n17\n371\n\n\n18\n389\n\n\n19\n460\n\n\n20\n409\n\n\n21\n404\n\n\n22\n410\n\n\n23\n397\n\n\n24\n461\n\n\n25\n439\n\n\n26\n429\n\n\n27\n415\n\n\n28\n447\n\n\n29\n479\n\n\n30\n496\n\n\n31\n468\n\n\n32\n523\n\n\n33\n604\n\n\n34\n579\n\n\n35\n571\n\n\n36\n541\n\n\n37\n540\n\n\n38\n633\n\n\n39\n625\n\n\n40\n567\n\n\n41\n625\n\n\n42\n637\n\n\n43\n633\n\n\n44\n659\n\n\n45\n615\n\n\n46\n602\n\n\n47\n633\n\n\n48\n644\n\n\n49\n698\n\n\n50\n662\n\n\n51\n666\n\n\n52\n700\n\n\n53\n721\n\n\n54\n684\n\n\n55\n674\n\n\n56\n688\n\n\n57\n720\n\n\n58\n776\n\n\n59\n705\n\n\n60\n696\n\n\n61\n689\n\n\n62\n637\n\n\n63\n704\n\n\n64\n783\n\n\n65\n694\n\n\n66\n710\n\n\n67\n714\n\n\n68\n738\n\n\n69\n671\n\n\n70\n649\n\n\n71\n599\n\n\n72\n600\n\n\n73\n587\n\n\n74\n594\n\n\n75\n575\n\n\n76\n518\n\n\n77\n485\n\n\n78\n428\n\n\n79\n375\n\n\n80\n377\n\n\n81\n314\n\n\n82\n308\n\n\n83\n282\n\n\n84\n265\n\n\n85\n212\n\n\n86\n184\n\n\n87\n148\n\n\n88\n118\n\n\n89\n103\n\n\n90\n243\n\n\nNA\n270\n\n\n\n\n\n\n\n5.7.2 Summary descriptive statistics\nThe base summary function gives us an overview of key descriptive statistics. The counts you see for NA (see Note 2.2) reflect the number of respondents for whom no information about age was recorded.\n\nsummary(ESS$agea)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n  15.00   37.00   53.00   51.69   67.00   90.00     270 \n\n\nYou will notice that the mode is missing, but we can concatenate this with the output using the function cusmode we created above:\n\nc(summary(ESS$agea),cusmode(ESS$agea))\n\n$Min.\n[1] 15\n\n$`1st Qu.`\n[1] 37\n\n$Median\n[1] 53\n\n$Mean\n[1] 51.69323\n\n$`3rd Qu.`\n[1] 67\n\n$Max.\n[1] 90\n\n$`NA's`\n[1] 270\n\n$`Mode(s)`\n[1] 64\n\n$Frequency\n[1] 783\n\n\nThis results in the output being forced to the slightly less reader-friendly list class, but allows us to easily display multiple modes where these arise.",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
     ]
   },
   {
     "objectID": "5_r_ISA1.html#selecting-subsets",
     "href": "5_r_ISA1.html#selecting-subsets",
-    "title": "5  ISA 1",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "5.8 Selecting subsets",
-    "text": "5.8 Selecting subsets\nComing soon!",
+    "text": "5.8 Selecting subsets\nSay we are interested only in the age of respondents from the Netherlands. Using the dplyr::filter function, we can pick those out and then summarize the agea variable. A useful feature of the .sav version of the ESS dataset is the variable labelling. If you enter ESS$cntry into the console, you get a list of the numeric values which code for different countries, but also a list of what those numeric values represent, at the bottom of the console output. However, we will ask haven to print only the labels for convenience.\n\nhaven::print_labels(ESS$cntry)\n\n\nLabels:\n value          label\n     1        Austria\n     2        Belgium\n     3    Switzerland\n     4         Cyprus\n     5        Germany\n     6          Spain\n     7        Finland\n     8         France\n     9 United Kingdom\n    10         Greece\n    11        Croatia\n    12        Hungary\n    13        Ireland\n    14        Iceland\n    15          Italy\n    16      Lithuania\n    17    Netherlands\n    18         Norway\n    19         Poland\n    20       Portugal\n    21         Serbia\n    22         Sweden\n    23       Slovenia\n    24       Slovakia\n\n\nWe can see that the Netherlands is represented by the value 17 in the dataset. We could now filter on this number, but it might be more informative if the variable value was the same as variable label. Thankfully, the haven package which we used for the data import makes this easily achievable:\n\n1ESS &lt;- ESS %&gt;%\n2  dplyr::mutate(cntry_text = haven::as_factor(cntry))\n\n\n1\n\nReassign ESS so that the operations will be saved to the dataframe.\n\n2\n\nUse dplyr::mutate to create the new variable (as it is good practice NOT to write over existing variables) and haven::as_factor(cntry) to assign the text label of cntry to each participant, instead of the numerical value.\n\n\n\n\nNow, we can filter in a more transparent manner:\n\n1ESS_NL&lt;-ESS %&gt;%\n2  dplyr::filter(cntry_text == \"Netherlands\")\n\n\n1\n\nTake ESS\n\n2\n\nUse dplyr::filter to select only participants from the Netherlands. cntry_text == \"Netherlands\" asks the function to return only participants with a value on the variable cntry_text which is equal to “Netherlands”. Note the use of the == instead of =.\n\n\n\n\n\n\n\n\n\n\nNote 5.1: Use of logical operators when subsetting or selecting\n\n\n\nYou will probably rely mostly on the following:\n\n== - searches for perfect matches, as in the example above.\n!= - the complement of ==. E.g, dplyr::filter(cntry_text != \"Netherlands\") means “give me all respondents who are NOT from the Netherlands”.\n& - used when you want the selected responses to satisfy multiple conditions. E.g., dplyr::filter(cntry_text == \"Netherlands\" & agea &gt; 22) means “give me all respondents from the Netherlands who are also older than (&gt; = ”greater than”) 22”.\n| - OR selection. Use this if you want to select responses which match at least one of the specified conditions. E.g., dplyr::filter(cntry_text == \"Netherlands\" | agea &gt; 22) will return participants who are either in the Netherlands, or older than 22, or both. Participants who meet neither criterion will be filtered out.\n\n\n\nNow that we have extracted Dutch respondents’ data, we can run create frequency tables and summary lists as previously.\n\ntable(ESS_NL$agea)\n\n\n15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 \n 4 26 21 21 24 25 17 16 21 22 19 20 18 18 15 11 22 26 35 19 29 22 19 29 22 28 \n41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 \n29 28 30 22 15 26 18 23 35 29 32 38 30 34 23 34 31 25 30 25 33 28 32 33 34 29 \n67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 \n28 33 31 21 25 29 21 19 29 21 27  9 16 13 14 12 10  7  9  6  2  2  3  8 \n\n\n\nc(summary(ESS_NL$agea),cusmode(ESS_NL$agea))\n\n$Min.\n[1] 15\n\n$`1st Qu.`\n[1] 35\n\n$Median\n[1] 52\n\n$Mean\n[1] 50.52249\n\n$`3rd Qu.`\n[1] 66\n\n$Max.\n[1] 90\n\n$`NA's`\n[1] 5\n\n$`Mode(s)`\n[1] 52\n\n$Frequency\n[1] 38\n\n\nWhile this gives us everything we need, we might wish to have a neater looking summary table. dplyr can help us with that:\n\nESS_NL %&gt;% dplyr::summarize(\"N respondents\" = n(),\n                            \"Min. age\" = min(agea, na.rm = TRUE), \n                            \"Q1 age\" = quantile(agea, .25, na.rm = TRUE),\n                            \"Median age\" = median(agea, na.rm = TRUE),\n                            \"Q3 age\" = quantile(agea, .75, na.rm = TRUE),\n                            \"Max. age\" = max(agea, na.rm = TRUE),\n                            \"Mean age\" = mean(agea, na.rm = TRUE),\n                            \"Modal age\" = \n1                            paste(as.character(cusmode(agea)$`Mode(s)`), collapse = \" \")\n                            ) %&gt;% \n2  knitr::kable(align = \"c\")\n\n\n1\n\nThis line helps us create a single text string should we have multiple modes. as.character converts input to a text string, and the paste function with the added option collapse = \" \" folds the multiple modes into one text string separated by a space.\n\n2\n\nWe pass the output dataframe to knitr::kable to make our table neater.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nN respondents\nMin. age\nQ1 age\nMedian age\nQ3 age\nMax. age\nMean age\nModal age\n\n\n\n\n1695\n15\n35\n52\n66\n90\n50.52249\n52",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
+    ]
+  },
+  {
+    "objectID": "5_r_ISA1.html#summary",
+    "href": "5_r_ISA1.html#summary",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
+    "section": "5.9 Summary",
+    "text": "5.9 Summary\nIn this chapter, we covered:\n\nEntering new data\nImporting existing data in .sav format\nCalculating frequencies and descriptive statistics\nUsing dplyr::filter to select subsets of data",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
     ]
   }
 ]

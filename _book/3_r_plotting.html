@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./5_r_ISA1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></span></a>
   </div>
 </li>
       </ul>
@@ -373,7 +373,7 @@ Figure&nbsp;3.3: Barchart of mean height by character gender. Error bars represe
 <p><strong>Barcharts</strong> show a summary statistic (typically - and in this case - the mean) and should include error or confidence bars around the statistic as an estimate of uncertainty.</p>
 <p>You will notice the code above contains some extra steps compared to some of the other plots shown:</p>
 <ol type="1">
-<li><code>dplyr::filter(!is.na(gender) &amp; !is.na(height))</code> - we discussed <code>NA</code> values in <a href="2_r_firstdata.html#nte-na" class="quarto-xref">Note&nbsp;<span>2.2</span></a>; we use <code>dplyr::filter</code> to remove characters who have a value of <code>NA</code> for either <code>gender</code> or <code>height</code> (i.e., by saying: “keep only characters who do NOT have a value of <code>NA</code> for <strong>both</strong> <code>gender</code> and <code>height</code>”). In this way, we save only characters with complete information on the variables of interest.<br>
+<li><code>dplyr::filter(!is.na(gender) &amp; !is.na(height))</code> - we discussed <code>NA</code> values in <a href="#nte-na" class="quarto-xref">Note&nbsp;<span class="quarto-unresolved-ref">nte-na</span></a>; we use <code>dplyr::filter</code> to remove characters who have a value of <code>NA</code> for either <code>gender</code> or <code>height</code> (i.e., by saying: “keep only characters who do NOT have a value of <code>NA</code> for <strong>both</strong> <code>gender</code> and <code>height</code>”). In this way, we save only characters with complete information on the variables of interest.<br>
 </li>
 <li><code>dplyr::group_by(gender)</code> - we tell <code>dplyr</code> to group characters by the levels of <code>gender</code> in the dataset. On its own, this has no apparent effect on the dataset, but it provides instructions for how subsequent operations should be performed.</li>
 <li><code>dplyr::summarize(mean_height = mean(height, na.rm = T), se_height = sd(height, na.rm = T)/n())</code> - the <code>dplyr::summarize</code> function reduces a dataset to a requested set of summary statistics. This is where <code>group_by</code> comes into play - because we grouped by <code>gender</code>, summary statistics will now be created <em>per gender grouping</em>. Inside <code>summarize</code>, we declare the new variables <code>mean_height</code> (which gives mean height) and <code>se_height</code> (standard error for height) which will be passed on to create the barchart.</li>
