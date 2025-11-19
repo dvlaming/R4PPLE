@@ -4,10 +4,13 @@ project:
 
 book:
   title: "R for the PPL(E)"
-  author: "David Fleming"
+  author: "The PPLE ISA team"
+  date: last-modified
+  date-format: long
   license: "CC BY-SA"
   page-footer: CC-BY-SA-4.0 (2025) David Fleming
   repo-url: https://github.com/dvlaming/R4PPLE
+  repo-actions: [issue, source]
   chapters:
     - index.qmd
     - part: "The basics"
