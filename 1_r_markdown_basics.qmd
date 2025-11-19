@@ -1,4 +1,4 @@
-# Installation and introduction to R Markdown documents
+# Installation and introduction to R Markdown documents {#sec-introinstall}
 
 Onto the first order of business: [installing R](https://cran.rstudio.com/). Opening it up after installation will probably result in some mild disappointment; the console is rather drab and uninspiring. Luckily, there are many good integrated development environments (IDEs) available for R which can make things look a little nicer. The current market leader is R Studio, which you can download [here](https://posit.co/download/rstudio-desktop/). (**Note that R Studio will not run unless you already have R installed, so be sure to do this first!**)
 

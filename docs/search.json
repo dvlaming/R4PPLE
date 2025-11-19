@@ -4,9 +4,9 @@
     "href": "index.html",
     "title": "R for the PPL(E)",
     "section": "",
-    "text": "Preface\nWelcome, PPLE students! We hope that you fill find this book to be a helpful companion as you begin your journey into R programming and statistical analysis.",
+    "text": "Introduction\nWelcome, PPLE students! We hope that you fill find this book to be a helpful companion as you begin your journey into R programming and statistical analysis.",
     "crumbs": [
-      "Preface"
+      "Introduction"
     ]
   },
   {
@@ -240,7 +240,7 @@
     "href": "5_r_ISA1.html",
     "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "",
-    "text": "5.1 R outcomes\nWelcome to your first ISA tutorial! We assume that you have familiarized yourselves with the content from the previous four chapters, but, if not, you will have the time today to catch up on this.\nAfter this tutorial, you can:",
+    "text": "5.1 R outcomes\nAfter reading this chapter, you can:",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
@@ -295,7 +295,7 @@
     "href": "5_r_ISA1.html#measures-of-central-tendency",
     "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
     "section": "5.5 Measures of central tendency",
-    "text": "5.5 Measures of central tendency\nIn this course, we will consider three measures of central tendency.\n\n5.5.1 The arithmetic mean\nThis is usually represented by one of two formulae:\n\n\\(\\bar{x} = \\frac{1}{n} \\sum\\limits_{i = 1}^{n}x_i\\)\n\\(\\bar{x} = \\frac{\\sum_{i = 1}^{n}x_i}{n}\\)\n\nStraighforwardly: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the mean function:\n\nmean(students$age)\n\n[1] 18.75\n\n\nStrictly speaking, the mean can only be sensibly calculated for interval/ratio level data.\n\n\n5.5.2 The median\nThis is the 50th percentile in the dataset (i.e., it divides the data into a lower half and an upper half). It is obtained by ranking scores and finding the value which divides the dataset in two.\nFor data \\(x\\) with \\(n\\) elements:\n\nif \\(n\\) is odd, \\(med(x) = x_{(n+1)/2}\\)\nif \\(n\\) is even, \\(med(x) = \\frac{x_{(n/2)} + x_{((n/2)+1)}}{2}\\)\n\nFor example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use median:\n\nmedian(students$age)\n\n[1] 18.5\n\n\nThe median can be used to summarize both interval/ratio and ordinal variables.\n\n\n5.5.3 The mode\nLastly, we turn to the mode, which is simply the most frequently occurring value. At the time of writing, base R doesn’t have a function to compute the mode, so let’s write one ourselves:\n\n#Hat-tip to #https://www.geeksforgeeks.org/r-language/convert-factor-to-numeric-and-numeric-to-factor-in-r-programming/ for the facto-to-numeric conversion \n\ncusmode&lt;-function(x){\n  xf&lt;-as.data.frame(table(x))\n  modeframe&lt;-xf[xf$Freq == max(xf$Freq),]\n  names(modeframe)[1]&lt;-\"Mode(s)\"\n  modeframe$`Mode(s)`&lt;-as.numeric(as.character(modeframe$`Mode(s)`)) \n  names(modeframe)[2]&lt;-\"Frequency\"\n  return(modeframe)\n}\n\ncusmode(students$age)\n\n  Mode(s) Frequency\n1      18         2\n\n\nDatasets can have multiple modes; for example, let’s imagine a new student joins the party:\n\nstudents[5,]&lt;-c(\"Billy\",20)\n\ncusmode(students$age)\n\n  Mode(s) Frequency\n1      18         2\n3      20         2\n\n\nThe mode can be calculated for all measurement levels about which you have learned, but it is typically most informative when there are relatively few values which the data can take.",
+    "text": "5.5 Measures of central tendency\nIn this course, we will consider three measures of central tendency.\n\n5.5.1 The arithmetic mean\nThis is usually represented by one of two formulae:\n\n\\(\\bar{x} = \\frac{1}{n} \\sum\\limits_{i = 1}^{n}x_i\\)\n\\(\\bar{x} = \\frac{\\sum_{i = 1}^{n}x_i}{n}\\)\n\nStraightforwardly: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the mean function:\n\nmean(students$age)\n\n[1] 18.75\n\n\nStrictly speaking, the mean can only be sensibly calculated for interval/ratio level data.\n\n\n5.5.2 The median\nThis is the 50th percentile in the dataset (i.e., it divides the data into a lower half and an upper half). It is obtained by ranking scores and finding the value which divides the dataset in two.\nFor data \\(x\\) with \\(n\\) elements:\n\nif \\(n\\) is odd, \\(med(x) = x_{(n+1)/2}\\)\nif \\(n\\) is even, \\(med(x) = \\frac{x_{(n/2)} + x_{((n/2)+1)}}{2}\\)\n\nFor example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use median:\n\nmedian(students$age)\n\n[1] 18.5\n\n\nThe median can be used to summarize both interval/ratio and ordinal variables.\n\n\n5.5.3 The mode\nLastly, we turn to the mode, which is simply the most frequently occurring value. At the time of writing, base R doesn’t have a function to compute the mode, so let’s write one ourselves:\n\n#Hat-tip to #https://www.geeksforgeeks.org/r-language/convert-factor-to-numeric-and-numeric-to-factor-in-r-programming/ for the facto-to-numeric conversion \n\ncusmode&lt;-function(x){\n  xf&lt;-as.data.frame(table(x))\n  modeframe&lt;-xf[xf$Freq == max(xf$Freq),]\n  names(modeframe)[1]&lt;-\"Mode(s)\"\n  modeframe$`Mode(s)`&lt;-as.numeric(as.character(modeframe$`Mode(s)`)) \n  names(modeframe)[2]&lt;-\"Frequency\"\n  return(modeframe)\n}\n\ncusmode(students$age)\n\n  Mode(s) Frequency\n1      18         2\n\n\nDatasets can have multiple modes; for example, let’s imagine a new student joins the party:\n\nstudents[5,]&lt;-c(\"Billy\",20)\n\ncusmode(students$age)\n\n  Mode(s) Frequency\n1      18         2\n3      20         2\n\n\nThe mode can be calculated for all measurement levels about which you have learned, but it is typically most informative when there are relatively few values which the data can take.",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
@@ -348,11 +348,11 @@
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "6  Summary",
+    "title": "7  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
@@ -362,7 +362,7 @@
     "section": "Overview and aims of the book",
     "text": "Overview and aims of the book\nIt is not our intention to provide a comprehensive introduction to R or R Markdown. (There are already excellent resources freely available for that purpose, some of which we will refer to in due course.) Rather, the principal aim is to build your comfort and confidence in using a small set of operations which will enable you to perform both confirmatory and exploratory statistical analyses with quantitative data typical of the social sciences, and to write a basic scientific document in which the outputs of those analyses can be embedded.\nIn chapters 1 - 4, we will introduce R and R Markdown, along with some very useful packages for data-wrangling and plotting. From there, chapters 5 - 11 will align with the Year 1 Introduction to Statistical Analysis course and will guide you through the tutorials. Chapters 12 - TBA will cover some more advanced statistical techniques and topics which are beyond the scope of ISA. While these have been written mainly with Politics and Psychology majors in mind, these may also be of interest to Economics or Law majors who would like to know more about analyzing (quantitative) experimental or survey data.\nOur hope is that this open book will remain in a fluid state, with updates and adjustments being made as analysis and programming methods evolve.",
     "crumbs": [
-      "Preface"
+      "Introduction"
     ]
   },
   {
@@ -370,9 +370,9 @@
     "href": "index.html#questions-you-may-have",
     "title": "R for the PPL(E)",
     "section": "Questions you may have",
-    "text": "Questions you may have\n\nWhy am I learning R?\nWhile there are many excellent “click-and-point” statistical analysis packages available, it’s worth highlighting some of the benefits that come with using R and (R Markdown):\n\nYou can easily record and document all analysis steps (i.e., from raw data processing/wrangling, to inferential statistics and visualization) in a series of scripts, meaning that you don’t have to remember which sequence of buttons and drop down menus you followed to get to your analysis outputs. This facilitates complete reproducibility of your analysis pipeline and results.\nWriting your research papers and assignments with R Markdown means that all analysis outputs (e.g., descriptive statistics, test statistics, figures, tables, etc.) can be embedded without the need for pasting information from your statistics software into a separate word processor.\nYou gain more power to customize your analysis, rather than relying on the narrow range of defaults included in some statistical packages.\nIt’s free!\n\n\n\nRight, but I have zero experience in programming!\nWe hear you, but we think that you will be pleasantly surprised by how quickly you can get up and running. While this will be challenging, bear in mind that we are here to help, and we strongly believe that you are capable of doing very well, with a bit of application and effort.\n\n\nOK, but why am I learning R instead of, say, Python?\nThe main reasons for teaching this course in R are:\n\nIt is specialized for statistical computing and data visualization\n\nIt is very widely used by quantitative social scientists, meaning that accessible tutorials and answers to questions are often only a google away\nOur (informal) impression is that R has a relatively low bar for entry, when compared with more general-purpose languages like Python\n\n\n\nFor any other questions…\n…, or, if you would simply like to provide some (very welcome) feedback on these materials, please get in touch.",
+    "text": "Questions you may have\n\nWhy am I learning R?\nWhile there are many excellent “click-and-point” statistical analysis packages available, it’s worth highlighting some of the benefits that come with using R and (R Markdown):\n\nYou can easily record and document all analysis steps (i.e., from raw data processing/wrangling, to inferential statistics and visualization) in a series of scripts, meaning that you don’t have to remember which sequence of buttons and drop down menus you followed to get to your analysis outputs. This facilitates complete reproducibility of your analysis pipeline and results.\nWriting your research papers and assignments with R Markdown means that all analysis outputs (e.g., descriptive statistics, test statistics, figures, tables, etc.) can be embedded without the need for pasting information from your statistics software into a separate word processor.\nYou gain more power to customize your analysis, rather than relying on the narrow range of defaults included in some statistical packages.\nIt’s free!\n\n\n\nRight, but I have zero experience in programming!\nWe hear you, but we think that you will be pleasantly surprised by how quickly you can get up and running. While this will be challenging, bear in mind that we are here to help, and we strongly believe that you are capable of doing very well, with a bit of application and effort.\n\n\nOK, but why am I learning R instead of, say, Python?\nThe main reasons for teaching this course in R are:\n\nIt is specialized for statistical computing and data visualization\n\nIt is very widely used by quantitative social scientists, meaning that accessible tutorials and answers to questions are often only a google away\nOur (informal) impression is that R has a relatively low bar for entry, when compared with more general-purpose languages like Python\n\n\n\nFor any other questions…\n… or, if you would simply like to provide some (very welcome) feedback on these materials, please get in touch.",
     "crumbs": [
-      "Preface"
+      "Introduction"
     ]
   },
   {
@@ -382,7 +382,128 @@
     "section": "Acknowledgements",
     "text": "Acknowledgements\nThis book was heavily inspired by (and owes a tremendous amount to) the excellent work of the PsyTeachR team at the University of Glasgow’s School of Psychology and Neuroscience. In particular, Dr. James Bartlett’s book Creating open educational materials using Quarto- and Github-Pages provided essential guidance.",
     "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "r_ISA_preface.html",
+    "href": "r_ISA_preface.html",
+    "title": "Preface",
+    "section": "",
+    "text": "Learning objectives\nWelcome to the Y1 ISA course! This portion of the book will accompany the lectures and guide you through the tutorial series.\nAfter completing this course, you are able to:\nMore detailed information about can be found in the course documents on Canvas.",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
       "Preface"
+    ]
+  },
+  {
+    "objectID": "r_ISA_preface.html#learning-objectives",
+    "href": "r_ISA_preface.html#learning-objectives",
+    "title": "Preface",
+    "section": "",
+    "text": "Appreciate the role of statistical methods in the social sciences\nUnderstand basic principles of statistics and specific statistical techniques\nChoose appropriate statistical techniques when presented with a research question\nConduct their own statistical analyses in SPSS\nPresent findings based on statistical analysis in a clear, concise and academic manner\nCritically evaluate arguments based on statistical data analysis as presented in research reports, academic articles, or public discourse\nLearn to analyse, assess, and articulate arguments associated with fundamental principles and theories.",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "r_ISA_preface.html#prerequisites",
+    "href": "r_ISA_preface.html#prerequisites",
+    "title": "Preface",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nYou must have access to R and R Studio to successfully complete this course. These are both free, and you can find installation instructions in 1  Installation and introduction to R Markdown documents. To get off to the strongest possible start, we strongly advise you to read chapters 1 - 4 of this book before attending your first tutorial.",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "r_ISA_preface.html#contact",
+    "href": "r_ISA_preface.html#contact",
+    "title": "Preface",
+    "section": "Contact",
+    "text": "Contact\nLastly, please get in touch with any concerns or questions you have about the course, or approach your teachers in class.",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "5_r_ISA1.html#sec-makeproj",
+    "href": "5_r_ISA1.html#sec-makeproj",
+    "title": "5  ISA 1: entering, importing, summarizing and subsetting data",
+    "section": "5.3 First, create a project!",
+    "text": "5.3 First, create a project!\nFollow the instructions in Chapter 1 of this book to create a new R project where you can store all of your ISA scripts, assignments, and datasets. Opening an R Studio session with the newly-created project icon will set the project folder as your home directory, meaning that - if you store all the course datasets here - loading datasets can be performed smoothly without having to enter long directory pathnames to point R to the file you want to load.",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ISA 1: entering, importing, summarizing and subsetting data</span>"
+    ]
+  },
+  {
+    "objectID": "6_r_ISA2.html",
+    "href": "6_r_ISA2.html",
+    "title": "6  ISA 2: measures of dispersion and visualizing relationships",
+    "section": "",
+    "text": "6.1 R outcomes\nAfter reading this chapter, you can:",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
+    ]
+  },
+  {
+    "objectID": "6_r_ISA2.html#r-outcomes",
+    "href": "6_r_ISA2.html#r-outcomes",
+    "title": "6  ISA 2: measures of dispersion and visualizing relationships",
+    "section": "",
+    "text": "Generate and interpret measures of dispersion\nCreate and interpret scatterplots (interval/ratio data) and crosstabulations (nominal and ordinal data)\nRecode existing data into new variables using dplyr::mutate",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
+    ]
+  },
+  {
+    "objectID": "6_r_ISA2.html#required-packages",
+    "href": "6_r_ISA2.html#required-packages",
+    "title": "6  ISA 2: measures of dispersion and visualizing relationships",
+    "section": "6.2 Required packages",
+    "text": "6.2 Required packages\nYou will need the following additional packages:\n\ndplyr (but we will simply install the tidyverse collection so that we also have the pipe operator - %&gt;% - loaded)\nhaven\n\n\nlibrary(tidyverse)\nlibrary(haven)",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
+    ]
+  },
+  {
+    "objectID": "6_r_ISA2.html#open-up-your-project-and-a-new-script-file",
+    "href": "6_r_ISA2.html#open-up-your-project-and-a-new-script-file",
+    "title": "6  ISA 2: measures of dispersion and visualizing relationships",
+    "section": "6.3 Open up your project and a new script file",
+    "text": "6.3 Open up your project and a new script file\nYou created a R project for your ISA work in the last class, so open this now and also create a new R script (Ctrl\\Cmd + Shift + n) so that you can save today’s work.",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
+    ]
+  },
+  {
+    "objectID": "6_r_ISA2.html#measures-of-dispersion",
+    "href": "6_r_ISA2.html#measures-of-dispersion",
+    "title": "6  ISA 2: measures of dispersion and visualizing relationships",
+    "section": "6.4 Measures of dispersion",
+    "text": "6.4 Measures of dispersion\nIn this course, we will consider three measures of dispersion.\n\n6.4.1 The standard deviation\nThe standard deviation is defined as:\n\\[\nS = \\sqrt\\frac{\\sum_{i=1}^{n}{(x_i-\\bar{x})^2}}{n-1}\n\\]\nComputation of the standard deviation involves:\n\nCalculating the sample mean \\(\\bar{x}\\)\nSubtracting \\(\\bar{x}\\) from each “raw” value of \\(x\\) to compute deviations\nSquaring the deviations from step 2 \\((x_i - \\bar{x})^2\\)\nSumming the deviations \\(\\sum_{i = 1}^{n}\\)\nDividing the deviations by the number of observations (\\(n\\)) minus 1\nTaking the square root of 5\n\nThe standard deviation can be roughly interpreted as the average deviation from the sample mean in the data. Much like the mean, this measure of dispersion is mot appropriate for interval/ratio level data.\n\n\n6.4.2 The range\nThe range is simply the difference between the maximum and minimum values in the data, and can be written as:\n\\[\nrange = max(x_1, x_2, ..., x_n) - min(x_1, x_2, ..., x_n)\n\\] ### The interquartile range (IQR)\nThis represents the spread of the middle 50% of the data and is calculated as:\n\\[\nIQR = Q_3 - Q_1\n\\] \\(Q_3\\) and \\(Q_1\\), are, respectively, the 75th and 25th percentiles of the data. To calculate these, we rank the data values and find the point which marks\nThis is the 50th percentile in the dataset (i.e., it divides the data into a lower half and an upper half). It is obtained by ranking scores and finding the value which divides the dataset in two.\nFor data \\(x\\) with \\(n\\) elements:\n\nif \\(n\\) is odd, \\(med(x) = x_{(n+1)/2}\\)\nif \\(n\\) is even, \\(med(x) = \\frac{x_{(n/2)} + x_{((n/2)+1)}}{2}\\)\n\nFor example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use median:",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
+    ]
+  },
+  {
+    "objectID": "6_r_ISA2.html#summary",
+    "href": "6_r_ISA2.html#summary",
+    "title": "6  ISA 2: measures of dispersion and visualizing relationships",
+    "section": "6.5 Summary",
+    "text": "6.5 Summary\nIn this chapter, we covered:\n\nEntering new data\nImporting existing data in .sav format\nCalculating frequencies and descriptive statistics\nUsing dplyr::filter to select subsets of data",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
     ]
   }
 ]

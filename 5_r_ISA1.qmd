@@ -1,10 +1,8 @@
 # ISA 1: entering, importing, summarizing and subsetting data
 
-Welcome to your first ISA tutorial! We assume that you have familiarized yourselves with the content from the previous four chapters, but, if not, you will have the time today to catch up on this.
-
 ## R outcomes
 
-After this tutorial, you can: 
+After reading this chapter, you can: 
 
 1. Enter new data 
 2. Import and work with existing data 
@@ -28,7 +26,7 @@ library(haven)
 
 ```
 
-## First, create a project!
+## First, create a project! {#sec-makeproj}
 
 Follow the [instructions in Chapter 1 of this book](1_r_markdown_basics.qmd#sec-newproj) to create a new R project where you can store all of your ISA scripts, assignments, and datasets. Opening an R Studio session with the newly-created project icon will set the project folder as your home directory, meaning that - if you store all the course datasets here - loading datasets can be performed smoothly without having to enter long directory pathnames to point R to the file you want to load.   
 
@@ -77,7 +75,7 @@ This is usually represented by one of two formulae:
 (@)  $\bar{x} = \frac{\sum_{i = 1}^{n}x_i}{n}$
 
 
-Straighforwardly: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the `mean` function:
+Straightforwardly: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the `mean` function:
 
 ```{r mean}
 

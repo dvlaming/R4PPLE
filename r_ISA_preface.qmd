@@ -1,0 +1,26 @@
+# Preface {.unnumbered}
+
+Welcome to the Y1 ISA course! This portion of the book will accompany the lectures and guide you through the tutorial series.
+
+## Learning objectives
+
+After completing this course, you are able to:
+
+* Appreciate the role of statistical methods in the social sciences
+* Understand basic principles of statistics and specific statistical techniques
+* Choose appropriate statistical techniques when presented with a research question
+* Conduct their own statistical analyses in SPSS
+* Present findings based on statistical analysis in a clear, concise and academic manner
+* Critically evaluate arguments based on statistical data analysis as presented in research reports, academic articles, or public discourse
+* Learn to analyse, assess, and articulate arguments associated with fundamental principles and theories.
+
+More detailed information about can be found in the course documents on [Canvas](canvas.uva.nl).
+
+
+## Prerequisites
+
+You must have access to R and R Studio to successfully complete this course. These are both free, and you can find installation instructions in @sec-introinstall. To get off to the strongest possible start, we strongly advise you to read chapters 1 - 4 of this book **before** attending your first tutorial.
+
+## Contact
+
+Lastly, please [get in touch](mailto:d.fleming@uva.nl) with any concerns or questions you have about the course, or approach your teachers in class.  

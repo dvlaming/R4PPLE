@@ -20,8 +20,10 @@ book:
         - 3_r_plotting.qmd
         - 4_r_knitting.qmd
     - part: "Introduction to Statistical Analysis (Y1)"
-      chapters: 
+      chapters:
+        - r_ISA_preface.qmd
         - 5_r_ISA1.qmd
+        - 6_r_ISA2.qmd
     - summary.qmd
     - references.qmd
 

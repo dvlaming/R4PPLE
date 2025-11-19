@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
-<link href="./4_r_knitting.html" rel="prev">
+<link href="./6_r_ISA2.html" rel="next">
+<link href="./r_ISA_preface.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5_r_ISA1.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./5_r_ISA1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r_ISA_preface.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./5_r_ISA1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,7 +177,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -226,8 +226,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./r_ISA_preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./5_r_ISA1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_r_ISA2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ISA 2: measures of dispersion and visualizing relationships</span></span></a>
   </div>
 </li>
       </ul>
@@ -235,7 +247,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -256,7 +268,7 @@ window.Quarto = {
   <ul>
   <li><a href="#r-outcomes" id="toc-r-outcomes" class="nav-link active" data-scroll-target="#r-outcomes"><span class="header-section-number">5.1</span> R outcomes</a></li>
   <li><a href="#required-packages" id="toc-required-packages" class="nav-link" data-scroll-target="#required-packages"><span class="header-section-number">5.2</span> Required packages</a></li>
-  <li><a href="#first-create-a-project" id="toc-first-create-a-project" class="nav-link" data-scroll-target="#first-create-a-project"><span class="header-section-number">5.3</span> First, create a project!</a></li>
+  <li><a href="#sec-makeproj" id="toc-sec-makeproj" class="nav-link" data-scroll-target="#sec-makeproj"><span class="header-section-number">5.3</span> First, create a project!</a></li>
   <li><a href="#entering-data" id="toc-entering-data" class="nav-link" data-scroll-target="#entering-data"><span class="header-section-number">5.4</span> Entering data</a></li>
   <li><a href="#measures-of-central-tendency" id="toc-measures-of-central-tendency" class="nav-link" data-scroll-target="#measures-of-central-tendency"><span class="header-section-number">5.5</span> Measures of central tendency</a>
   <ul class="collapse">
@@ -273,12 +285,12 @@ window.Quarto = {
   <li><a href="#selecting-subsets" id="toc-selecting-subsets" class="nav-link" data-scroll-target="#selecting-subsets"><span class="header-section-number">5.8</span> Selecting subsets</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.9</span> Summary</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/5_r_ISA1.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5_r_ISA1.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./5_r_ISA1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r_ISA_preface.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./5_r_ISA1.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></h1>
 </div>
@@ -297,10 +309,9 @@ window.Quarto = {
 </header>
 
 
-<p>Welcome to your first ISA tutorial! We assume that you have familiarized yourselves with the content from the previous four chapters, but, if not, you will have the time today to catch up on this.</p>
 <section id="r-outcomes" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="r-outcomes"><span class="header-section-number">5.1</span> R outcomes</h2>
-<p>After this tutorial, you can:</p>
+<p>After reading this chapter, you can:</p>
 <ol type="1">
 <li>Enter new data</li>
 <li>Import and work with existing data</li>
@@ -320,8 +331,8 @@ window.Quarto = {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="first-create-a-project" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="first-create-a-project"><span class="header-section-number">5.3</span> First, create a project!</h2>
+<section id="sec-makeproj" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-makeproj"><span class="header-section-number">5.3</span> First, create a project!</h2>
 <p>Follow the <a href="./1_r_markdown_basics.html#sec-newproj">instructions in Chapter 1 of this book</a> to create a new R project where you can store all of your ISA scripts, assignments, and datasets. Opening an R Studio session with the newly-created project icon will set the project folder as your home directory, meaning that - if you store all the course datasets here - loading datasets can be performed smoothly without having to enter long directory pathnames to point R to the file you want to load.</p>
 </section>
 <section id="entering-data" class="level2" data-number="5.4">
@@ -361,7 +372,7 @@ window.Quarto = {
 <li><p><span class="math inline">\(\bar{x} = \frac{1}{n} \sum\limits_{i = 1}^{n}x_i\)</span></p></li>
 <li><p><span class="math inline">\(\bar{x} = \frac{\sum_{i = 1}^{n}x_i}{n}\)</span></p></li>
 </ol>
-<p>Straighforwardly: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the <code>mean</code> function:</p>
+<p>Straightforwardly: sum all scores and divide by the total number of scores. In R, the arithmetic mean is given by the <code>mean</code> function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(students<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1451,13 +1462,13 @@ $Frequency
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./4_r_knitting.html" class="pagination-link" aria-label="&quot;Knitting&quot; everything togther into a document">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">“Knitting” everything togther into a document</span></span>
+      <a href="./r_ISA_preface.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./6_r_ISA2.html" class="pagination-link" aria-label="ISA 2: measures of dispersion and visualizing relationships">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ISA 2: measures of dispersion and visualizing relationships</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1469,7 +1480,7 @@ $Frequency
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) David Fleming</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/5_r_ISA1.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

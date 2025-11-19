@@ -1,0 +1,91 @@
+# ISA 2: measures of dispersion and visualizing relationships
+
+## R outcomes
+
+After reading this chapter, you can: 
+
+1. Generate and interpret measures of dispersion 
+2. Create and interpret scatterplots (interval/ratio data) and crosstabulations (nominal and ordinal data) 
+3. Recode existing data into new variables using `dplyr::mutate` 
+
+## Required packages
+
+You will need the following additional packages:
+
+-   `dplyr` (but we will simply install the `tidyverse` collection so that we also have the pipe operator - `%>%` - loaded)
+-   `haven`
+
+```{r}
+#| label: install_load
+#| message: FALSE 
+#| warning: FALSE
+
+library(tidyverse)
+library(haven)
+
+```
+
+## Open up your project and a new script file
+
+You created a R project for your ISA work [in the last class](5_r_ISA1.qmd#sec-makeproj), so open this now and also create a new R script (`Ctrl\Cmd` + `Shift` + `n`) so that you can save today's work.   
+
+## Measures of dispersion
+
+In this course, we will consider three measures of dispersion.
+
+### The standard deviation
+
+The standard deviation is defined as:
+
+$$
+S = \sqrt\frac{\sum_{i=1}^{n}{(x_i-\bar{x})^2}}{n-1}
+$$
+
+
+Computation of the standard deviation involves:
+
+1. Calculating the sample mean $\bar{x}$
+2. Subtracting $\bar{x}$ from each "raw" value of $x$ to compute deviations
+3. Squaring the deviations from step 2 $(x_i - \bar{x})^2$
+4. Summing the deviations $\sum_{i = 1}^{n}$
+5. Dividing the deviations by the number of observations ($n$) minus 1
+6. Taking the square root of 5
+
+The standard deviation can be roughly interpreted as the average deviation from the sample mean in the data. Much like the mean, this measure of dispersion is mot appropriate for interval/ratio level data. 
+
+### The range
+
+The range is simply the difference between the maximum and minimum values in the data, and can be written as:
+
+$$
+range = max(x_1, x_2, ..., x_n) - min(x_1, x_2, ..., x_n)
+$$
+### The interquartile range (IQR)
+
+This represents the spread of the middle 50% of the data and is calculated as:
+
+$$
+IQR = Q_3 - Q_1
+$$
+$Q_3$ and $Q_1$, are, respectively, the 75th and 25th percentiles of the data. To calculate these, we rank the data values and find the point which marks 
+
+This is the 50th percentile in the dataset (i.e., it divides the data into a lower half and an upper half). It is obtained by ranking scores and finding the value which divides the dataset in two. 
+
+For data $x$ with $n$ elements:
+
+* if $n$ is **odd**, $med(x) = x_{(n+1)/2}$
+  
+
+* if $n$ is **even**, $med(x) = \frac{x_{(n/2)} + x_{((n/2)+1)}}{2}$
+
+For example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use `median`:
+
+
+## Summary
+
+In this chapter, we covered:
+
+* Entering new data
+* Importing existing data in .sav format
+* Calculating frequencies and descriptive statistics
+* Using `dplyr::filter` to select subsets of data

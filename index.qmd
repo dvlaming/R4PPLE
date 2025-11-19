@@ -1,4 +1,4 @@
-# Preface {.unnumbered}
+# Introduction {.unnumbered}
 
 Welcome, PPLE students! We hope that you fill find this book to be a helpful companion as you begin your journey into R programming and statistical analysis.
 
@@ -35,7 +35,7 @@ The main reasons for teaching this course in R are:
 
 ### For any other questions...
 
-..., or, if you would simply like to provide some (very welcome) feedback on these materials, please [get in touch](mailto:d.fleming@uva.nl).  
+... or, if you would simply like to provide some (very welcome) feedback on these materials, please [get in touch](mailto:d.fleming@uva.nl).  
 
 
 ## Acknowledgements
