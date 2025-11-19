@@ -354,5 +354,35 @@
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Summary</span>"
     ]
+  },
+  {
+    "objectID": "index.html#overview-and-aims-of-the-book",
+    "href": "index.html#overview-and-aims-of-the-book",
+    "title": "R for the PPL(E)",
+    "section": "Overview and aims of the book",
+    "text": "Overview and aims of the book\nIt is not our intention to provide a comprehensive introduction to R or R Markdown. (There are already excellent resources freely available for that purpose, some of which we will refer to in due course.) Rather, the principal aim is to build your comfort and confidence in using a small set of operations which will enable you to perform both confirmatory and exploratory statistical analyses with quantitative data typical of the social sciences, and to write a basic scientific document in which the outputs of those analyses can be embedded.\nIn chapters 1 - 4, we will introduce R and R Markdown, along with some very useful packages for data-wrangling and plotting. From there, chapters 5 - 11 will align with the Year 1 Introduction to Statistical Analysis course and will guide you through the tutorials. Chapters 12 - TBA will cover some more advanced statistical techniques and topics which are beyond the scope of ISA. While these have been written mainly with Politics and Psychology majors in mind, these may also be of interest to Economics or Law majors who would like to know more about analyzing (quantitative) experimental or survey data.\nOur hope is that this open book will remain in a fluid state, with updates and adjustments being made as analysis and programming methods evolve.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#questions-you-may-have",
+    "href": "index.html#questions-you-may-have",
+    "title": "R for the PPL(E)",
+    "section": "Questions you may have",
+    "text": "Questions you may have\n\nWhy am I learning R?\nWhile there are many excellent “click-and-point” statistical analysis packages available, it’s worth highlighting some of the benefits that come with using R and (R Markdown):\n\nYou can easily record and document all analysis steps (i.e., from raw data processing/wrangling, to inferential statistics and visualization) in a series of scripts, meaning that you don’t have to remember which sequence of buttons and drop down menus you followed to get to your analysis outputs. This facilitates complete reproducibility of your analysis pipeline and results.\nWriting your research papers and assignments with R Markdown means that all analysis outputs (e.g., descriptive statistics, test statistics, figures, tables, etc.) can be embedded without the need for pasting information from your statistics software into a separate word processor.\nYou gain more power to customize your analysis, rather than relying on the narrow range of defaults included in some statistical packages.\nIt’s free!\n\n\n\nRight, but I have zero experience in programming!\nWe hear you, but we think that you will be pleasantly surprised by how quickly you can get up and running. While this will be challenging, bear in mind that we are here to help, and we strongly believe that you are capable of doing very well, with a bit of application and effort.\n\n\nOK, but why am I learning R instead of, say, Python?\nThe main reasons for teaching this course in R are:\n\nIt is specialized for statistical computing and data visualization\n\nIt is very widely used by quantitative social scientists, meaning that accessible tutorials and answers to questions are often only a google away\nOur (informal) impression is that R has a relatively low bar for entry, when compared with more general-purpose languages like Python\n\n\n\nFor any other questions…\n…, or, if you would simply like to provide some (very welcome) feedback on these materials, please get in touch.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "R for the PPL(E)",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis book was heavily inspired by (and owes a tremendous amount to) the excellent work of the PsyTeachR team at the University of Glasgow’s School of Psychology and Neuroscience. In particular, Dr. James Bartlett’s book Creating open educational materials using Quarto- and Github-Pages provided essential guidance.",
+    "crumbs": [
+      "Preface"
+    ]
   }
 ]

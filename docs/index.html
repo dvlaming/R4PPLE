@@ -98,6 +98,9 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R for the PPL(E)</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/dvlaming/R4PPLE" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -189,11 +192,15 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
   <ul class="collapse">
-  <li><a href="#thanks-for-the-warm-welcome-but-why-am-i-learning-r" id="toc-thanks-for-the-warm-welcome-but-why-am-i-learning-r" class="nav-link" data-scroll-target="#thanks-for-the-warm-welcome-but-why-am-i-learning-r">Thanks for the warm welcome, but why am I learning R?</a></li>
-  <li><a href="#right-but-i-have-like-zero-background-in-programming" id="toc-right-but-i-have-like-zero-background-in-programming" class="nav-link" data-scroll-target="#right-but-i-have-like-zero-background-in-programming">Right, but I have, like, zero background in programming!</a></li>
+  <li><a href="#overview-and-aims-of-the-book" id="toc-overview-and-aims-of-the-book" class="nav-link" data-scroll-target="#overview-and-aims-of-the-book">Overview and aims of the book</a></li>
+  <li><a href="#questions-you-may-have" id="toc-questions-you-may-have" class="nav-link" data-scroll-target="#questions-you-may-have">Questions you may have</a>
+  <ul class="collapse">
+  <li><a href="#why-am-i-learning-r" id="toc-why-am-i-learning-r" class="nav-link" data-scroll-target="#why-am-i-learning-r">Why am I learning R?</a></li>
+  <li><a href="#right-but-i-have-zero-experience-in-programming" id="toc-right-but-i-have-zero-experience-in-programming" class="nav-link" data-scroll-target="#right-but-i-have-zero-experience-in-programming">Right, but I have zero experience in programming!</a></li>
   <li><a href="#ok-but-why-am-i-learning-r-instead-of-say-python" id="toc-ok-but-why-am-i-learning-r-instead-of-say-python" class="nav-link" data-scroll-target="#ok-but-why-am-i-learning-r-instead-of-say-python">OK, but why am I learning R instead of, say, Python?</a></li>
-  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link" data-scroll-target="#chapter-overview">Chapter overview</a></li>
-  <li><a href="#lastly." id="toc-lastly." class="nav-link" data-scroll-target="#lastly.">Lastly….</a></li>
+  <li><a href="#for-any-other-questions" id="toc-for-any-other-questions" class="nav-link" data-scroll-target="#for-any-other-questions">For any other questions…</a></li>
+  </ul></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -229,22 +236,30 @@ ul.task-list li input[type="checkbox"] {
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
 <p>Welcome, PPLE students! We hope that you fill find this book to be a helpful companion as you begin your journey into R programming and statistical analysis.</p>
-<section id="thanks-for-the-warm-welcome-but-why-am-i-learning-r" class="level2">
-<h2 class="anchored" data-anchor-id="thanks-for-the-warm-welcome-but-why-am-i-learning-r">Thanks for the warm welcome, but why am I learning R?</h2>
-<p>While there are many excellent “click-and-point” statistical analysis packages available, it’s worth highlighting some of the benefits that come with using R (Markdown):</p>
+<section id="overview-and-aims-of-the-book" class="level2">
+<h2 class="anchored" data-anchor-id="overview-and-aims-of-the-book">Overview and aims of the book</h2>
+<p>It is not our intention to provide a comprehensive introduction to R or R Markdown. (There are already excellent resources freely available for that purpose, some of which we will refer to in due course.) Rather, the principal aim is to build your comfort and confidence in using a small set of operations which will enable you to perform both confirmatory and exploratory statistical analyses with quantitative data typical of the social sciences, and to write a basic scientific document in which the outputs of those analyses can be embedded.</p>
+<p>In chapters 1 - 4, we will introduce R and R Markdown, along with some very useful packages for data-wrangling and plotting. From there, chapters 5 - 11 will align with the Year 1 <em>Introduction to Statistical Analysis</em> course and will guide you through the tutorials. Chapters 12 - TBA will cover some more advanced statistical techniques and topics which are beyond the scope of ISA. While these have been written mainly with Politics and Psychology majors in mind, these may also be of interest to Economics or Law majors who would like to know more about analyzing (quantitative) experimental or survey data.</p>
+<p>Our hope is that this open book will remain in a fluid state, with updates and adjustments being made as analysis and programming methods evolve.</p>
+</section>
+<section id="questions-you-may-have" class="level2">
+<h2 class="anchored" data-anchor-id="questions-you-may-have">Questions you may have</h2>
+<section id="why-am-i-learning-r" class="level3">
+<h3 class="anchored" data-anchor-id="why-am-i-learning-r">Why am I learning R?</h3>
+<p>While there are many excellent “click-and-point” statistical analysis packages available, it’s worth highlighting some of the benefits that come with using R and (R Markdown):</p>
 <ol type="1">
-<li>You can record and document all analysis steps (i.e., from raw data processing/wrangling, to inferential statistics and visualization) in a series of scripts, meaning that you don’t have to remember which sequence of buttons and drop down menus you followed to get to your analysis outputs. This facilitates complete reproducibility of your analysis pipeline and results.</li>
+<li>You can easily record and document all analysis steps (i.e., from raw data processing/wrangling, to inferential statistics and visualization) in a series of scripts, meaning that you don’t have to remember which sequence of buttons and drop down menus you followed to get to your analysis outputs. This facilitates complete reproducibility of your analysis pipeline and results.</li>
 <li>Writing your research papers and assignments with R Markdown means that all analysis outputs (e.g., descriptive statistics, test statistics, figures, tables, etc.) can be embedded without the need for pasting information from your statistics software into a separate word processor.</li>
 <li>You gain more power to customize your analysis, rather than relying on the narrow range of defaults included in some statistical packages.</li>
 <li>It’s free!</li>
 </ol>
 </section>
-<section id="right-but-i-have-like-zero-background-in-programming" class="level2">
-<h2 class="anchored" data-anchor-id="right-but-i-have-like-zero-background-in-programming">Right, but I have, like, zero background in programming!</h2>
+<section id="right-but-i-have-zero-experience-in-programming" class="level3">
+<h3 class="anchored" data-anchor-id="right-but-i-have-zero-experience-in-programming">Right, but I have zero experience in programming!</h3>
 <p>We hear you, but we think that you will be pleasantly surprised by how quickly you can get up and running. While this will be challenging, bear in mind that we are here to help, and we strongly believe that you are capable of doing very well, with a bit of application and effort.</p>
 </section>
-<section id="ok-but-why-am-i-learning-r-instead-of-say-python" class="level2">
-<h2 class="anchored" data-anchor-id="ok-but-why-am-i-learning-r-instead-of-say-python">OK, but why am I learning R instead of, say, Python?</h2>
+<section id="ok-but-why-am-i-learning-r-instead-of-say-python" class="level3">
+<h3 class="anchored" data-anchor-id="ok-but-why-am-i-learning-r-instead-of-say-python">OK, but why am I learning R instead of, say, Python?</h3>
 <p>The main reasons for teaching this course in R are:</p>
 <ul>
 <li>It is specialized for statistical computing and data visualization<br>
@@ -253,13 +268,14 @@ ul.task-list li input[type="checkbox"] {
 <li>Our (informal) impression is that R has a relatively low bar for entry, when compared with more general-purpose languages like Python</li>
 </ul>
 </section>
-<section id="chapter-overview" class="level2">
-<h2 class="anchored" data-anchor-id="chapter-overview">Chapter overview</h2>
-<p>In chapters 1 - 4, we will introduce R and R Markdown, along with some very useful packages for data-wrangling and plotting. From there, chapters 5 - 11 will align with the main outcomes of the Year 1 <em>Introduction to Statistical Analysis</em> course and will guide you through the tutorials. Chapters 12 - TBA will cover some more advanced statistical techniques and topics which are beyond the scope of ISA. While these have been written mainly with Politics and Psychology majors in mind, these may also be of interest to Economics or Law majors who would like to know more about analyzing (quantitative) experimental or survey data.</p>
+<section id="for-any-other-questions" class="level3">
+<h3 class="anchored" data-anchor-id="for-any-other-questions">For any other questions…</h3>
+<p>…, or, if you would simply like to provide some (very welcome) feedback on these materials, please <a href="mailto:d.fleming@uva.nl">get in touch</a>.</p>
 </section>
-<section id="lastly." class="level2">
-<h2 class="anchored" data-anchor-id="lastly.">Lastly….</h2>
-<p>It is not our intention to provide a comprehensive introduction to R or R Markdown. (There are already excellent resources freely available for that purpose, some of which we will refer to in due course.) Rather, the principal aim is to build your comfort and confidence in using a small set of operations which will enable you to perform both confirmatory and exploratory statistical analyses with quantitative data typical of the social sciences, and to write a basic scientific document in which the outputs of those analyses can be embedded. There is, therefore, the risk that we give too light of a treatment to areas which you might find difficult; if so, please <a href="mailto:d.fleming@uva.nl">get in touch</a> to provide some welcome feedback on this living document, or to ask questions.</p>
+</section>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<p>This book was heavily inspired by (and owes a tremendous amount to) the excellent work of the <a href="https://psyteachr.github.io/">PsyTeachR</a> team at the University of Glasgow’s <a href="https://www.gla.ac.uk/schools/psychologyneuroscience/">School of Psychology and Neuroscience</a>. In particular, Dr.&nbsp;James Bartlett’s book <a href="https://bartlettje.github.io/dissemination_quarto/"><em>Creating open educational materials using Quarto- and Github-Pages</em></a> provided essential guidance.</p>
 
 
 </section>
@@ -675,6 +691,19 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>CC-BY-SA-4.0 (2025) David Fleming</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

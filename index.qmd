@@ -1,21 +1,31 @@
 # Preface {.unnumbered}
 
-Welcome, PPLE students! We hope that you fill find this book to be a helpful companion as you begin your journey into R programming and statistical analysis. 
+Welcome, PPLE students! We hope that you fill find this book to be a helpful companion as you begin your journey into R programming and statistical analysis.
 
-## Thanks for the warm welcome, but why am I learning R?
+## Overview and aims of the book
 
-While there are many excellent "click-and-point" statistical analysis packages available, it's worth highlighting some of the benefits that come with using R (Markdown):
+It is not our intention to provide a comprehensive introduction to R or R Markdown. (There are already excellent resources freely available for that purpose, some of which we will refer to in due course.) Rather, the principal aim is to build your comfort and confidence in using a small set of operations which will enable you to perform both confirmatory and exploratory statistical analyses with quantitative data typical of the social sciences, and to write a basic scientific document in which the outputs of those analyses can be embedded.
 
-1.  You can record and document all analysis steps (i.e., from raw data processing/wrangling, to inferential statistics and visualization) in a series of scripts, meaning that you don't have to remember which sequence of buttons and drop down menus you followed to get to your analysis outputs. This facilitates complete reproducibility of your analysis pipeline and results.
+In chapters 1 - 4, we will introduce R and R Markdown, along with some very useful packages for data-wrangling and plotting. From there, chapters 5 - 11 will align with the Year 1 _Introduction to Statistical Analysis_ course and will guide you through the tutorials. Chapters 12 - TBA will cover some more advanced statistical techniques and topics which are beyond the scope of ISA. While these have been written mainly with Politics and Psychology majors in mind, these may also be of interest to Economics or Law majors who would like to know more about analyzing (quantitative) experimental or survey data.
+
+Our hope is that this open book will remain in a fluid state, with updates and adjustments being made as analysis and programming methods evolve.
+
+## Questions you may have 
+
+### Why am I learning R?
+
+While there are many excellent "click-and-point" statistical analysis packages available, it's worth highlighting some of the benefits that come with using R and (R Markdown):
+
+1.  You can easily record and document all analysis steps (i.e., from raw data processing/wrangling, to inferential statistics and visualization) in a series of scripts, meaning that you don't have to remember which sequence of buttons and drop down menus you followed to get to your analysis outputs. This facilitates complete reproducibility of your analysis pipeline and results.
 2.  Writing your research papers and assignments with R Markdown means that all analysis outputs (e.g., descriptive statistics, test statistics, figures, tables, etc.) can be embedded without the need for pasting information from your statistics software into a separate word processor.
 3.  You gain more power to customize your analysis, rather than relying on the narrow range of defaults included in some statistical packages.
 4.  It's free!
 
-## Right, but I have, like, zero background in programming!
+### Right, but I have zero experience in programming!
 
 We hear you, but we think that you will be pleasantly surprised by how quickly you can get up and running. While this will be challenging, bear in mind that we are here to help, and we strongly believe that you are capable of doing very well, with a bit of application and effort. 
 
-## OK, but why am I learning R instead of, say, Python?
+### OK, but why am I learning R instead of, say, Python?
 
 The main reasons for teaching this course in R are:
 
@@ -23,10 +33,11 @@ The main reasons for teaching this course in R are:
 -   It is **very** widely used by quantitative social scientists, meaning that accessible tutorials and answers to questions are often only a google away
 -   Our (informal) impression is that R has a relatively low bar for entry, when compared with more general-purpose languages like Python
 
-## Chapter overview
+### For any other questions...
 
-In chapters 1 - 4, we will introduce R and R Markdown, along with some very useful packages for data-wrangling and plotting. From there, chapters 5 - 11 will align with the main outcomes of the Year 1 _Introduction to Statistical Analysis_ course and will guide you through the tutorials. Chapters 12 - TBA will cover some more advanced statistical techniques and topics which are beyond the scope of ISA. While these have been written mainly with Politics and Psychology majors in mind, these may also be of interest to Economics or Law majors who would like to know more about analyzing (quantitative) experimental or survey data.
+..., or, if you would simply like to provide some (very welcome) feedback on these materials, please [get in touch](mailto:d.fleming@uva.nl).  
 
-## Lastly....
 
-It is not our intention to provide a comprehensive introduction to R or R Markdown. (There are already excellent resources freely available for that purpose, some of which we will refer to in due course.) Rather, the principal aim is to build your comfort and confidence in using a small set of operations which will enable you to perform both confirmatory and exploratory statistical analyses with quantitative data typical of the social sciences, and to write a basic scientific document in which the outputs of those analyses can be embedded. There is, therefore, the risk that we give too light of a treatment to areas which you might find difficult; if so, please [get in touch](mailto:d.fleming@uva.nl) to provide some welcome feedback on this living document, or to ask questions.
+## Acknowledgements
+
+This book was heavily inspired by (and owes a tremendous amount to) the excellent work of the [PsyTeachR](https://psyteachr.github.io/) team at the University of Glasgow's [School of Psychology and Neuroscience](https://www.gla.ac.uk/schools/psychologyneuroscience/). In particular, Dr. James Bartlett's book [_Creating open educational materials using Quarto- and Github-Pages_](https://bartlettje.github.io/dissemination_quarto/) provided essential guidance.     
