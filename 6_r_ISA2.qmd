@@ -60,6 +60,7 @@ The range is simply the difference between the maximum and minimum values in the
 $$
 range = max(x_1, x_2, ..., x_n) - min(x_1, x_2, ..., x_n)
 $$
+
 ### The interquartile range (IQR)
 
 This represents the spread of the middle 50% of the data and is calculated as:
@@ -67,25 +68,43 @@ This represents the spread of the middle 50% of the data and is calculated as:
 $$
 IQR = Q_3 - Q_1
 $$
-$Q_3$ and $Q_1$, are, respectively, the 75th and 25th percentiles of the data. To calculate these, we rank the data values and find the point which marks 
 
-This is the 50th percentile in the dataset (i.e., it divides the data into a lower half and an upper half). It is obtained by ranking scores and finding the value which divides the dataset in two. 
+$Q_3$ and $Q_1$, are, respectively, the 75th and 25th percentiles of the data.To find these for data $x$ with $n$ elements:
 
-For data $x$ with $n$ elements:
-
-* if $n$ is **odd**, $med(x) = x_{(n+1)/2}$
+* $Q_1(x) = x_{(\frac{n+1}{4})}$
   
+* $Q_3(x) = x_{(\frac{3(n+1)}{4})}$
+  
+Where the position index for the quartile is not a whole number, we can average the values from the two nearest whole number positions to find our quartile. For example, for data with $n = 100$:
 
-* if $n$ is **even**, $med(x) = \frac{x_{(n/2)} + x_{((n/2)+1)}}{2}$
+* $Q_1(x) = x_{(\frac{101}{4})} = 25.25$
 
-For example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use `median`:
+In the above case, we would average the 25th- and 26th-ranked values of $x$ to find $Q_1(x)$.
+
+## Measures of dispersion in R
+
+Let's load in `World_Data.sav`.
+
+```{r ESSload, eval = FALSE}
+
+wd<-haven::read_sav("World_Data.sav")
+
+```
+
+```{r ESSloadreal, echo = FALSE}
+wd<-haven::read_sav("C:/Users/David/OneDrive - UvA/2025_2026/ISA_24_25/Datasets/World_Data.sav")
+```
+
+
+## To-do:
+
+* measures of dispersion in R
+* sim card recode
+* summary
 
 
 ## Summary
 
 In this chapter, we covered:
 
-* Entering new data
-* Importing existing data in .sav format
-* Calculating frequencies and descriptive statistics
-* Using `dplyr::filter` to select subsets of data
+* things

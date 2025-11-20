@@ -273,8 +273,11 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#the-standard-deviation" id="toc-the-standard-deviation" class="nav-link" data-scroll-target="#the-standard-deviation"><span class="header-section-number">6.4.1</span> The standard deviation</a></li>
   <li><a href="#the-range" id="toc-the-range" class="nav-link" data-scroll-target="#the-range"><span class="header-section-number">6.4.2</span> The range</a></li>
+  <li><a href="#the-interquartile-range-iqr" id="toc-the-interquartile-range-iqr" class="nav-link" data-scroll-target="#the-interquartile-range-iqr"><span class="header-section-number">6.4.3</span> The interquartile range (IQR)</a></li>
   </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.5</span> Summary</a></li>
+  <li><a href="#measures-of-dispersion-in-r" id="toc-measures-of-dispersion-in-r" class="nav-link" data-scroll-target="#measures-of-dispersion-in-r"><span class="header-section-number">6.5</span> Measures of dispersion in R</a></li>
+  <li><a href="#to-do" id="toc-to-do" class="nav-link" data-scroll-target="#to-do"><span class="header-section-number">6.6</span> To-do:</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.7</span> Summary</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/6_r_ISA2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -350,28 +353,46 @@ S = \sqrt\frac{\sum_{i=1}^{n}{(x_i-\bar{x})^2}}{n-1}
 <p>The range is simply the difference between the maximum and minimum values in the data, and can be written as:</p>
 <p><span class="math display">\[
 range = max(x_1, x_2, ..., x_n) - min(x_1, x_2, ..., x_n)
-\]</span> ### The interquartile range (IQR)</p>
+\]</span></p>
+</section>
+<section id="the-interquartile-range-iqr" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="the-interquartile-range-iqr"><span class="header-section-number">6.4.3</span> The interquartile range (IQR)</h3>
 <p>This represents the spread of the middle 50% of the data and is calculated as:</p>
 <p><span class="math display">\[
 IQR = Q_3 - Q_1
-\]</span> <span class="math inline">\(Q_3\)</span> and <span class="math inline">\(Q_1\)</span>, are, respectively, the 75th and 25th percentiles of the data. To calculate these, we rank the data values and find the point which marks</p>
-<p>This is the 50th percentile in the dataset (i.e., it divides the data into a lower half and an upper half). It is obtained by ranking scores and finding the value which divides the dataset in two.</p>
-<p>For data <span class="math inline">\(x\)</span> with <span class="math inline">\(n\)</span> elements:</p>
+\]</span></p>
+<p><span class="math inline">\(Q_3\)</span> and <span class="math inline">\(Q_1\)</span>, are, respectively, the 75th and 25th percentiles of the data.To find these for data <span class="math inline">\(x\)</span> with <span class="math inline">\(n\)</span> elements:</p>
 <ul>
-<li><p>if <span class="math inline">\(n\)</span> is <strong>odd</strong>, <span class="math inline">\(med(x) = x_{(n+1)/2}\)</span></p></li>
-<li><p>if <span class="math inline">\(n\)</span> is <strong>even</strong>, <span class="math inline">\(med(x) = \frac{x_{(n/2)} + x_{((n/2)+1)}}{2}\)</span></p></li>
+<li><p><span class="math inline">\(Q_1(x) = x_{(\frac{n+1}{4})}\)</span></p></li>
+<li><p><span class="math inline">\(Q_3(x) = x_{(\frac{3(n+1)}{4})}\)</span></p></li>
 </ul>
-<p>For example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use <code>median</code>:</p>
+<p>Where the position index for the quartile is not a whole number, we can average the values from the two nearest whole number positions to find our quartile. For example, for data with <span class="math inline">\(n = 100\)</span>:</p>
+<ul>
+<li><span class="math inline">\(Q_1(x) = x_{(\frac{101}{4})} = 25.25\)</span></li>
+</ul>
+<p>In the above case, we would average the 25th- and 26th-ranked values of <span class="math inline">\(x\)</span> to find <span class="math inline">\(Q_1(x)\)</span>.</p>
 </section>
 </section>
-<section id="summary" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.5</span> Summary</h2>
+<section id="measures-of-dispersion-in-r" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="measures-of-dispersion-in-r"><span class="header-section-number">6.5</span> Measures of dispersion in R</h2>
+<p>Let’s load in <code>World_Data.sav</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wd<span class="ot">&lt;-</span>haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">"World_Data.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="to-do" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="to-do"><span class="header-section-number">6.6</span> To-do:</h2>
+<ul>
+<li>measures of dispersion in R</li>
+<li>sim card recode</li>
+<li>summary</li>
+</ul>
+</section>
+<section id="summary" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.7</span> Summary</h2>
 <p>In this chapter, we covered:</p>
 <ul>
-<li>Entering new data</li>
-<li>Importing existing data in .sav format</li>
-<li>Calculating frequencies and descriptive statistics</li>
-<li>Using <code>dplyr::filter</code> to select subsets of data</li>
+<li>things</li>
 </ul>
 
 

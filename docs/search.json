@@ -489,7 +489,7 @@
     "href": "6_r_ISA2.html#measures-of-dispersion",
     "title": "6  ISA 2: measures of dispersion and visualizing relationships",
     "section": "6.4 Measures of dispersion",
-    "text": "6.4 Measures of dispersion\nIn this course, we will consider three measures of dispersion.\n\n6.4.1 The standard deviation\nThe standard deviation is defined as:\n\\[\nS = \\sqrt\\frac{\\sum_{i=1}^{n}{(x_i-\\bar{x})^2}}{n-1}\n\\]\nComputation of the standard deviation involves:\n\nCalculating the sample mean \\(\\bar{x}\\)\nSubtracting \\(\\bar{x}\\) from each “raw” value of \\(x\\) to compute deviations\nSquaring the deviations from step 2 \\((x_i - \\bar{x})^2\\)\nSumming the deviations \\(\\sum_{i = 1}^{n}\\)\nDividing the deviations by the number of observations (\\(n\\)) minus 1\nTaking the square root of 5\n\nThe standard deviation can be roughly interpreted as the average deviation from the sample mean in the data. Much like the mean, this measure of dispersion is mot appropriate for interval/ratio level data.\n\n\n6.4.2 The range\nThe range is simply the difference between the maximum and minimum values in the data, and can be written as:\n\\[\nrange = max(x_1, x_2, ..., x_n) - min(x_1, x_2, ..., x_n)\n\\] ### The interquartile range (IQR)\nThis represents the spread of the middle 50% of the data and is calculated as:\n\\[\nIQR = Q_3 - Q_1\n\\] \\(Q_3\\) and \\(Q_1\\), are, respectively, the 75th and 25th percentiles of the data. To calculate these, we rank the data values and find the point which marks\nThis is the 50th percentile in the dataset (i.e., it divides the data into a lower half and an upper half). It is obtained by ranking scores and finding the value which divides the dataset in two.\nFor data \\(x\\) with \\(n\\) elements:\n\nif \\(n\\) is odd, \\(med(x) = x_{(n+1)/2}\\)\nif \\(n\\) is even, \\(med(x) = \\frac{x_{(n/2)} + x_{((n/2)+1)}}{2}\\)\n\nFor example, in a sorted dataset with 11 values, the median will be the value at the observation ranked 6th. However, in a sorted dataset with 12 values, the median will be the arithmetic mean of the values ranked in 6th and 7th. In R, we can simply use median:",
+    "text": "6.4 Measures of dispersion\nIn this course, we will consider three measures of dispersion.\n\n6.4.1 The standard deviation\nThe standard deviation is defined as:\n\\[\nS = \\sqrt\\frac{\\sum_{i=1}^{n}{(x_i-\\bar{x})^2}}{n-1}\n\\]\nComputation of the standard deviation involves:\n\nCalculating the sample mean \\(\\bar{x}\\)\nSubtracting \\(\\bar{x}\\) from each “raw” value of \\(x\\) to compute deviations\nSquaring the deviations from step 2 \\((x_i - \\bar{x})^2\\)\nSumming the deviations \\(\\sum_{i = 1}^{n}\\)\nDividing the deviations by the number of observations (\\(n\\)) minus 1\nTaking the square root of 5\n\nThe standard deviation can be roughly interpreted as the average deviation from the sample mean in the data. Much like the mean, this measure of dispersion is mot appropriate for interval/ratio level data.\n\n\n6.4.2 The range\nThe range is simply the difference between the maximum and minimum values in the data, and can be written as:\n\\[\nrange = max(x_1, x_2, ..., x_n) - min(x_1, x_2, ..., x_n)\n\\]\n\n\n6.4.3 The interquartile range (IQR)\nThis represents the spread of the middle 50% of the data and is calculated as:\n\\[\nIQR = Q_3 - Q_1\n\\]\n\\(Q_3\\) and \\(Q_1\\), are, respectively, the 75th and 25th percentiles of the data.To find these for data \\(x\\) with \\(n\\) elements:\n\n\\(Q_1(x) = x_{(\\frac{n+1}{4})}\\)\n\\(Q_3(x) = x_{(\\frac{3(n+1)}{4})}\\)\n\nWhere the position index for the quartile is not a whole number, we can average the values from the two nearest whole number positions to find our quartile. For example, for data with \\(n = 100\\):\n\n\\(Q_1(x) = x_{(\\frac{101}{4})} = 25.25\\)\n\nIn the above case, we would average the 25th- and 26th-ranked values of \\(x\\) to find \\(Q_1(x)\\).",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
@@ -499,8 +499,30 @@
     "objectID": "6_r_ISA2.html#summary",
     "href": "6_r_ISA2.html#summary",
     "title": "6  ISA 2: measures of dispersion and visualizing relationships",
-    "section": "6.5 Summary",
-    "text": "6.5 Summary\nIn this chapter, we covered:\n\nEntering new data\nImporting existing data in .sav format\nCalculating frequencies and descriptive statistics\nUsing dplyr::filter to select subsets of data",
+    "section": "6.7 Summary",
+    "text": "6.7 Summary\nIn this chapter, we covered:\n\nthings",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
+    ]
+  },
+  {
+    "objectID": "6_r_ISA2.html#measures-of-dispersion-in-r",
+    "href": "6_r_ISA2.html#measures-of-dispersion-in-r",
+    "title": "6  ISA 2: measures of dispersion and visualizing relationships",
+    "section": "6.5 Measures of dispersion in R",
+    "text": "6.5 Measures of dispersion in R\nLet’s load in World_Data.sav.\n\nwd&lt;-haven::read_sav(\"World_Data.sav\")",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
+    ]
+  },
+  {
+    "objectID": "6_r_ISA2.html#to-do",
+    "href": "6_r_ISA2.html#to-do",
+    "title": "6  ISA 2: measures of dispersion and visualizing relationships",
+    "section": "6.6 To-do:",
+    "text": "6.6 To-do:\n\nmeasures of dispersion in R\nsim card recode\nsummary",
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
