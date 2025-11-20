@@ -133,6 +133,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R for the PPL(E)</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/dvlaming/R4PPLE" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -145,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -194,8 +197,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./r_ISA_preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./5_r_ISA1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ISA 1: entering, importing, summarizing and subsetting data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6_r_ISA2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ISA 2: measures of dispersion and visualizing relationships</span></span></a>
   </div>
 </li>
       </ul>
@@ -203,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -234,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#plotting-with-additional-variables" id="toc-plotting-with-additional-variables" class="nav-link" data-scroll-target="#plotting-with-additional-variables"><span class="header-section-number">3.4</span> Plotting with additional variables</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.5</span> Summary</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/3_r_plotting.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -353,7 +368,7 @@ Figure&nbsp;3.2: Histograms and density plots of height
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span>starwars <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gender) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(height)) <span class="sc">%&gt;%</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> T), <span class="at">se_height =</span> <span class="fu">sd</span>(height, <span class="at">na.rm =</span> T)<span class="sc">/</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> T), <span class="at">se_height =</span> <span class="fu">sd</span>(height, <span class="at">na.rm =</span> T)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">y =</span> mean_height, <span class="at">fill =</span> gender))<span class="sc">+</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width =</span> .<span class="dv">75</span>) <span class="sc">+</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_height <span class="sc">-</span> se_height, <span class="at">ymax =</span> mean_height <span class="sc">+</span> se_height),<span class="at">width =</span> .<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -376,7 +391,7 @@ Figure&nbsp;3.3: Barchart of mean height by character gender. Error bars represe
 <li><code>dplyr::filter(!is.na(gender) &amp; !is.na(height))</code> - we discussed <code>NA</code> values in <a href="2_r_firstdata.html#nte-na" class="quarto-xref">Note&nbsp;<span>2.2</span></a>; we use <code>dplyr::filter</code> to remove characters who have a value of <code>NA</code> for either <code>gender</code> or <code>height</code> (i.e., by saying: “keep only characters who do NOT have a value of <code>NA</code> for <strong>both</strong> <code>gender</code> and <code>height</code>”). In this way, we save only characters with complete information on the variables of interest.<br>
 </li>
 <li><code>dplyr::group_by(gender)</code> - we tell <code>dplyr</code> to group characters by the levels of <code>gender</code> in the dataset. On its own, this has no apparent effect on the dataset, but it provides instructions for how subsequent operations should be performed.</li>
-<li><code>dplyr::summarize(mean_height = mean(height, na.rm = T), se_height = sd(height, na.rm = T)/n())</code> - the <code>dplyr::summarize</code> function reduces a dataset to a requested set of summary statistics. This is where <code>group_by</code> comes into play - because we grouped by <code>gender</code>, summary statistics will now be created <em>per gender grouping</em>. Inside <code>summarize</code>, we declare the new variables <code>mean_height</code> (which gives mean height) and <code>se_height</code> (standard error for height) which will be passed on to create the barchart.</li>
+<li><code>dplyr::summarize(mean_height = mean(height, na.rm = T), se_height = sd(height, na.rm = T)/sqrt(n()))</code> - the <code>dplyr::summarize</code> function reduces a dataset to a requested set of summary statistics. This is where <code>group_by</code> comes into play - because we grouped by <code>gender</code>, summary statistics will now be created <em>per gender grouping</em>. Inside <code>summarize</code>, we declare the new variables <code>mean_height</code> (which gives mean height) and <code>se_height</code> (standard error for height) which will be passed on to create the barchart.</li>
 <li><code>ggplot2::ggplot(aes(x = gender, y = mean_height, fill = gender))</code> - creates an empty plot, sets <code>gender</code> as the x variable, and the newly-created <code>mean_height</code> variable as the y variable.</li>
 <li><code>ggplot2::geom_bar(stat="identity")</code> - this creates the barchart based on the aesthetics previously supplied. The <code>stat = "identity"</code> call simply tells <code>ggplot2</code> to create the plot based on the values as they are, without further summarizing or processing.</li>
 <li><code>ggplot2::geom_errorbar(aes(ymin = mean_height - se_height, ymax = mean_height + se_height),width = .5)</code> - this draws our errorbars, based on values of mean +/- one standard error. The <code>width</code> argument sets the width of the horizontal “handles”</li>
@@ -896,6 +911,19 @@ Figure&nbsp;3.6: Boxplot of height by character gender and species.
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>CC-BY-SA-4.0 (2025) David Fleming</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/3_r_plotting.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

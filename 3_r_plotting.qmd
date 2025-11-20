@@ -83,7 +83,7 @@ Histograms and density plots provide information about the distribution of your 
 dplyr::starwars %>%
   dplyr::filter(!is.na(gender) & !is.na(height)) %>%
   dplyr::group_by(gender) %>% 
-  dplyr::summarize(mean_height = mean(height, na.rm = T), se_height = sd(height, na.rm = T)/n()) %>% 
+  dplyr::summarize(mean_height = mean(height, na.rm = T), se_height = sd(height, na.rm = T)/sqrt(n())) %>% 
   ggplot2::ggplot(aes(x = gender, y = mean_height, fill = gender))+
   ggplot2::geom_bar(stat="identity", width = .75) +
   ggplot2::geom_errorbar(aes(ymin = mean_height - se_height, ymax = mean_height + se_height),width = .5)
@@ -95,7 +95,7 @@ You will notice the code above contains some extra steps compared to some of the
 
 1.  `dplyr::filter(!is.na(gender) & !is.na(height))` - we discussed `NA` values in @nte-na; we use `dplyr::filter` to remove characters who have a value of `NA` for either `gender` or `height` (i.e., by saying: "keep only characters who do NOT have a value of `NA` for **both** `gender` and `height`"). In this way, we save only characters with complete information on the variables of interest.\
 2.  `dplyr::group_by(gender)` - we tell `dplyr` to group characters by the levels of `gender` in the dataset. On its own, this has no apparent effect on the dataset, but it provides instructions for how subsequent operations should be performed.
-3.  `dplyr::summarize(mean_height = mean(height, na.rm = T), se_height = sd(height, na.rm = T)/n())` - the `dplyr::summarize` function reduces a dataset to a requested set of summary statistics. This is where `group_by` comes into play - because we grouped by `gender`, summary statistics will now be created *per gender grouping*. Inside `summarize`, we declare the new variables `mean_height` (which gives mean height) and `se_height` (standard error for height) which will be passed on to create the barchart.
+3.  `dplyr::summarize(mean_height = mean(height, na.rm = T), se_height = sd(height, na.rm = T)/sqrt(n()))` - the `dplyr::summarize` function reduces a dataset to a requested set of summary statistics. This is where `group_by` comes into play - because we grouped by `gender`, summary statistics will now be created *per gender grouping*. Inside `summarize`, we declare the new variables `mean_height` (which gives mean height) and `se_height` (standard error for height) which will be passed on to create the barchart.
 4.  `ggplot2::ggplot(aes(x = gender, y = mean_height, fill = gender))` - creates an empty plot, sets `gender` as the x variable, and the newly-created `mean_height` variable as the y variable.
 5.  `ggplot2::geom_bar(stat="identity")` - this creates the barchart based on the aesthetics previously supplied. The `stat = "identity"` call simply tells `ggplot2` to create the plot based on the values as they are, without further summarizing or processing.
 6.  `ggplot2::geom_errorbar(aes(ymin = mean_height - se_height, ymax = mean_height + se_height),width = .5)` - this draws our errorbars, based on values of mean +/- one standard error. The `width` argument sets the width of the horizontal "handles"

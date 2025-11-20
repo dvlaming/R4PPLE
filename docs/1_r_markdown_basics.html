@@ -266,22 +266,24 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#general-settings-for-reproducibility" id="toc-general-settings-for-reproducibility" class="nav-link active" data-scroll-target="#general-settings-for-reproducibility"><span class="header-section-number">1.1</span> General settings for reproducibility</a></li>
-  <li><a href="#getting-started-with-projects-and-files" id="toc-getting-started-with-projects-and-files" class="nav-link" data-scroll-target="#getting-started-with-projects-and-files"><span class="header-section-number">1.2</span> Getting started with Projects and Files</a>
+  <li><a href="#getting-to-know-r-studio" id="toc-getting-to-know-r-studio" class="nav-link active" data-scroll-target="#getting-to-know-r-studio"><span class="header-section-number">1.1</span> Getting to know R Studio</a>
   <ul class="collapse">
-  <li><a href="#sec-newproj" id="toc-sec-newproj" class="nav-link" data-scroll-target="#sec-newproj"><span class="header-section-number">1.2.1</span> Creating a new R Project</a></li>
-  <li><a href="#creating-a-new-r-markdown-document" id="toc-creating-a-new-r-markdown-document" class="nav-link" data-scroll-target="#creating-a-new-r-markdown-document"><span class="header-section-number">1.2.2</span> Creating a new R Markdown document</a></li>
+  <li><a href="#layout" id="toc-layout" class="nav-link" data-scroll-target="#layout"><span class="header-section-number">1.1.1</span> Layout</a></li>
+  <li><a href="#general-settings-for-reproducibility" id="toc-general-settings-for-reproducibility" class="nav-link" data-scroll-target="#general-settings-for-reproducibility"><span class="header-section-number">1.1.2</span> General settings for reproducibility</a></li>
+  <li><a href="#sec-newproj" id="toc-sec-newproj" class="nav-link" data-scroll-target="#sec-newproj"><span class="header-section-number">1.1.3</span> Creating a new R Project</a></li>
+  <li><a href="#creating-a-new-r-script" id="toc-creating-a-new-r-script" class="nav-link" data-scroll-target="#creating-a-new-r-script"><span class="header-section-number">1.1.4</span> Creating a new R script</a></li>
   </ul></li>
-  <li><a href="#writing-in-r-markdown" id="toc-writing-in-r-markdown" class="nav-link" data-scroll-target="#writing-in-r-markdown"><span class="header-section-number">1.3</span> Writing in R Markdown</a>
+  <li><a href="#writing-in-r-markdown" id="toc-writing-in-r-markdown" class="nav-link" data-scroll-target="#writing-in-r-markdown"><span class="header-section-number">1.2</span> Writing in R Markdown</a>
   <ul class="collapse">
-  <li><a href="#new-lines" id="toc-new-lines" class="nav-link" data-scroll-target="#new-lines"><span class="header-section-number">1.3.1</span> New lines</a></li>
-  <li><a href="#headings" id="toc-headings" class="nav-link" data-scroll-target="#headings"><span class="header-section-number">1.3.2</span> Headings</a></li>
-  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">1.3.3</span> Lists</a></li>
-  <li><a href="#equations" id="toc-equations" class="nav-link" data-scroll-target="#equations"><span class="header-section-number">1.3.4</span> Equations</a></li>
-  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">1.3.5</span> Code chunks</a></li>
-  <li><a href="#inline-code" id="toc-inline-code" class="nav-link" data-scroll-target="#inline-code"><span class="header-section-number">1.3.6</span> Inline code</a></li>
+  <li><a href="#creating-a-new-r-markdown-document" id="toc-creating-a-new-r-markdown-document" class="nav-link" data-scroll-target="#creating-a-new-r-markdown-document"><span class="header-section-number">1.2.1</span> Creating a new R Markdown document</a></li>
+  <li><a href="#new-lines" id="toc-new-lines" class="nav-link" data-scroll-target="#new-lines"><span class="header-section-number">1.2.2</span> New lines</a></li>
+  <li><a href="#headings" id="toc-headings" class="nav-link" data-scroll-target="#headings"><span class="header-section-number">1.2.3</span> Headings</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">1.2.4</span> Lists</a></li>
+  <li><a href="#equations" id="toc-equations" class="nav-link" data-scroll-target="#equations"><span class="header-section-number">1.2.5</span> Equations</a></li>
+  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">1.2.6</span> Code chunks</a></li>
+  <li><a href="#inline-code" id="toc-inline-code" class="nav-link" data-scroll-target="#inline-code"><span class="header-section-number">1.2.7</span> Inline code</a></li>
   </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">1.4</span> Summary</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">1.3</span> Summary</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/1_r_markdown_basics.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -311,24 +313,54 @@ window.Quarto = {
 <p>Now, let’s briefly distinguish some components:</p>
 <ul>
 <li><strong>R</strong> is a free and open-source programming language which is specialized for statistical computing and data visualization. The base functions of the language can be supplemented by a vast (and perpetually expanding) database of user-generated extension packages which covers just about every data analysis scenario you would care to imagine.</li>
-<li><strong>R Studio</strong> is an <em>integrated development environment</em> (IDE) which runs on top of base R, provides additional functionality, and makes things look a bit nicer.</li>
+<li><strong>R Studio</strong> is an <em>integrated development environment</em> (IDE) which runs on top of R, provides additional functionality, and makes things look a bit nicer.</li>
 <li><strong>R Markdown</strong> is a typesetting language bundled with R Studio which allows us to prepare documents with - among other things - interwoven code, figures, formulae, analysis outputs and tables.</li>
 </ul>
 <p>As suggested in the introductory chapter, it is not the place of this book to provide a full, ‘bottom-up’ introduction to any of the above elements. Rather, in these opening chapters we will highlight the essentials to get you swiftly up and running with importing existing data and processing it for further statistical analysis and visualization.</p>
-<section id="general-settings-for-reproducibility" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="general-settings-for-reproducibility"><span class="header-section-number">1.1</span> General settings for reproducibility<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h2>
-<p>By default, R Studio may give you prompts to save your workspace when you quit a session. To ensure reproducibility of your pipelines, you should always start a new session with a clear workspace, and you should never save your workspace when you exit. The only things you want to save are your scripts, which you will do manually. Before going further, set the following:</p>
+<section id="getting-to-know-r-studio" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="getting-to-know-r-studio"><span class="header-section-number">1.1</span> Getting to know R Studio</h2>
+<section id="layout" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="layout"><span class="header-section-number">1.1.1</span> Layout</h3>
+<div id="fig-rslayout" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rslayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="rstudiolayout.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rslayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: R Studio layout
+</figcaption>
+</figure>
+</div>
+<p>With default settings, R Studio will resemble what you see in <a href="#fig-rslayout" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>. Let’s take a tour:</p>
+<ul>
+<li>The <span style="color: blue;">blue highlight</span> shows the <strong>editor</strong> window. This is where scripts containing multiple lines of code can be created and saved. This window only displays when you have an open script file, and will not be visible When you open R Studio for the very first time.</li>
+<li>The <span style="color: green;">green highlight</span> shows the <strong>console</strong>, where code can be entered and executed. We can use this for testing small chunks of code, but we would not perform a whole analysis here.</li>
+<li>The <span style="color: red;">red highlight</span> shows the <strong>environment</strong> (or <strong>workspace</strong>). This is empty in the image above, but will show variables when these are created or loaded.</li>
+<li>By default, the <span style="color: yellow;">yellow highlighted section</span> will show the contents of your <strong>working directory</strong> (i.e., the directory from which your R session is currently running, and where any saved files will appear, unless you enter a new filepath). This can be toggled using the tabs at the top to show plots or help messages.</li>
+</ul>
+</section>
+<section id="general-settings-for-reproducibility" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="general-settings-for-reproducibility"><span class="header-section-number">1.1.2</span> General settings for reproducibility<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h3>
+<p>By default, R will give you prompts to save your workspace when you quit a session. To ensure reproducibility of your pipelines, you should always start a new session with a clear workspace, and you should never save your workspace when you exit. The only things you want to save are your scripts, which you will do manually. Before going further, set the following:</p>
 <ul>
 <li><em>Tools</em> &gt; <em>Global Options</em><br>
 </li>
 <li><em>General</em> &gt; uncheck the box <em>Restore .RData into workspace at startup</em>.</li>
 <li>Set “Save workspace to .RData on exit” to “Never”.</li>
 </ul>
+<div id="fig-rrepro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rrepro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="rrepro.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rrepro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Ensuring a clean start-up
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="getting-started-with-projects-and-files" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="getting-started-with-projects-and-files"><span class="header-section-number">1.2</span> Getting started with Projects and Files</h2>
-<section id="sec-newproj" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="sec-newproj"><span class="header-section-number">1.2.1</span> Creating a new R Project</h3>
+<section id="sec-newproj" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="sec-newproj"><span class="header-section-number">1.1.3</span> Creating a new R Project</h3>
 <p>R Studio provides an environment where you can use R Markdown to create documents with embedded analysis outputs, and store these in self-contained project folders which will ensure that your analyses can easily be reproduced without having to change directory names when you switch computers. (See <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">this link</a> for more on the utility of using R projects.)</p>
 <p>To open a new R project, click <em>File</em> &gt; <em>NewProject</em>. The ‘New Project Wizard’ will pop up, prompting you to specify where you would like to create your project. For now, the best choice would be one of the following:</p>
 <ol type="1">
@@ -340,39 +372,49 @@ window.Quarto = {
 <p><img src="RProjectImg.png" class="img-fluid"></p>
 <p>Clicking on it outside of R will open up a new R Studio session with your designated project folder as its starting directory. You can now move all data necessary for your project to this folder, where it can be easily found by R.</p>
 </section>
-<section id="creating-a-new-r-markdown-document" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="creating-a-new-r-markdown-document"><span class="header-section-number">1.2.2</span> Creating a new R Markdown document</h3>
-<p>To open a new R Markdown document within R Studio, click <em>File</em> &gt; <em>NewFile</em> &gt; <em>R Markdown</em> and you will see a prompt which asks for a Title, Author and Date. You can leave these blank initially, safe in the knowledge that these fields can always be updated later. Likewise, you can always modify the document output format later, but you do need to initially select something under ‘Default Output Format’ to allow R to create your Markdown file. The document type will depend on the assignment, course, and your teacher’s preferences. For your assignments for ISA, .html will be fine, but for other assignment (e.g., your final thesis), you should switch the output to either PDF (which requires installation of an extra package<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or Word.</p>
-<p>An editor window will spring open with a new, as yet untitled, .Rmd file. Before going further, you should save this (<code>Ctrl/Cmd + S</code>) with a sensible name<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. At the top of the document, you will see the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/rmarkdown-anatomy.html">YAML header</a> where settings for document output can be added or modified.</p>
-</section>
-</section>
-<section id="writing-in-r-markdown" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="writing-in-r-markdown"><span class="header-section-number">1.3</span> Writing in R Markdown</h2>
-<p>R Markdown is an extremely rich and powerful tool and you can browse the <a href="https://bookdown.org/yihui/rmarkdown/">definitive guide</a> from one of the main authors of the package to help you get the most out of it. For the most part, you can use it as you would any other typesetting/word-processing tool, and we summarize here some basic yet essential features.</p>
-<section id="new-lines" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="new-lines"><span class="header-section-number">1.3.1</span> New lines</h3>
-<p>Beginning a new line works in exactly the same way as with any other word processor. Simply hit <code>Enter/Return</code> and carry on typing.</p>
-</section>
-<section id="headings" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="headings"><span class="header-section-number">1.3.2</span> Headings</h3>
-<p>Headings are created with the hash key (<code>#</code>) and the number of hashes modifies the heading level. R Markdown has six levels:</p>
+<section id="creating-a-new-r-script" class="level3" data-number="1.1.4">
+<h3 data-number="1.1.4" class="anchored" data-anchor-id="creating-a-new-r-script"><span class="header-section-number">1.1.4</span> Creating a new R script</h3>
+<p>Using scripts increases the transparency and reproducibility of your analyses. Every step in a pipeline can be documented, ensuring that you can see exactly which operations were performed (and at which stage in the process), and that you can re-run your analyses with consistent results.</p>
+<p>To open a new R script, you can either hit <code>Ctrl\Cmd</code> + <code>Shift</code> + <code>n</code>, or click <em>File</em> &gt; <em>New File</em> &gt; <em>R Script</em>. An editor window will spring open (as in the blue highlighted section in <a href="#fig-rslayout" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>) with a new, as yet untitled, .R file. Here, you can begin entering code, which can be saved for later (re-)use. A useful feature of scripts is the opportunity to leave comments for yourself and/or people with whom you will share the code. These are entered by typing hash (<code>#</code>) to the left of your comment, which tells R not to evaluate the comment as though it were code. See below for an example.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Huge</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Big</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">### Not so big</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="do">#### Small</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="do">##### Tiny</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">###### Piddly</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I'm leaving a comment on my code here. You can see that it appears in green, and all which does not appear in green will be evaluated by R.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_variable <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="co"># here, I am creating a variable called `my_variable` to which I am assigning the result of the sum 2 + 2.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="lists" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="lists"><span class="header-section-number">1.3.3</span> Lists</h3>
+</section>
+<section id="writing-in-r-markdown" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="writing-in-r-markdown"><span class="header-section-number">1.2</span> Writing in R Markdown</h2>
+<p>R Markdown is an extremely rich and powerful tool and you can browse the <a href="https://bookdown.org/yihui/rmarkdown/">definitive guide</a> from one of the main authors of the package to help you get the most out of it. For the most part, you can use it as you would any other typesetting/word-processing tool, with the advantage that you can directly embed analysis code and results. We will only briefly discuss some essential features, but we will return to this topic in later sections.</p>
+<section id="creating-a-new-r-markdown-document" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="creating-a-new-r-markdown-document"><span class="header-section-number">1.2.1</span> Creating a new R Markdown document</h3>
+<p>To open a new R Markdown document within R Studio, click <em>File</em> &gt; <em>New File</em> &gt; <em>R Markdown</em> and you will see a prompt which asks for a Title, Author and Date. You can leave these blank initially, safe in the knowledge that these fields can always be updated later. Likewise, you can always modify the document output format later, but you do need to initially select something under ‘Default Output Format’ to allow R to create your Markdown file. The document type will depend on the assignment, course, and your teacher’s preferences. For your assignments for ISA, .html will be fine, but for other assignment (e.g., your final thesis), you should switch the output to either PDF (which requires installation of an extra package<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or Word.</p>
+<p>A fresh .Rmd file will open in the editor window. At the top of the document, you will see the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/rmarkdown-anatomy.html">YAML header</a> where settings for document output can be added or modified.</p>
+</section>
+<section id="new-lines" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="new-lines"><span class="header-section-number">1.2.2</span> New lines</h3>
+<p>Beginning a new line works in exactly the same way as with any other word processor. Simply hit <code>Enter/Return</code> and carry on typing.</p>
+</section>
+<section id="headings" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="headings"><span class="header-section-number">1.2.3</span> Headings</h3>
+<p>Headings are created with the hash key (<code>#</code>) and the number of hashes modifies the heading level. R Markdown has six levels:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Huge</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Big</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">### Not so big</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">#### Small</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="do">##### Very small</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">###### Tiny</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="lists" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="lists"><span class="header-section-number">1.2.4</span> Lists</h3>
 <p>Lists with multiple levels of indentation can be created with numbers, letters, and symbols:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Number <span class="dv">1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    a. <span class="dv">1</span>a</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> <span class="dv">1</span>aplus</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Number <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Number <span class="dv">1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    a. <span class="dv">1</span>a</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> <span class="dv">1</span>aplus</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Number <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The above code appears as:</p>
 <ol type="1">
@@ -386,49 +428,49 @@ window.Quarto = {
 <li>Number 2</li>
 </ol>
 </section>
-<section id="equations" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="equations"><span class="header-section-number">1.3.4</span> Equations</h3>
+<section id="equations" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="equations"><span class="header-section-number">1.2.5</span> Equations</h3>
 <p>Equations can be nicely formatted in one of two ways:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Firstly, this is the inline method which produces<span class="sc">:</span> <span class="er">$</span>E <span class="ot">=</span> mc<span class="sc">^</span><span class="dv">2</span><span class="sc">$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Firstly, this is the inline method which produces<span class="sc">:</span> <span class="er">$</span>E <span class="ot">=</span> mc<span class="sc">^</span><span class="dv">2</span><span class="sc">$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Firstly, this is the inline method which produces: <span class="math inline">\(E = mc^2\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Alternatively, you can ident equations<span class="sc">:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="er">$$</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">P</span>(A<span class="sc">|</span>B) <span class="ot">=</span> \frac{<span class="fu">P</span>(B <span class="sc">|</span> A) <span class="fu">P</span>(A)}{<span class="fu">P</span>(B)}</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span><span class="er">$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Alternatively, you can ident equations<span class="sc">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="er">$$</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">P</span>(A<span class="sc">|</span>B) <span class="ot">=</span> \frac{<span class="fu">P</span>(B <span class="sc">|</span> A) <span class="fu">P</span>(A)}{<span class="fu">P</span>(B)}</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span><span class="er">$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternatively, you can indent equations:</p>
 <p><span class="math display">\[
 P(A|B) = \frac{P(B | A) P(A)}{P(B)}
 \]</span></p>
 </section>
-<section id="code-chunks" class="level3" data-number="1.3.5">
-<h3 data-number="1.3.5" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">1.3.5</span> Code chunks</h3>
+<section id="code-chunks" class="level3" data-number="1.2.6">
+<h3 data-number="1.2.6" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">1.2.6</span> Code chunks</h3>
 <p><strong>Code chunks</strong> are used to tell R to perform operations (e.g., load packages or data, do some analysis, etc.) within the document. They look like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>{r chunkTitle, echo<span class="ot">=</span><span class="cn">TRUE</span>, eval<span class="ot">=</span><span class="cn">FALSE</span>}</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  DoSomething<span class="ot">&lt;-</span><span class="st">'OK'</span> <span class="co"># create a variable ('character' vector)</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(DoSomething) <span class="co"># print the contents of that variable</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># I set 'eval' to 'FALSE', meaning that these commands will be printed, but not actually run.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>{r chunkTitle, echo<span class="ot">=</span><span class="cn">TRUE</span>, eval<span class="ot">=</span><span class="cn">FALSE</span>}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  DoSomething<span class="ot">&lt;-</span><span class="st">'OK'</span> <span class="co"># create a variable ('character' vector)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(DoSomething) <span class="co"># print the contents of that variable</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># I set 'eval' to 'FALSE', meaning that these commands will be printed, but not actually run.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In R Markdown documents, you can execute the embedded R code chunk-by-chunk, which will create output in your R (Studio) terminal and/or workspace. This is useful for debugging purposes, as ‘knitting’ the document - which we discuss later - will execute the code ‘silently’, and as a whole, meaning that interim outputs will not be written to your workspace and only the final product (i.e., your full document) will be generated.</p>
 <p>Whether the reader sees code chunks or not in your final output document depends on whether the <code>echo</code> parameter inside the curly braces is set to ‘TRUE’ (‘show’ - the default) or ‘FALSE’ (‘don’t show’). For writing documents like your thesis, you will likely want much of the code to be suppressed in the PDF/Word version, and readers interested in viewing the code and reproducing your findings can view and execute an .Rmd version of the document in which you do your coding and writing. New code chunks can be created by pressing <code>Ctrl/Cmd + Alt + I</code>. Chunk parameters are contained inside curly braces and the first argument inside the braces is simply ‘r’; to give a chunk a title, you leave a space - but NOT a comma. To start adding ‘TRUE’/‘FALSE’ values for chunk parameters, you type a comma after the ‘r chunkTitle’ arguments, and then separate each subsequent chunk parameter/value pair with more commas</p>
 </section>
-<section id="inline-code" class="level3" data-number="1.3.6">
-<h3 data-number="1.3.6" class="anchored" data-anchor-id="inline-code"><span class="header-section-number">1.3.6</span> Inline code</h3>
+<section id="inline-code" class="level3" data-number="1.2.7">
+<h3 data-number="1.2.7" class="anchored" data-anchor-id="inline-code"><span class="header-section-number">1.2.7</span> Inline code</h3>
 <p><strong>Inline code</strong> is useful for printing values deriving from your analysis directly into your document, thereby minimizing errors which might arise from manual entry or copy-paste. Let’s first create some variables:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ChipWeekend<span class="ot">&lt;-</span><span class="st">'Salt and Vinegar'</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ChipWeek<span class="ot">&lt;-</span><span class="st">'Paprika'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ChipWeekend<span class="ot">&lt;-</span><span class="st">'Salt and Vinegar'</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ChipWeek<span class="ot">&lt;-</span><span class="st">'Paprika'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can then call the contents of these variables and weave them into the main body of our document by opening backticks and inserting the variable we want to call after <code>r</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>On Tuesdays, I buy <span class="st">`</span><span class="at">r ChipWeek</span><span class="st">`</span> chips, but on Saturdays I get <span class="st">`</span><span class="at">r ChipWeekend</span><span class="st">`</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>On Tuesdays, I buy <span class="st">`</span><span class="at">r ChipWeek</span><span class="st">`</span> chips, but on Saturdays I get <span class="st">`</span><span class="at">r ChipWeekend</span><span class="st">`</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>When executed, the above appears in your document as:</p>
 <blockquote class="blockquote">
@@ -436,12 +478,12 @@ P(A|B) = \frac{P(B | A) P(A)}{P(B)}
 </blockquote>
 </section>
 </section>
-<section id="summary" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">1.4</span> Summary</h2>
+<section id="summary" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">1.3</span> Summary</h2>
 <p>In this chapter, we have covered:</p>
 <ul>
 <li>Installation of R and R Studio</li>
-<li>Creating new R Projects and Markdown files</li>
+<li>Creating new R Scripts, Projects and Markdown files</li>
 <li>The basics of writing with R Markdown</li>
 </ul>
 
@@ -452,7 +494,6 @@ P(A|B) = \frac{P(B | A) P(A)}{P(B)}
 <ol>
 <li id="fn1"><p>adapted from https://psyteachr.github.io/data-skills-v3/sec-intro.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Specifically, a LaTeX distribution called <a href="https://yihui.org/tinytex/">TinyTeX</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>If following this step directly after creating/opening an R project, then the project directory you assigned will be the default for saving.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

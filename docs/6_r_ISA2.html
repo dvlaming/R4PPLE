@@ -275,7 +275,12 @@ window.Quarto = {
   <li><a href="#the-range" id="toc-the-range" class="nav-link" data-scroll-target="#the-range"><span class="header-section-number">6.4.2</span> The range</a></li>
   <li><a href="#the-interquartile-range-iqr" id="toc-the-interquartile-range-iqr" class="nav-link" data-scroll-target="#the-interquartile-range-iqr"><span class="header-section-number">6.4.3</span> The interquartile range (IQR)</a></li>
   </ul></li>
-  <li><a href="#measures-of-dispersion-in-r" id="toc-measures-of-dispersion-in-r" class="nav-link" data-scroll-target="#measures-of-dispersion-in-r"><span class="header-section-number">6.5</span> Measures of dispersion in R</a></li>
+  <li><a href="#measures-of-dispersion-in-r" id="toc-measures-of-dispersion-in-r" class="nav-link" data-scroll-target="#measures-of-dispersion-in-r"><span class="header-section-number">6.5</span> Measures of dispersion in R</a>
+  <ul class="collapse">
+  <li><a href="#the-standard-deviation-1" id="toc-the-standard-deviation-1" class="nav-link" data-scroll-target="#the-standard-deviation-1"><span class="header-section-number">6.5.1</span> The standaRd deviation</a></li>
+  <li><a href="#the-range-1" id="toc-the-range-1" class="nav-link" data-scroll-target="#the-range-1"><span class="header-section-number">6.5.2</span> The Range</a></li>
+  <li><a href="#the-interquartilerange" id="toc-the-interquartilerange" class="nav-link" data-scroll-target="#the-interquartilerange"><span class="header-section-number">6.5.3</span> The inteRquaRtileRange</a></li>
+  </ul></li>
   <li><a href="#to-do" id="toc-to-do" class="nav-link" data-scroll-target="#to-do"><span class="header-section-number">6.6</span> To-do:</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.7</span> Summary</a></li>
   </ul>
@@ -375,15 +380,65 @@ IQR = Q_3 - Q_1
 </section>
 <section id="measures-of-dispersion-in-r" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="measures-of-dispersion-in-r"><span class="header-section-number">6.5</span> Measures of dispersion in R</h2>
-<p>Let’s load in <code>World_Data.sav</code>.</p>
+<p>Let’s load in <code>World_Data.sav</code>, where the cases (rows) are individual countries. We will then pick out the variable <code>wdi_internet</code> whose label we can print with the function <code>attibutes</code>, without having to print every value.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wd<span class="ot">&lt;-</span>haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">"World_Data.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wd<span class="ot">&lt;-</span>haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">"World_Data.sav"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(wd<span class="sc">$</span>wdi_internet)<span class="sc">$</span>label</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Individuals using the Internet (% of population)"</code></pre>
+</div>
+</div>
+<p>As you can see, this variable shows the percentage of individuals using the internet as percentage of population. We can will use <code>summary</code> to display some measures of central tendency:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(wd<span class="sc">$</span>wdi_internet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  1.309  32.825  63.864  57.301  81.716  99.701       4 </code></pre>
+</div>
+</div>
+<p>(Along with these, we can see that four countries had <a href="./2_r_firstdata.html#nte-pipe"><code>NA</code> values</a> for this variable. We need to bear this in mind as we go further, because R will try to get answers out of <code>NA</code> entries where no answers are to be had.)</p>
+<section id="the-standard-deviation-1" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="the-standard-deviation-1"><span class="header-section-number">6.5.1</span> The standaRd deviation</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(wd<span class="sc">$</span>wdi_internet, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 28.26493</code></pre>
+</div>
+</div>
+<p>(The <code>na.rm = TRUE</code> argument above tells R to remove any values of <code>NA</code> before performing the requested operation.)</p>
+</section>
+<section id="the-range-1" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="the-range-1"><span class="header-section-number">6.5.2</span> The Range</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(wd<span class="sc">$</span>wdi_internet, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1.308907 99.701492</code></pre>
+</div>
+</div>
+<p>While the function runs, it actually returns the minimum and maximum values of the dataset, rather than the difference between them. We can add some extra code to calculate this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(wd<span class="sc">$</span>wdi_internet, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)[<span class="dv">2</span>] <span class="sc">-</span> <span class="fu">range</span>(wd<span class="sc">$</span>wdi_internet, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 98.39259</code></pre>
+</div>
+</div>
+<p>This tells R to subtract the first output argument from the <code>range</code> function (the minimum value) from the second output (the maximum value).</p>
+</section>
+<section id="the-interquartilerange" class="level3" data-number="6.5.3">
+<h3 data-number="6.5.3" class="anchored" data-anchor-id="the-interquartilerange"><span class="header-section-number">6.5.3</span> The inteRquaRtileRange</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(wd<span class="sc">$</span>wdi_internet, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 48.89098</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="to-do" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="to-do"><span class="header-section-number">6.6</span> To-do:</h2>
 <ul>
-<li>measures of dispersion in R</li>
 <li>sim card recode</li>
 <li>summary</li>
 </ul>

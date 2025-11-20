@@ -5,21 +5,36 @@ Onto the first order of business: [installing R](https://cran.rstudio.com/). Ope
 Now, let's briefly distinguish some components:
 
 -   **R** is a free and open-source programming language which is specialized for statistical computing and data visualization. The base functions of the language can be supplemented by a vast (and perpetually expanding) database of user-generated extension packages which covers just about every data analysis scenario you would care to imagine.
--   **R Studio** is an *integrated development environment* (IDE) which runs on top of base R, provides additional functionality, and makes things look a bit nicer.
+-   **R Studio** is an *integrated development environment* (IDE) which runs on top of R, provides additional functionality, and makes things look a bit nicer.
 -   **R Markdown** is a typesetting language bundled with R Studio which allows us to prepare documents with - among other things - interwoven code, figures, formulae, analysis outputs and tables.
 
 As suggested in the introductory chapter, it is not the place of this book to provide a full, 'bottom-up' introduction to any of the above elements. Rather, in these opening chapters we will highlight the essentials to get you swiftly up and running with importing existing data and processing it for further statistical analysis and visualization.
 
-## General settings for reproducibility^[adapted from https://psyteachr.github.io/data-skills-v3/sec-intro.html]
+## Getting to know R Studio
 
-By default, R Studio may give you prompts to save your workspace when you quit a session. To ensure reproducibility of your pipelines, you should always start a new session with a clear workspace, and you should never save your workspace when you exit. The only things you want to save are your scripts, which you will do manually. Before going further, set the following:
+### Layout
+
+![R Studio layout](rstudiolayout.png){#fig-rslayout}
+
+With default settings, R Studio will resemble what you see in @fig-rslayout. Let's take a tour:
+
+* The <span style="color: blue;">blue highlight</span> shows the **editor** window. This is where scripts containing multiple lines of code can be created and saved. This window only displays when you have an open script file, and will not be visible When you open R Studio for the very first time.
+* The <span style="color: green;">green highlight</span> shows the **console**, where code can be entered and executed. We can use this for testing small chunks of code, but we would not perform a whole analysis here.
+* The <span style="color: red;">red highlight</span> shows the **environment** (or **workspace**). This is empty in the image above, but will show variables when these are created or loaded.
+* By default, the <span style="color: yellow;">yellow highlighted section</span> will show the contents of your **working directory** (i.e., the directory from which your R session is currently running, and where any saved files will appear, unless you enter a new filepath). This can be toggled using the tabs at the top to show plots or help messages.
+
+
+### General settings for reproducibility^[adapted from https://psyteachr.github.io/data-skills-v3/sec-intro.html]
+
+By default, R will give you prompts to save your workspace when you quit a session. To ensure reproducibility of your pipelines, you should always start a new session with a clear workspace, and you should never save your workspace when you exit. The only things you want to save are your scripts, which you will do manually. Before going further, set the following:
 
 * _Tools_ > _Global Options_  
 * _General_ > uncheck the box _Restore .RData into workspace at startup_.
 * Set "Save workspace to .RData on exit" to "Never".
 
 
-## Getting started with Projects and Files
+![Ensuring a clean start-up](rrepro.png){#fig-rrepro}
+
 
 ### Creating a new R Project {#sec-newproj}
 
@@ -36,19 +51,35 @@ After you have chosen your project folder, a project link will appear in that fo
 
 Clicking on it outside of R will open up a new R Studio session with your designated project folder as its starting directory. You can now move all data necessary for your project to this folder, where it can be easily found by R.
 
-### Creating a new R Markdown document
 
-To open a new R Markdown document within R Studio, click *File* \> *NewFile* \> *R Markdown* and you will see a prompt which asks for a Title, Author and Date. You can leave these blank initially, safe in the knowledge that these fields can always be updated later. Likewise, you can always modify the document output format later, but you do need to initially select something under 'Default Output Format' to allow R to create your Markdown file. The document type will depend on the assignment, course, and your teacher's preferences. For your assignments for ISA, .html will be fine, but for other assignment (e.g., your final thesis), you should switch the output to either PDF (which requires installation of an extra package[^1_r_markdown_basics-1] or Word.
+### Creating a new R script
 
-[^1_r_markdown_basics-1]: Specifically, a LaTeX distribution called [TinyTeX](https://yihui.org/tinytex/)
+Using scripts increases the transparency and reproducibility of your analyses. Every step in a pipeline can be documented, ensuring that you can see exactly which operations were performed (and at which stage in the process), and that you can re-run your analyses with consistent results.
 
-An editor window will spring open with a new, as yet untitled, .Rmd file. Before going further, you should save this (`Ctrl/Cmd + S`) with a sensible name[^1_r_markdown_basics-2]. At the top of the document, you will see the [YAML header](https://bookdown.org/yihui/rmarkdown-cookbook/rmarkdown-anatomy.html) where settings for document output can be added or modified.
+To open a new R script, you can either hit `Ctrl\Cmd` + `Shift` + `n`, or click *File* \> *New File* \> *R Script*. An editor window will spring open (as in the blue highlighted section in @fig-rslayout) with a new, as yet untitled, .R file. Here, you can begin entering code, which can be saved for later (re-)use. A useful feature of scripts is the opportunity to leave comments for yourself and/or people with whom you will share the code. These are entered by typing hash (`#`) to the left of your comment, which tells R not to evaluate the comment as though it were code. See below for an example.
 
-[^1_r_markdown_basics-2]: If following this step directly after creating/opening an R project, then the project directory you assigned will be the default for saving.
+```{r comment, eval = FALSE}
+
+# I'm leaving comments on my code here. 
+# Although they appear grey here, they will appear in green in your scripts.
+
+my_variable <- 2 + 2 
+
+# I created a variable called `my_variable` to which I assigned the result of the sum 2 + 2.
+
+```
 
 ## Writing in R Markdown
 
-R Markdown is an extremely rich and powerful tool and you can browse the [definitive guide](https://bookdown.org/yihui/rmarkdown/) from one of the main authors of the package to help you get the most out of it. For the most part, you can use it as you would any other typesetting/word-processing tool, and we summarize here some basic yet essential features.
+R Markdown is an extremely rich and powerful tool and you can browse the [definitive guide](https://bookdown.org/yihui/rmarkdown/) from one of the main authors of the package to help you get the most out of it. For the most part, you can use it as you would any other typesetting/word-processing tool, with the advantage that you can directly embed analysis code and results. We will only briefly discuss some essential features, but we will return to this topic in later sections.
+
+### Creating a new R Markdown document
+
+To open a new R Markdown document within R Studio, click *File* \> *New File* \> *R Markdown* and you will see a prompt which asks for a Title, Author and Date. You can leave these blank initially, safe in the knowledge that these fields can always be updated later. Likewise, you can always modify the document output format later, but you do need to initially select something under 'Default Output Format' to allow R to create your Markdown file. The document type will depend on the assignment, course, and your teacher's preferences. For your assignments for ISA, .html will be fine, but for other assignment (e.g., your final thesis), you should switch the output to either PDF (which requires installation of an extra package[^1_r_markdown_basics-1] or Word.
+
+[^1_r_markdown_basics-1]: Specifically, a LaTeX distribution called [TinyTeX](https://yihui.org/tinytex/)
+
+A fresh .Rmd file will open in the editor window. At the top of the document, you will see the [YAML header](https://bookdown.org/yihui/rmarkdown-cookbook/rmarkdown-anatomy.html) where settings for document output can be added or modified.
 
 ### New lines
 
@@ -64,8 +95,8 @@ Headings are created with the hash key (`#`) and the number of hashes modifies t
 ## Big
 ### Not so big
 #### Small
-##### Tiny
-###### Piddly
+##### Very small
+###### Tiny
 ```
 
 ### Lists
@@ -157,5 +188,5 @@ When executed, the above appears in your document as:
 In this chapter, we have covered:  
 
 * Installation of R and R Studio
-* Creating new R Projects and Markdown files
+* Creating new R Scripts, Projects and Markdown files
 * The basics of writing with R Markdown

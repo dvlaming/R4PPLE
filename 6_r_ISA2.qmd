@@ -83,22 +83,67 @@ In the above case, we would average the 25th- and 26th-ranked values of $x$ to f
 
 ## Measures of dispersion in R
 
-Let's load in `World_Data.sav`.
+Let's load in `World_Data.sav`, where the cases (rows) are individual countries. We will then pick out the variable `wdi_internet` whose label we can print with the function `attibutes`, without having to print every value.
 
 ```{r ESSload, eval = FALSE}
 
 wd<-haven::read_sav("World_Data.sav")
-
+attributes(wd$wdi_internet)$label
 ```
 
 ```{r ESSloadreal, echo = FALSE}
 wd<-haven::read_sav("C:/Users/David/OneDrive - UvA/2025_2026/ISA_24_25/Datasets/World_Data.sav")
+attributes(wd$wdi_internet)$label
+```
+
+As you can see, this variable shows the percentage of individuals using the internet as percentage of population. We can will use `summary` to display some measures of central tendency:
+
+```{r wdsummary}
+summary(wd$wdi_internet)
+```
+
+(Along with these, we can see that four countries had [`NA` values](2_r_firstdata.qmd#nte-pipe) for this variable. We need to bear this in mind as we go further, because R will try to get answers out of `NA` entries where no answers are to be had.) 
+
+### The standaRd deviation
+
+```{r wdsd}
+
+sd(wd$wdi_internet, na.rm = TRUE)
+
+```
+
+(The `na.rm = TRUE` argument above tells R to remove any values of `NA` before performing the requested operation.)
+
+
+### The Range
+
+```{r wdrange}
+
+range(wd$wdi_internet, na.rm = TRUE)
+
+```
+
+While the function runs, it actually returns the minimum and maximum values of the dataset, rather than the difference between them. We can add some extra code to calculate this:
+
+```{r wdrangediff}
+
+range(wd$wdi_internet, na.rm = TRUE)[2] - range(wd$wdi_internet, na.rm = TRUE)[1] 
+
+```
+
+This tells R to subtract the first output argument from the `range` function (the minimum value) from the second output (the maximum value).
+
+### The inteRquaRtileRange
+
+```{r IQR}
+
+IQR(wd$wdi_internet, na.rm=TRUE)
+
 ```
 
 
 ## To-do:
 
-* measures of dispersion in R
 * sim card recode
 * summary
 
