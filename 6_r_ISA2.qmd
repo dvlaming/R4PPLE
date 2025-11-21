@@ -89,6 +89,7 @@ Let's load in the World Data Indicators (WDI) dataset (`World_Data.sav`), where 
 
 wd<-haven::read_sav("World_Data.sav")
 attributes(wd$wdi_internet)$label
+
 ```
 
 ```{r ESSloadreal, echo = FALSE}
@@ -128,7 +129,6 @@ While the function runs, it actually returns the minimum and maximum values of t
 ```{r wdrangediff}
 
 range(wd$wdi_internet, na.rm = TRUE)[2] - range(wd$wdi_internet, na.rm = TRUE)[1] 
-
 ```
 
 This tells R to subtract the first output argument from the `range` function (the minimum value) from the second output (the maximum value).
@@ -156,8 +156,11 @@ An **independent variable** is the presumed cause of effects on a **dependent va
 
 The variables `wdi_lifexp` (life expectancy at birth) and `wdi_water` (percentage of population with access to improved water) are appropriate for scatterplotting, so we will submit these to `ggplot2::geom_point`. If there is a causal relationship between these two variables, then the most intuitive direction of influence would be from `wdi_water` to `wdi_lifexp`, so we `wdi_water` will be our IV (x-variable) and `wdi_lifexp` our DV (y-variable). 
 
-```{r wdscatter, warning = FALSE, fig.cap = "Access to water vs. Life exp."}
+```{r}
 #| label: fig-wdscatter_1
+#| fig-cap: "Access to water vs. Life exp."
+#| warning: FALSE
+#| message: FALSE  
 wd %>% 
   ggplot2::ggplot(ggplot2::aes(x = wdi_water, y = wdi_lifexp)) +
   ggplot2::geom_point()
@@ -166,8 +169,11 @@ wd %>%
 
 We can see a noisy, yet positive relationship between a country's percentage access to an improved water source and its life expectancy at birth. With `ggplot2` we can also run a linear model on data and plot the fit line:
 
-```{r wdscatterlm, message = FALSE, warning = FALSE, fig.cap = "Adding a linear fit line"}
+```{r}
 #| label: fig-wdscatter_2
+#| fig-cap: "Adding a linear fit line"
+#| warning: FALSE
+#| message: FALSE 
 wd %>% 
   ggplot2::ggplot(ggplot2::aes(x = wdi_water, y = wdi_lifexp)) +
   ggplot2::geom_point() +
@@ -178,8 +184,11 @@ wd %>%
 
 We could add country labels to the points to tell us more about the relationship, but, with so many points, the labels would become unreadable. Instead, we can take the `region` variable and use this to colour-code clusters of points, like so:
 
-```{r wdscatterlmcol, message = FALSE, warning = FALSE, fig.cap = "Colouring the regions"}
+```{r}
 #| label: fig-wdscatter_3
+#| fig-cap: "Colouring the regions"
+#| warning: FALSE
+#| message: FALSE 
 wd %>%
   dplyr::mutate(Region = haven::as_factor(region)) %>%
   dplyr::filter(!is.na(Region)) %>% 
@@ -190,8 +199,11 @@ wd %>%
 
 Overall, there is a positive relationship between access to water and life-expectancy, but you can see that its strength varies across different regions of the world. To add yet another dimension, you can visualize the relationship within regions:
 
-```{r wdscatterlmcolline, message = FALSE, warning = FALSE, fig.cap = "Adding fit lines per region"}
+```{r}
 #| label: fig-wdscatter_4
+#| fig-cap: "Adding fit lines per region"
+#| warning: FALSE
+#| message: FALSE
 wd %>%
   dplyr::mutate(Region = haven::as_factor(region)) %>%
   dplyr::filter(!is.na(Region)) %>% 
@@ -205,24 +217,50 @@ wd %>%
 
 Crosstabulations (crosstabs) are a useful method for visualizing relationships among combinations of ordinal and nominal-level variables with relatively few unique categories. For example, let's imagine we are interested how freedom of the press varies across countries in different regions of the world. In the WDI, we can examine this with the variables `region` and  `fhp_status5` (freedom of the press score, as rated by [Freedom House](https://freedomhouse.org/)). `region` is measured at the nominal level (as we cannot rank regions based on name alone), where `fhp_status5` has ranks press freedom from 1 ("Free") to 3 ("Not Free").
 
-A simple crosstab will show us the number of countries within regions which fall into the different categories of press freedom, and also give us the marginal counts^[That is, the counts in the categories of one variable when we ignore the levels of the other.] On this course, our convention will be to place IVs in the columns and DVs in the rows, so our most logical approach would be to place `region` in the columns and `fhp_status5` in the rows.
+A simple crosstab will show us the number of countries within regions which fall into the different categories of press freedom, and also give us the marginal counts^[That is, the counts in the categories of one variable when we ignore the levels of the other.] On this course, our convention will be to place IVs in the columns and DVs in the rows, so our most logical approach would be to place `region` in the columns and `fhp_status5` in the rows. This allows us to see how the distribution of counts across the levels of press freedom (the DV) vary across the different regions (the IV). In other words, we compare counts **horizontally**, between different regions.
 
-```{r quickx}
-# https://www.datacamp.com/doc/r/frequencies
-# https://stackoverflow.com/questions/7535412/create-a-numeric-vector-with-names-in-one-statement
+There are many good existing R functions that we can use to generate crosstabs, but we will again use a custom function. `quickxtab` produces a crosstab and adds the marginal counts for a chosen dimension. Here we create both column totals which are collapsed across regions, and row totals which are collapsed across categories of press freedom, and we wrap the output in the `knitr::kable` function [which we have seen previously.](5_r_ISA1.qmd#lst-neatsummary)
+
+```{r}
+#| label: tbl-crosstab1
+#| tbl-cap: "Count crosstab of region vs. press freedom"
+#| tbl-cap-location: bottom 
 
 source("customFunctions") 
 
-knitr::kable(quickxtab(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region),dimm = 2), digits = 2, align = "c")
+knitr::kable(quickxtab(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region)), digits = 2, align = "c")
 
 
 ```
 
-With proportions we can see more:
+While we can see trends, it is more informative to view the press freedom category counts as percentages within countries. This adjusts for differences in the number of countries within regions and shows us the proportional distribution of counts for the freedom categories. The `prop.table` can be used to transform our count table into proportions along a chosen dimension. We set `margin = 2` as we want to convert counts to proportions **within columns**, the second dimension of the table. Multiplying by 100 converts proportions to percentages, but, because we request both row and column totals from `quickxtab`, when these are passed into `prop.table` the column percentages we requested are halved, and we must multiply by 200 to return the correct values. 
 
-```{r quickxprop}
+```{r}
+#| label: tbl-crosstab2
+#| tbl-cap: "Percentage crosstab of region vs. press freedom"
+#| tbl-cap-location: bottom 
 
-knitr::kable(prop.table(quickxtab(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region),dimm = 2),2), digits = 2, align = "c")
+knitr::kable(prop.table(quickxtab(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region)),margin = 2)*200, digits = 2, align = "c") 
+```
+
+### Barcharts for proportions
+
+We can also use stacked barcharts to visualize percentage or proportion differences, to complement crosstabs.
+
+```{r}
+#| label: fig-propbar
+#| fig-cap: "Stacked percentage barchart of region vs. press freedom"
+
+as.data.frame(prop.table(table(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region)),margin = 2)*100) %>% 
+  ggplot2::ggplot(ggplot2::aes(x = Var2, y = Freq, fill = Var1)) +
+  ggplot2::geom_bar(stat = "identity") +
+  ggplot2::coord_flip() +
+  ggplot2::scale_y_continuous(expand = c(0,0),labels = scales::label_percent(scale = 1, accuracy = 1)) +
+  ggplot2::labs(fill = "Press freedom level") + 
+  ggplot2::theme(
+    axis.title.x = ggplot2::element_blank(),
+    axis.title.y = ggplot2::element_blank()
+    )
 ```
 
 
@@ -258,12 +296,10 @@ wd %>%
 ```
 
 
-## to-do
-
-* crosstab
-
 ## Summary
 
 In this chapter, we covered:
 
-* things
+* Calculating measures of dispersion
+* Visualizing relationships for data at various measurement levels
+* Recoding existing variables into new ones

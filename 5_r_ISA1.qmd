@@ -276,7 +276,8 @@ cussummary(ESS_NL$agea)
 
 While this gives us everything we need, we might wish to have a neater looking summary table. `dplyr` can help us with that:
 
-```{r NLtidysummary}
+```{r}
+#| lst-label: lst-neatsummary
 
 ESS_NL %>% dplyr::summarize("N respondents" = n(),
                             "Min. age" = min(agea, na.rm = TRUE), 

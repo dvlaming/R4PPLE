@@ -34,6 +34,6 @@ format:
     theme:
       - cosmo
       - brand
-
+    css: tablecapz.css
 editor: visual
 

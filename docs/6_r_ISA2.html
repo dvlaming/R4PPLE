@@ -135,6 +135,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="tablecapz.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -285,10 +286,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#scatterplots" id="toc-scatterplots" class="nav-link" data-scroll-target="#scatterplots"><span class="header-section-number">6.6.1</span> Scatterplots</a></li>
   <li><a href="#crosstabulations" id="toc-crosstabulations" class="nav-link" data-scroll-target="#crosstabulations"><span class="header-section-number">6.6.2</span> Crosstabulations</a></li>
+  <li><a href="#barcharts-for-proportions" id="toc-barcharts-for-proportions" class="nav-link" data-scroll-target="#barcharts-for-proportions"><span class="header-section-number">6.6.3</span> Barcharts for proportions</a></li>
   </ul></li>
   <li><a href="#datawrangling-skills-recoding-variables" id="toc-datawrangling-skills-recoding-variables" class="nav-link" data-scroll-target="#datawrangling-skills-recoding-variables"><span class="header-section-number">6.7</span> Datawrangling skills: recoding variables</a></li>
-  <li><a href="#to-do" id="toc-to-do" class="nav-link" data-scroll-target="#to-do"><span class="header-section-number">6.8</span> to-do</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.9</span> Summary</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.8</span> Summary</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/6_r_ISA2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -544,16 +545,17 @@ Figure&nbsp;6.4: Adding fit lines per region
 <section id="crosstabulations" class="level3" data-number="6.6.2">
 <h3 data-number="6.6.2" class="anchored" data-anchor-id="crosstabulations"><span class="header-section-number">6.6.2</span> Crosstabulations</h3>
 <p>Crosstabulations (crosstabs) are a useful method for visualizing relationships among combinations of ordinal and nominal-level variables with relatively few unique categories. For example, let’s imagine we are interested how freedom of the press varies across countries in different regions of the world. In the WDI, we can examine this with the variables <code>region</code> and <code>fhp_status5</code> (freedom of the press score, as rated by <a href="https://freedomhouse.org/">Freedom House</a>). <code>region</code> is measured at the nominal level (as we cannot rank regions based on name alone), where <code>fhp_status5</code> has ranks press freedom from 1 (“Free”) to 3 (“Not Free”).</p>
-<p>A simple crosstab will show us the number of countries within regions which fall into the different categories of press freedom, and also give us the marginal counts<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> On this course, our convention will be to place IVs in the columns and DVs in the rows, so our most logical approach would be to place <code>region</code> in the columns and <code>fhp_status5</code> in the rows.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.datacamp.com/doc/r/frequencies</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/7535412/create-a-numeric-vector-with-names-in-one-statement</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"customFunctions"</span>) </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">quickxtab</span>(haven<span class="sc">::</span><span class="fu">as_factor</span>(wd<span class="sc">$</span>fhp_status5),haven<span class="sc">::</span><span class="fu">as_factor</span>(wd<span class="sc">$</span>region),<span class="at">dimm =</span> <span class="dv">2</span>), <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A simple crosstab will show us the number of countries within regions which fall into the different categories of press freedom, and also give us the marginal counts<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> On this course, our convention will be to place IVs in the columns and DVs in the rows, so our most logical approach would be to place <code>region</code> in the columns and <code>fhp_status5</code> in the rows. This allows us to see how the distribution of counts across the levels of press freedom (the DV) vary across the different regions (the IV). In other words, we compare counts <strong>horizontally</strong>, between different regions.</p>
+<p>There are many good existing R functions that we can use to generate crosstabs, but we will again use a custom function. <code>quickxtab</code> produces a crosstab and adds the marginal counts for a chosen dimension. Here we create both column totals which are collapsed across regions, and row totals which are collapsed across categories of press freedom, and we wrap the output in the <code>knitr::kable</code> function <a href="./5_r_ISA1.html#lst-neatsummary">which we have seen previously.</a></p>
+<div class="cell" data-tbl-cap-location="bottom">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"customFunctions"</span>) </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">quickxtab</span>(haven<span class="sc">::</span><span class="fu">as_factor</span>(wd<span class="sc">$</span>fhp_status5),haven<span class="sc">::</span><span class="fu">as_factor</span>(wd<span class="sc">$</span>region)), <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-crosstab1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="bottom">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-crosstab1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 7%">
 <col style="width: 12%">
@@ -612,15 +614,35 @@ Figure&nbsp;6.4: Adding fit lines per region
 <td style="text-align: center;">18</td>
 <td style="text-align: center;">63</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">192</td>
+</tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>With proportions we can see more:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">prop.table</span>(<span class="fu">quickxtab</span>(haven<span class="sc">::</span><span class="fu">as_factor</span>(wd<span class="sc">$</span>fhp_status5),haven<span class="sc">::</span><span class="fu">as_factor</span>(wd<span class="sc">$</span>region),<span class="at">dimm =</span> <span class="dv">2</span>),<span class="dv">2</span>), <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-crosstab1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Count crosstab of region vs.&nbsp;press freedom
+</figcaption>
+</figure>
+</div>
+</div>
+<p>While we can see trends, it is more informative to view the press freedom category counts as percentages within countries. This adjusts for differences in the number of countries within regions and shows us the proportional distribution of counts for the freedom categories. The <code>prop.table</code> can be used to transform our count table into proportions along a chosen dimension. We set <code>margin = 2</code> as we want to convert counts to proportions <strong>within columns</strong>, the second dimension of the table. Multiplying by 100 converts proportions to percentages, but, because we request both row and column totals from <code>quickxtab</code>, when these are passed into <code>prop.table</code> the column percentages we requested are halved, and we must multiply by 200 to return the correct values.</p>
+<div class="cell" data-tbl-cap-location="bottom">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">prop.table</span>(<span class="fu">quickxtab</span>(haven<span class="sc">::</span><span class="fu">as_factor</span>(wd<span class="sc">$</span>fhp_status5),haven<span class="sc">::</span><span class="fu">as_factor</span>(wd<span class="sc">$</span>region)),<span class="at">margin =</span> <span class="dv">2</span>)<span class="sc">*</span><span class="dv">200</span>, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">align =</span> <span class="st">"c"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-crosstab2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="bottom">
+<figure class="quarto-float quarto-float-tbl figure">
+<div aria-describedby="tbl-crosstab2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 7%">
 <col style="width: 12%">
@@ -648,39 +670,84 @@ Figure&nbsp;6.4: Adding fit lines per region
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Free</td>
-<td style="text-align: center;">0.43</td>
-<td style="text-align: center;">0.52</td>
-<td style="text-align: center;">0.42</td>
-<td style="text-align: center;">0.05</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0.0</td>
-<td style="text-align: center;">0.06</td>
-<td style="text-align: center;">0.31</td>
+<td style="text-align: center;">43.33</td>
+<td style="text-align: center;">51.92</td>
+<td style="text-align: center;">42.42</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">6.38</td>
+<td style="text-align: center;">31.25</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Partly Free</td>
-<td style="text-align: center;">0.23</td>
-<td style="text-align: center;">0.27</td>
-<td style="text-align: center;">0.42</td>
-<td style="text-align: center;">0.20</td>
+<td style="text-align: center;">23.33</td>
+<td style="text-align: center;">26.92</td>
+<td style="text-align: center;">42.42</td>
+<td style="text-align: center;">20</td>
 <td style="text-align: center;">0</td>
-<td style="text-align: center;">0.5</td>
-<td style="text-align: center;">0.55</td>
-<td style="text-align: center;">0.36</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">55.32</td>
+<td style="text-align: center;">35.94</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Not Free</td>
-<td style="text-align: center;">0.33</td>
-<td style="text-align: center;">0.21</td>
-<td style="text-align: center;">0.15</td>
-<td style="text-align: center;">0.75</td>
+<td style="text-align: center;">33.33</td>
+<td style="text-align: center;">21.15</td>
+<td style="text-align: center;">15.15</td>
+<td style="text-align: center;">75</td>
 <td style="text-align: center;">0</td>
-<td style="text-align: center;">0.5</td>
-<td style="text-align: center;">0.38</td>
-<td style="text-align: center;">0.33</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">38.30</td>
+<td style="text-align: center;">32.81</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">100.00</td>
+<td style="text-align: center;">100.00</td>
+<td style="text-align: center;">100.00</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">100.00</td>
+<td style="text-align: center;">100.00</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-tbl" id="tbl-crosstab2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.2: Percentage crosstab of region vs.&nbsp;press freedom
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="barcharts-for-proportions" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="barcharts-for-proportions"><span class="header-section-number">6.6.3</span> Barcharts for proportions</h3>
+<p>We can also use stacked barcharts to visualize percentage or proportion differences, to complement crosstabs.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(haven<span class="sc">::</span><span class="fu">as_factor</span>(wd<span class="sc">$</span>fhp_status5),haven<span class="sc">::</span><span class="fu">as_factor</span>(wd<span class="sc">$</span>region)),<span class="at">margin =</span> <span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> Var2, <span class="at">y =</span> Freq, <span class="at">fill =</span> Var1)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>, <span class="at">accuracy =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Press freedom level"</span>) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> ggplot2<span class="sc">::</span><span class="fu">element_blank</span>()</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-propbar" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-propbar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="6_r_ISA2_files/figure-html/fig-propbar-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-propbar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.5: Stacked percentage barchart of region vs.&nbsp;press freedom
+</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -689,7 +756,7 @@ Figure&nbsp;6.4: Adding fit lines per region
 <h2 data-number="6.7" class="anchored" data-anchor-id="datawrangling-skills-recoding-variables"><span class="header-section-number">6.7</span> Datawrangling skills: recoding variables</h2>
 <p>It may sometimes be necessary to add new variables to your dataset, or to transform existing ones. For example, in <a href="2_r_firstdata.html#sec-mut1" class="quarto-xref"><span>Section 2.2.3</span></a> we created a <code>BMI</code> variable from existing information about a person’s height and mass. In this example, we will look at the variable <code>wd$wef_mobile</code> which holds the number of mobile telephone subscriptions per 100 people for each country.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>wd<span class="sc">$</span>wef_mobile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>wd<span class="sc">$</span>wef_mobile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1]        NA 123.66314 113.57871 131.93422 114.95461        NA        NA
   [8] 119.83760 139.20094 119.49152        NA 129.67279  51.86338        NA
@@ -727,14 +794,14 @@ attr(,"format.spss")
 </div>
 <p>From this interval/ratio level variable, we will create ordinal categories using the <code>base::cut</code> function, as below:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>wd<span class="sc">$</span>mobile_recode<span class="ot">&lt;-</span><span class="fu">cut</span>(<span class="at">x =</span> wd<span class="sc">$</span>wef_mobile, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>,<span class="fu">max</span>(wd<span class="sc">$</span>wef_mobile,<span class="at">na.rm=</span><span class="cn">TRUE</span>)), <span class="at">labels =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>wd<span class="sc">$</span>mobile_recode<span class="ot">&lt;-</span><span class="fu">cut</span>(<span class="at">x =</span> wd<span class="sc">$</span>wef_mobile, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>,<span class="fu">max</span>(wd<span class="sc">$</span>wef_mobile,<span class="at">na.rm=</span><span class="cn">TRUE</span>)), <span class="at">labels =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We supply our input data via the <code>x</code>, we give our category breakpoints with <code>breaks</code>, and we set <code>labels</code> to FALSE which means that R will give us simple numerical labels for the output. We request here bins of values from 0 up to to and including 50, from greater than 50 up to and including 100 … and so on, up to the maximum value in <code>wef_mobile</code>. This function also automatically leaves any <code>NA</code> as they are, so we do not need to provide any extra input to handle these.</p>
 <p>We can compare these variables side-by-side to check that our recode worked as intended:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>wd <span class="sc">%&gt;%</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(wef_mobile, mobile_recode) <span class="sc">%&gt;%</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(., <span class="at">n =</span> <span class="dv">25</span>) <span class="co"># use this to show more than the default 10 rows of the data after the selection </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wd <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(wef_mobile, mobile_recode) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(., <span class="at">n =</span> <span class="dv">25</span>) <span class="co"># use this to show more than the default 10 rows of the data after the selection </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 194 × 2
    wef_mobile mobile_recode
@@ -768,17 +835,13 @@ attr(,"format.spss")
 </div>
 </div>
 </section>
-<section id="to-do" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="to-do"><span class="header-section-number">6.8</span> to-do</h2>
-<ul>
-<li>crosstab</li>
-</ul>
-</section>
-<section id="summary" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.9</span> Summary</h2>
+<section id="summary" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.8</span> Summary</h2>
 <p>In this chapter, we covered:</p>
 <ul>
-<li>things</li>
+<li>Calculating measures of dispersion</li>
+<li>Visualizing relationships for data at various measurement levels</li>
+<li>Recoding existing variables into new ones</li>
 </ul>
 
 
