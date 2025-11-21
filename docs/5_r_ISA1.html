@@ -282,7 +282,7 @@ window.Quarto = {
   <li><a href="#frequency-tables" id="toc-frequency-tables" class="nav-link" data-scroll-target="#frequency-tables"><span class="header-section-number">5.7.1</span> Frequency tables</a></li>
   <li><a href="#summary-descriptive-statistics" id="toc-summary-descriptive-statistics" class="nav-link" data-scroll-target="#summary-descriptive-statistics"><span class="header-section-number">5.7.2</span> Summary descriptive statistics</a></li>
   </ul></li>
-  <li><a href="#selecting-subsets" id="toc-selecting-subsets" class="nav-link" data-scroll-target="#selecting-subsets"><span class="header-section-number">5.8</span> Selecting subsets</a></li>
+  <li><a href="#datawrangling-skills-selecting-subsets" id="toc-datawrangling-skills-selecting-subsets" class="nav-link" data-scroll-target="#datawrangling-skills-selecting-subsets"><span class="header-section-number">5.8</span> Datawrangling skills: selecting subsets</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.9</span> Summary</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/5_r_ISA1.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -850,8 +850,8 @@ $Frequency
 <p>This results in the output being forced to the slightly less reader-friendly list class, but allows us to easily display multiple modes where these arise.</p>
 </section>
 </section>
-<section id="selecting-subsets" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="selecting-subsets"><span class="header-section-number">5.8</span> Selecting subsets</h2>
+<section id="datawrangling-skills-selecting-subsets" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="datawrangling-skills-selecting-subsets"><span class="header-section-number">5.8</span> Datawrangling skills: selecting subsets</h2>
 <p>Say we are interested only in the age of respondents from the Netherlands. Using the <code>dplyr::filter</code> function, we can pick those out and then summarize the <code>agea</code> variable. A useful feature of the .sav version of the ESS dataset is the variable labelling. If you enter <code>ESS$cntry</code> into the console, you get a list of the numeric values which code for different countries, but also a list of what those numeric values represent, at the bottom of the console output. However, we will ask <code>haven</code> to print only the labels for convenience.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>haven<span class="sc">::</span><span class="fu">print_labels</span>(ESS<span class="sc">$</span>cntry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

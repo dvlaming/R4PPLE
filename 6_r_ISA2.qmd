@@ -27,7 +27,7 @@ library(haven)
 
 ## Open up your project and a new script file
 
-You created a R project for your ISA work [in the last class](5_r_ISA1.qmd#sec-makeproj), so open this now and also create a new R script (`Ctrl\Cmd` + `Shift` + `n`) so that you can save today's work.   
+You created a R project for your ISA work [in the last class](5_r_ISA1.qmd#sec-ISACh1), so open this now and also create a new R script (`Ctrl\Cmd` + `Shift` + `n`) so that you can save today's work.   
 
 ## Measures of dispersion
 
@@ -102,9 +102,9 @@ As you can see, this variable shows the percentage of individuals using the inte
 summary(wd$wdi_internet)
 ```
 
-(Along with these, we can see that four countries had [`NA` values](2_r_firstdata.qmd#nte-pipe) for this variable. We need to bear this in mind as we go further, because R will try to get answers out of `NA` entries where no answers are to be had.) 
+(Along with these, we can see that four countries had [`NA` values](2_r_firstdata.qmd#nte-na) for this variable. We need to bear this in mind as we go further, because R will try to get answers out of `NA` entries where no answers are to be had.) 
 
-### The standaRd deviation
+### The standard deviation
 
 ```{r wdsd}
 
@@ -115,7 +115,7 @@ sd(wd$wdi_internet, na.rm = TRUE)
 (The `na.rm = TRUE` argument above tells R to remove any values of `NA` before performing the requested operation.)
 
 
-### The Range
+### The range
 
 ```{r wdrange}
 
@@ -133,7 +133,9 @@ range(wd$wdi_internet, na.rm = TRUE)[2] - range(wd$wdi_internet, na.rm = TRUE)[1
 
 This tells R to subtract the first output argument from the `range` function (the minimum value) from the second output (the maximum value).
 
-### The inteRquaRtileRange
+### The interquartile range
+
+You likely noticed that the `summary` function produces quartiles 1 and 3, so we could calculate the IQR from these. However, if we are feeling lazy, there is an existing function which will do this for us:  
 
 ```{r IQR}
 
@@ -142,9 +144,31 @@ IQR(wd$wdi_internet, na.rm=TRUE)
 ```
 
 
+## Datawrangling skills: recoding variables
+
+It may sometimes be necessary to add new variables to your dataset, or to transform existing ones. For example, in @sec-mut1 we created a `BMI` variable from existing information about a person's height and mass. In this example, we will look at the variable `wd$wef_mobile` which holds the number of mobile telephone subscriptions per 100 people for each country.
+
+```{r wdmobile}
+
+wd$wef_mobile
+
+```
+
+From this interval/ratio level variable, we will create ordinal categories using the `base::cut` function, as below:
+
+```{r recode}
+# https://davidhughjones.medium.com/case-when-is-a-code-smell-and-across-is-a-code-smell-too-8f8e33429e34
+
+wd$mobile_recode<-cut(x = wd$wef_mobile, breaks = c(0,50,100,150,max(wd$wef_mobile,na.rm=TRUE)), labels = FALSE)
+
+```
+
+We supply our input data via the `x`, we give our category breakpoints with `breaks`, and we set `labels` to FALSE which means that R will give us simple numerical labels for the output. This function also automatically leaves any `NA` as they are, so we do not need to provide any extra input to handle these.
+
+
 ## To-do:
 
-* sim card recode
+* finish sim card recode
 * summary
 
 

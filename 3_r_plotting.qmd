@@ -152,7 +152,7 @@ dplyr::starwars %>%
 
 ## Plotting with additional variables
 
-The examples above featured only two variables, but you will doubtless wish to go further. Let's imagine you want to look at the influence of `gender` **and** species on height. To keep things simple, we will simply create two species categories: human and non-human.
+The examples above featured only two variables, but you will doubtless wish to go further. Let's imagine you want to look at the influence of `gender` **and** `species` on `height`. To keep things simple, we will simply create two species categories: human and non-human.
 
 ```{r}
 #| label: fig-boxgenspec

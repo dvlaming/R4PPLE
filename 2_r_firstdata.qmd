@@ -90,7 +90,7 @@ Before going further, we must discuss the use of the so-called pipe (`%>%`) abov
 3.  `dplyr::pull(age)` - this "pulls" out the age column variable for Yoda and throws everything else away, leaving us with a value of `{r} yoda_age` stored inside `yoda_age`.
 :::
 
-### `mutate`-ing your data frame
+### `mutate`-ing your data frame {#sec-mut1}
 
 Let's imagine that we want to calculate every character's body mass index (BMI) of every listed character and add this value to their row in the dataframe. The `mutate` function allows us to easily create new variables, or edit existing ones.
 

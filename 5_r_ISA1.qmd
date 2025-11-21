@@ -206,7 +206,7 @@ c(summary(ESS$agea),cusmode(ESS$agea))
 
 This results in the output being forced to the slightly less reader-friendly list class, but allows us to easily display multiple modes where these arise.
 
-## Selecting subsets
+## Datawrangling skills: selecting subsets
 
 Say we are interested only in the age of respondents from the Netherlands. Using the `dplyr::filter` function, we can pick those out and then summarize the `agea` variable. A useful feature of the .sav version of the ESS dataset is the variable labelling. If you enter `ESS$cntry` into the console, you get a list of the numeric values which code for different countries, but also a list of what those numeric values represent, at the bottom of the console output. However, we will ask `haven` to print only the labels for convenience.  
 
