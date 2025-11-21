@@ -36,3 +36,9 @@ cussummary<-function(x){
   }  
   return(xsum)
 }
+
+## "quickxtab" - crosstab with added margins
+
+quickxtab<-function(dv,iv,dimm){
+  return(addmargins(table(dv,iv), FUN = list(Total = sum), margin = dimm))
+}

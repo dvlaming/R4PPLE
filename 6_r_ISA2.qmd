@@ -207,11 +207,22 @@ Crosstabulations (crosstabs) are a useful method for visualizing relationships a
 
 A simple crosstab will show us the number of countries within regions which fall into the different categories of press freedom, and also give us the marginal counts^[That is, the counts in the categories of one variable when we ignore the levels of the other.] On this course, our convention will be to place IVs in the columns and DVs in the rows, so our most logical approach would be to place `region` in the columns and `fhp_status5` in the rows.
 
-```{r}
-x<-table(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region),2)
-https://www.datacamp.com/doc/r/frequencies
-https://stackoverflow.com/questions/7535412/create-a-numeric-vector-with-names-in-one-statement
+```{r quickx}
+# https://www.datacamp.com/doc/r/frequencies
+# https://stackoverflow.com/questions/7535412/create-a-numeric-vector-with-names-in-one-statement
 
+source("customFunctions") 
+
+knitr::kable(quickxtab(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region),dimm = 2), digits = 2, align = "c")
+
+
+```
+
+With proportions we can see more:
+
+```{r quickxprop}
+
+knitr::kable(prop.table(quickxtab(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region),dimm = 2),2), digits = 2, align = "c")
 ```
 
 
@@ -242,7 +253,7 @@ We can compare these variables side-by-side to check that our recode worked as i
 
 wd %>% 
   dplyr::select(wef_mobile, mobile_recode) %>% 
-  tibble::print(., n = 25) # use this code from the `tibble` package (loaded with `tidyverse`) to show more than the default 10 rows of the data after the selection 
+  print(., n = 25) # use this to show more than the default 10 rows of the data after the selection 
 
 ```
 
