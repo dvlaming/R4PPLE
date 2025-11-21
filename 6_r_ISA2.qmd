@@ -83,7 +83,7 @@ In the above case, we would average the 25th- and 26th-ranked values of $x$ to f
 
 ## Measures of dispersion in R
 
-Let's load in `World_Data.sav`, where the cases (rows) are individual countries. We will then pick out the variable `wdi_internet` whose label we can print with the function `attibutes`, without having to print every value.
+Let's load in the World Data Indicators (WDI) dataset (`World_Data.sav`), where the cases (rows) are individual countries. We will then pick out the variable `wdi_internet` whose label we can print with the function `attibutes`, without having to print every value.
 
 ```{r ESSload, eval = FALSE}
 
@@ -154,7 +154,7 @@ Scatterplots are useful for visualizing relationships between interval/ratio var
 An **independent variable** is the presumed cause of effects on a **dependent variable**. See the lecture notes for further information.
 :::
 
-The variables `wdi_lifexp` (life expectancy at birth) and `wdi_water` (percentage of population with access to improved water) are appropriate for scatterplotting, so we will submit these to `ggplot2::geom_point`.
+The variables `wdi_lifexp` (life expectancy at birth) and `wdi_water` (percentage of population with access to improved water) are appropriate for scatterplotting, so we will submit these to `ggplot2::geom_point`. If there is a causal relationship between these two variables, then the most intuitive direction of influence would be from `wdi_water` to `wdi_lifexp`, so we `wdi_water` will be our IV (x-variable) and `wdi_lifexp` our DV (y-variable). 
 
 ```{r wdscatter, warning = FALSE, fig.cap = "Access to water vs. Life exp."}
 #| label: fig-wdscatter_1
@@ -201,6 +201,21 @@ wd %>%
 ```
 
 
+### Crosstabulations
+
+Crosstabulations (crosstabs) are a useful method for visualizing relationships among combinations of ordinal and nominal-level variables with relatively few unique categories. For example, let's imagine we are interested how freedom of the press varies across countries in different regions of the world. In the WDI, we can examine this with the variables `region` and  `fhp_status5` (freedom of the press score, as rated by [Freedom House](https://freedomhouse.org/)). `region` is measured at the nominal level (as we cannot rank regions based on name alone), where `fhp_status5` has ranks press freedom from 1 ("Free") to 3 ("Not Free").
+
+A simple crosstab will show us the number of countries within regions which fall into the different categories of press freedom, and also give us the marginal counts^[That is, the counts in the categories of one variable when we ignore the levels of the other.] On this course, our convention will be to place IVs in the columns and DVs in the rows, so our most logical approach would be to place `region` in the columns and `fhp_status5` in the rows.
+
+```{r}
+x<-table(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region),2)
+https://www.datacamp.com/doc/r/frequencies
+https://stackoverflow.com/questions/7535412/create-a-numeric-vector-with-names-in-one-statement
+
+```
+
+
+
 ## Datawrangling skills: recoding variables
 
 It may sometimes be necessary to add new variables to your dataset, or to transform existing ones. For example, in @sec-mut1 we created a `BMI` variable from existing information about a person's height and mass. In this example, we will look at the variable `wd$wef_mobile` which holds the number of mobile telephone subscriptions per 100 people for each country.
@@ -227,7 +242,7 @@ We can compare these variables side-by-side to check that our recode worked as i
 
 wd %>% 
   dplyr::select(wef_mobile, mobile_recode) %>% 
-  print(., n = 50)
+  tibble::print(., n = 25) # use this code from the `tibble` package (loaded with `tidyverse`) to show more than the default 10 rows of the data after the selection 
 
 ```
 
