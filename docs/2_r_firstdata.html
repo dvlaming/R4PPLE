@@ -372,7 +372,7 @@ Note&nbsp;2.1: Using the “pipe” operator (%&gt;%)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Before going further, we must discuss the use of the so-called pipe (<code>%&gt;%</code>) above. This allows you to chain different functions together without having to call the object you want to manipulate for every function. Let’s break down the above chunk line-by-line:</p>
+<p>The pipe (<code>%&gt;%</code>) allows you to chain different functions together without having to call the object you want to manipulate for every function. Let’s break down the above chunk line-by-line:</p>
 <ol type="1">
 <li><code>Yoda_age &lt;- my_starwars %&gt;%</code> - this copies <code>my_starwars</code> to a new object named <code>yoda_age</code>, and <code>%&gt;%</code> passes <code>yoda_age</code> onto the next operation.</li>
 <li><code>dplyr::filter(name == "Yoda") %&gt;%</code> - this feeds <code>yoda_age</code> into the function <code>dplyr::filter</code>, which then searches the variable <code>name</code> for the text string “Yoda”, and discards characters with names which are <em>not</em> Yoda. As before, the <code>%&gt;%</code> moves the output along to the next line of code.</li>

@@ -108,20 +108,25 @@ The median can be used to summarize both interval/ratio and ordinal variables.
 
 ### The mode
 
-Lastly, we turn to the mode, which is simply the most frequently occurring value. At the time of writing, base R doesn't have a function to compute the mode, so let's write one ourselves:
+Lastly, we turn to the mode, which is simply the most frequently occurring value. At the time of writing, base R doesn't have a function to compute the mode, so we have prepared one which you can load with the file "customFunctions" which is available on [Canvas](canvas.uva.nl). To load the function, you need to use the `source` command as follows:
+
+```{r source}
+
+source("customFunctions")
+
+```
+
+**Note that the above will only work if you have the "customFunctions" file saved in your current working directory**. We recommend that you save all relevant datasets and files into the project folder which you - hopefully - [already created](5_r_ISA1.qmd#sec-makeproj). If the file exists in another folder, then you have to give R the path to the file, like so:
+
+```{r sourcepath, eval = FALSE}
+
+source("./folder_where_I_put_stuff/customFunctions")
+
+```
+
+Once added, we can run the function `cusmode`, which provides the mode and its frequency.
 
 ```{r modefun}
-
-#Hat-tip to #https://www.geeksforgeeks.org/r-language/convert-factor-to-numeric-and-numeric-to-factor-in-r-programming/ for the facto-to-numeric conversion 
-
-cusmode<-function(x){
-  xf<-as.data.frame(table(x))
-  modeframe<-xf[xf$Freq == max(xf$Freq),]
-  names(modeframe)[1]<-"Mode(s)"
-  modeframe$`Mode(s)`<-as.numeric(as.character(modeframe$`Mode(s)`)) 
-  names(modeframe)[2]<-"Frequency"
-  return(modeframe)
-}
 
 cusmode(students$age)
 
@@ -131,7 +136,8 @@ Datasets can have multiple modes; for example, let's imagine a new student joins
 
 ```{r Billy}
 
-students[5,]<-c("Billy",20)
+students[5,1]<-"Billy"
+students[5,2]<-20
 
 cusmode(students$age)
 
@@ -196,15 +202,14 @@ summary(ESS$agea)
 
 ```
 
-You will notice that the mode is missing, but we can concatenate this with the output using the function `cusmode` we created above:
+You will notice that the mode is missing, so we but we can use another custom function called `cussummary` to add this:
 
 ```{r ESSagesummary_2}
 
-c(summary(ESS$agea),cusmode(ESS$agea))
+cussummary(ESS$agea)
 
 ```
 
-This results in the output being forced to the slightly less reader-friendly list class, but allows us to easily display multiple modes where these arise.
 
 ## Datawrangling skills: selecting subsets
 
@@ -265,7 +270,7 @@ table(ESS_NL$agea)
 
 ```{r NLsummary}
 
-c(summary(ESS_NL$agea),cusmode(ESS_NL$agea))
+cussummary(ESS_NL$agea)
 
 ```
 
@@ -281,7 +286,7 @@ ESS_NL %>% dplyr::summarize("N respondents" = n(),
                             "Max. age" = max(agea, na.rm = TRUE),
                             "Mean age" = mean(agea, na.rm = TRUE),
                             "Modal age" = 
-                            paste(as.character(cusmode(agea)$`Mode(s)`), collapse = " ") # <1>
+                            paste(as.character(cusmode(agea)$mode), collapse = " ") # <1>
                             ) %>% 
   knitr::kable(align = "c") # <2>
 

@@ -83,7 +83,7 @@ Reveal to us, this does, that Yoda `{r} yoda_age` years old is.
 ::: {#nte-pipe .callout-note}
 ### Using the "pipe" operator (%\>%)
 
-Before going further, we must discuss the use of the so-called pipe (`%>%`) above. This allows you to chain different functions together without having to call the object you want to manipulate for every function. Let's break down the above chunk line-by-line:
+The pipe (`%>%`) allows you to chain different functions together without having to call the object you want to manipulate for every function. Let's break down the above chunk line-by-line:
 
 1.  `Yoda_age <- my_starwars %>%` - this copies `my_starwars` to a new object named `yoda_age`, and `%>%` passes `yoda_age` onto the next operation.
 2.  `dplyr::filter(name == "Yoda") %>%` - this feeds `yoda_age` into the function `dplyr::filter`, which then searches the variable `name` for the text string "Yoda", and discards characters with names which are *not* Yoda. As before, the `%>%` moves the output along to the next line of code.

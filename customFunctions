@@ -1,0 +1,38 @@
+### Custom functions
+### David Fleming, 21/11/25
+
+
+## "cusmode" - writes a dataframe modes and frequencies 
+
+#Hat-tip to #https://www.geeksforgeeks.org/r-language/convert-factor-to-numeric-and-numeric-to-factor-in-r-programming/ for the factor-to-numeric conversion 
+
+cusmode<-function(x){
+  xf<-as.data.frame(table(x))
+  modeframe<-xf[xf$Freq == max(xf$Freq),]
+  names(modeframe)[1]<-"mode"
+  if (is.numeric(x)){
+    modeframe$mode<-as.numeric(as.character(modeframe$mode))
+  } else if (is.character(x)){
+    modeframe$mode<-as.character(modeframe$mode)
+  }
+  return(modeframe)
+}
+
+## "cussummary" - adds mode(s) for numeric variables to base r's `summary` output
+## if a character variable is supplied, only "cusmode" (see above) will be executed
+
+cussummary<-function(x){
+  if (is.numeric(x)){
+  xsum<-summary(x)
+  lensum<-length(summary(x))
+  xmode<-cusmode(x)
+    for(i in 1:nrow(xmode)) { 
+      xsum[lensum+i]<-xmode$mode[i]
+      names(xsum)[lensum+i]<- paste("Mode", i, sep = " ")
+    }
+  } else if (is.character(x)){
+  xsum<-cusmode(x)
+  print("Chracter variable entered; returning only the mode(s)")  
+  }  
+  return(xsum)
+}

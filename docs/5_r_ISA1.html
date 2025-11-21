@@ -400,34 +400,32 @@ window.Quarto = {
 </section>
 <section id="the-mode" class="level3" data-number="5.5.3">
 <h3 data-number="5.5.3" class="anchored" data-anchor-id="the-mode"><span class="header-section-number">5.5.3</span> The mode</h3>
-<p>Lastly, we turn to the mode, which is simply the most frequently occurring value. At the time of writing, base R doesn’t have a function to compute the mode, so let’s write one ourselves:</p>
+<p>Lastly, we turn to the mode, which is simply the most frequently occurring value. At the time of writing, base R doesn’t have a function to compute the mode, so we have prepared one which you can load with the file “customFunctions” which is available on <a href="canvas.uva.nl">Canvas</a>. To load the function, you need to use the <code>source</code> command as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Hat-tip to #https://www.geeksforgeeks.org/r-language/convert-factor-to-numeric-and-numeric-to-factor-in-r-programming/ for the facto-to-numeric conversion </span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cusmode<span class="ot">&lt;-</span><span class="cf">function</span>(x){</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  xf<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">table</span>(x))</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  modeframe<span class="ot">&lt;-</span>xf[xf<span class="sc">$</span>Freq <span class="sc">==</span> <span class="fu">max</span>(xf<span class="sc">$</span>Freq),]</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(modeframe)[<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Mode(s)"</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  modeframe<span class="sc">$</span><span class="st">`</span><span class="at">Mode(s)</span><span class="st">`</span><span class="ot">&lt;-</span><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(modeframe<span class="sc">$</span><span class="st">`</span><span class="at">Mode(s)</span><span class="st">`</span>)) </span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(modeframe)[<span class="dv">2</span>]<span class="ot">&lt;-</span><span class="st">"Frequency"</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(modeframe)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cusmode</span>(students<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"customFunctions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Note that the above will only work if you have the “customFunctions” file saved in your current working directory</strong>. We recommend that you save all relevant datasets and files into the project folder which you - hopefully - <a href="./5_r_ISA1.html#sec-makeproj">already created</a>. If the file exists in another folder, then you have to give R the path to the file, like so:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"./folder_where_I_put_stuff/customFunctions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once added, we can run the function <code>cusmode</code>, which provides the mode and its frequency.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cusmode</span>(students<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  Mode(s) Frequency
-1      18         2</code></pre>
+<pre><code>  mode Freq
+1   18    2</code></pre>
 </div>
 </div>
 <p>Datasets can have multiple modes; for example, let’s imagine a new student joins the party:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>students[<span class="dv">5</span>,]<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Billy"</span>,<span class="dv">20</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cusmode</span>(students<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>students[<span class="dv">5</span>,<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Billy"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>students[<span class="dv">5</span>,<span class="dv">2</span>]<span class="ot">&lt;-</span><span class="dv">20</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cusmode</span>(students<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  Mode(s) Frequency
-1      18         2
-3      20         2</code></pre>
+<pre><code>  mode Freq
+1   18    2
+3   20    2</code></pre>
 </div>
 </div>
 <p>The mode can be calculated for all measurement levels about which you have learned, but it is typically most informative when there are relatively few values which the data can take.</p>
@@ -438,7 +436,7 @@ window.Quarto = {
 <p>We will now import some data from the <a href="https://www.europeansocialsurvey.org/">European Social Survey</a>. The data is saved as .sav, which is a file format native to the SPSS software. We use this as it contains informative labels describing the variables, but the ESS data is also available in .csv and other formats.</p>
 <p>Ensure that you have the ESS data saved to your project folder and then run the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ESS<span class="ot">&lt;-</span>haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">"ESS11.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ESS<span class="ot">&lt;-</span>haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">"ESS11.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Running the <code>dplyr::glimpse</code> command will give us a quick look at the dataset, along with telling us the number of rows (human survey respondents) and columns (variables).</p>
 </section>
@@ -448,7 +446,7 @@ window.Quarto = {
 <h3 data-number="5.7.1" class="anchored" data-anchor-id="frequency-tables"><span class="header-section-number">5.7.1</span> Frequency tables</h3>
 <p>Frequency give us information about how often each unique value of a variable occurs. In R, we can use the base <code>table</code> function to show us the frequency distribution of respondents’ <code>agea</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ESS<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ESS<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34 
@@ -463,23 +461,23 @@ window.Quarto = {
 </div>
 <p>This is a little difficult to see in the above output, but the first row shows the unique values of <code>agea</code>, while the second row gives the corresponding frequency. To make things a little more readable, let’s use some <code>dplyr</code> functions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a>ESS <span class="sc">%&gt;%</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(agea) <span class="sc">%&gt;%</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-3" class="code-annotation-target"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="st">"Frequency"</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-11-4" class="code-annotation-target"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">align =</span> <span class="st">"c"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-13-1"><a href="#annotated-cell-13-1" aria-hidden="true" tabindex="-1"></a>ESS <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-13-2" class="code-annotation-target"><a href="#annotated-cell-13-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(agea) <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-13-3" class="code-annotation-target"><a href="#annotated-cell-13-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="st">"Frequency"</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-13-4" class="code-annotation-target"><a href="#annotated-cell-13-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">align =</span> <span class="st">"c"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="2" data-code-annotation="1">Pass ESS into into <code>dplyr::group_by</code>, where we request for the data to be organized by the unique values of <code>agea</code>.</span>
+<span data-code-cell="annotated-cell-13" data-code-lines="2" data-code-annotation="1">Pass ESS into into <code>dplyr::group_by</code>, where we request for the data to be organized by the unique values of <code>agea</code>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="3" data-code-annotation="2">We use <code>dplyr::summarize</code> to reduce ESS to two variables: <code>Age</code> = the unique age values in the dataset; <code>Frequency</code> is the occurence count for each age value. <code>dplyr::n()</code> sums up all instances of a given value of <code>agea</code>.</span>
+<span data-code-cell="annotated-cell-13" data-code-lines="3" data-code-annotation="2">We use <code>dplyr::summarize</code> to reduce ESS to two variables: <code>Age</code> = the unique age values in the dataset; <code>Frequency</code> is the occurence count for each age value. <code>dplyr::n()</code> sums up all instances of a given value of <code>agea</code>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="4" data-code-annotation="3">We pass the output dataframe to the R Studio built-in <code>knitr::kable</code> function for generating tables, and tell it to center-justify the table columns (<code>align = "c"</code>).</span>
+<span data-code-cell="annotated-cell-13" data-code-lines="4" data-code-annotation="3">We pass the output dataframe to the R Studio built-in <code>knitr::kable</code> function for generating tables, and tell it to center-justify the table columns (<code>align = "c"</code>).</span>
 </dd>
 </dl>
 </div>
@@ -809,52 +807,27 @@ window.Quarto = {
 <h3 data-number="5.7.2" class="anchored" data-anchor-id="summary-descriptive-statistics"><span class="header-section-number">5.7.2</span> Summary descriptive statistics</h3>
 <p>The base <code>summary</code> function gives us an overview of key descriptive statistics. The counts you see for <code>NA</code> (see <a href="2_r_firstdata.html#nte-na" class="quarto-xref">Note&nbsp;<span>2.2</span></a>) reflect the number of respondents for whom no information about age was recorded.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ESS<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ESS<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
   15.00   37.00   53.00   51.69   67.00   90.00     270 </code></pre>
 </div>
 </div>
-<p>You will notice that the mode is missing, but we can concatenate this with the output using the function <code>cusmode</code> we created above:</p>
+<p>You will notice that the mode is missing, so we but we can use another custom function called <code>cussummary</code> to add this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">summary</span>(ESS<span class="sc">$</span>agea),<span class="fu">cusmode</span>(ESS<span class="sc">$</span>agea))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cussummary</span>(ESS<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$Min.
-[1] 15
-
-$`1st Qu.`
-[1] 37
-
-$Median
-[1] 53
-
-$Mean
-[1] 51.69323
-
-$`3rd Qu.`
-[1] 67
-
-$Max.
-[1] 90
-
-$`NA's`
-[1] 270
-
-$`Mode(s)`
-[1] 64
-
-$Frequency
-[1] 783</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.  Mode 1    NA's 
+  15.00   37.00   53.00   51.69   67.00   90.00   64.00     270 </code></pre>
 </div>
 </div>
-<p>This results in the output being forced to the slightly less reader-friendly list class, but allows us to easily display multiple modes where these arise.</p>
 </section>
 </section>
 <section id="datawrangling-skills-selecting-subsets" class="level2" data-number="5.8">
 <h2 data-number="5.8" class="anchored" data-anchor-id="datawrangling-skills-selecting-subsets"><span class="header-section-number">5.8</span> Datawrangling skills: selecting subsets</h2>
 <p>Say we are interested only in the age of respondents from the Netherlands. Using the <code>dplyr::filter</code> function, we can pick those out and then summarize the <code>agea</code> variable. A useful feature of the .sav version of the ESS dataset is the variable labelling. If you enter <code>ESS$cntry</code> into the console, you get a list of the numeric values which code for different countries, but also a list of what those numeric values represent, at the bottom of the console output. However, we will ask <code>haven</code> to print only the labels for convenience.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>haven<span class="sc">::</span><span class="fu">print_labels</span>(ESS<span class="sc">$</span>cntry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>haven<span class="sc">::</span><span class="fu">print_labels</span>(ESS<span class="sc">$</span>cntry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Labels:
@@ -887,34 +860,34 @@ Labels:
 </div>
 <p>We can see that the Netherlands is represented by the value 17 in the dataset. We could now filter on this number, but it might be more informative if the variable <strong>value</strong> was the same as variable <strong>label</strong>. Thankfully, the <code>haven</code> package which we used for the data import makes this easily achievable:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-1" class="code-annotation-target"><a href="#annotated-cell-15-1" aria-hidden="true" tabindex="-1"></a>ESS <span class="ot">&lt;-</span> ESS <span class="sc">%&gt;%</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-15-2" class="code-annotation-target"><a href="#annotated-cell-15-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">cntry_text =</span> haven<span class="sc">::</span><span class="fu">as_factor</span>(cntry))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-17"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-17" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-17-1" class="code-annotation-target"><a href="#annotated-cell-17-1" aria-hidden="true" tabindex="-1"></a>ESS <span class="ot">&lt;-</span> ESS <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-17" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-17-2" class="code-annotation-target"><a href="#annotated-cell-17-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">cntry_text =</span> haven<span class="sc">::</span><span class="fu">as_factor</span>(cntry))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-17" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="1" data-code-annotation="1">Reassign <code>ESS</code> so that the operations will be saved to the dataframe.</span>
+<span data-code-cell="annotated-cell-17" data-code-lines="1" data-code-annotation="1">Reassign <code>ESS</code> so that the operations will be saved to the dataframe.</span>
 </dd>
-<dt data-target-cell="annotated-cell-15" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-17" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="2" data-code-annotation="2">Use <code>dplyr::mutate</code> to create the new variable (as it is good practice <strong>NOT</strong> to write over existing variables) and <code>haven::as_factor(cntry)</code> to assign the text label of <code>cntry</code> to each participant, instead of the numerical value.</span>
+<span data-code-cell="annotated-cell-17" data-code-lines="2" data-code-annotation="2">Use <code>dplyr::mutate</code> to create the new variable (as it is good practice <strong>NOT</strong> to write over existing variables) and <code>haven::as_factor(cntry)</code> to assign the text label of <code>cntry</code> to each participant, instead of the numerical value.</span>
 </dd>
 </dl>
 </div>
 </div>
 <p>Now, we can filter in a more transparent manner:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-16-1" class="code-annotation-target"><a href="#annotated-cell-16-1" aria-hidden="true" tabindex="-1"></a>ESS_NL<span class="ot">&lt;-</span>ESS <span class="sc">%&gt;%</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-16-2" class="code-annotation-target"><a href="#annotated-cell-16-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cntry_text <span class="sc">==</span> <span class="st">"Netherlands"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-18"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-18-1" class="code-annotation-target"><a href="#annotated-cell-18-1" aria-hidden="true" tabindex="-1"></a>ESS_NL<span class="ot">&lt;-</span>ESS <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-18-2" class="code-annotation-target"><a href="#annotated-cell-18-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(cntry_text <span class="sc">==</span> <span class="st">"Netherlands"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-18" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-16" data-code-lines="1" data-code-annotation="1">Take <code>ESS</code></span>
+<span data-code-cell="annotated-cell-18" data-code-lines="1" data-code-annotation="1">Take <code>ESS</code></span>
 </dd>
-<dt data-target-cell="annotated-cell-16" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-18" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-16" data-code-lines="2" data-code-annotation="2">Use <code>dplyr::filter</code> to select only participants from the Netherlands. <code>cntry_text == "Netherlands"</code> asks the function to return only participants with a value on the variable <code>cntry_text</code> which is equal to “Netherlands”. Note the use of the <code>==</code> instead of <code>=</code>.</span>
+<span data-code-cell="annotated-cell-18" data-code-lines="2" data-code-annotation="2">Use <code>dplyr::filter</code> to select only participants from the Netherlands. <code>cntry_text == "Netherlands"</code> asks the function to return only participants with a value on the variable <code>cntry_text</code> which is equal to “Netherlands”. Note the use of the <code>==</code> instead of <code>=</code>.</span>
 </dd>
 </dl>
 </div>
@@ -940,7 +913,7 @@ Note&nbsp;5.1: Use of logical operators when subsetting or selecting
 </div>
 <p>Now that we have extracted Dutch respondents’ data, we can run create frequency tables and summary lists as previously.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ESS_NL<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ESS_NL<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 
@@ -952,58 +925,34 @@ Note&nbsp;5.1: Use of logical operators when subsetting or selecting
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">summary</span>(ESS_NL<span class="sc">$</span>agea),<span class="fu">cusmode</span>(ESS_NL<span class="sc">$</span>agea))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cussummary</span>(ESS_NL<span class="sc">$</span>agea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$Min.
-[1] 15
-
-$`1st Qu.`
-[1] 35
-
-$Median
-[1] 52
-
-$Mean
-[1] 50.52249
-
-$`3rd Qu.`
-[1] 66
-
-$Max.
-[1] 90
-
-$`NA's`
-[1] 5
-
-$`Mode(s)`
-[1] 52
-
-$Frequency
-[1] 38</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.  Mode 1    NA's 
+  15.00   35.00   52.00   50.52   66.00   90.00   52.00       5 </code></pre>
 </div>
 </div>
 <p>While this gives us everything we need, we might wish to have a neater looking summary table. <code>dplyr</code> can help us with that:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-19"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-19-1"><a href="#annotated-cell-19-1" aria-hidden="true" tabindex="-1"></a>ESS_NL <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="st">"N respondents"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
-<span id="annotated-cell-19-2"><a href="#annotated-cell-19-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Min. age"</span> <span class="ot">=</span> <span class="fu">min</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="annotated-cell-19-3"><a href="#annotated-cell-19-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Q1 age"</span> <span class="ot">=</span> <span class="fu">quantile</span>(agea, .<span class="dv">25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="annotated-cell-19-4"><a href="#annotated-cell-19-4" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Median age"</span> <span class="ot">=</span> <span class="fu">median</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="annotated-cell-19-5"><a href="#annotated-cell-19-5" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Q3 age"</span> <span class="ot">=</span> <span class="fu">quantile</span>(agea, .<span class="dv">75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="annotated-cell-19-6"><a href="#annotated-cell-19-6" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Max. age"</span> <span class="ot">=</span> <span class="fu">max</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="annotated-cell-19-7"><a href="#annotated-cell-19-7" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Mean age"</span> <span class="ot">=</span> <span class="fu">mean</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="annotated-cell-19-8"><a href="#annotated-cell-19-8" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Modal age"</span> <span class="ot">=</span> </span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-19-9" class="code-annotation-target"><a href="#annotated-cell-19-9" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">paste</span>(<span class="fu">as.character</span>(<span class="fu">cusmode</span>(agea)<span class="sc">$</span><span class="st">`</span><span class="at">Mode(s)</span><span class="st">`</span>), <span class="at">collapse =</span> <span class="st">" "</span>)</span>
-<span id="annotated-cell-19-10"><a href="#annotated-cell-19-10" aria-hidden="true" tabindex="-1"></a>                            ) <span class="sc">%&gt;%</span> </span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-19-11" class="code-annotation-target"><a href="#annotated-cell-19-11" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">align =</span> <span class="st">"c"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-21"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-21-1"><a href="#annotated-cell-21-1" aria-hidden="true" tabindex="-1"></a>ESS_NL <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="st">"N respondents"</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
+<span id="annotated-cell-21-2"><a href="#annotated-cell-21-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Min. age"</span> <span class="ot">=</span> <span class="fu">min</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="annotated-cell-21-3"><a href="#annotated-cell-21-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Q1 age"</span> <span class="ot">=</span> <span class="fu">quantile</span>(agea, .<span class="dv">25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="annotated-cell-21-4"><a href="#annotated-cell-21-4" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Median age"</span> <span class="ot">=</span> <span class="fu">median</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="annotated-cell-21-5"><a href="#annotated-cell-21-5" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Q3 age"</span> <span class="ot">=</span> <span class="fu">quantile</span>(agea, .<span class="dv">75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="annotated-cell-21-6"><a href="#annotated-cell-21-6" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Max. age"</span> <span class="ot">=</span> <span class="fu">max</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="annotated-cell-21-7"><a href="#annotated-cell-21-7" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Mean age"</span> <span class="ot">=</span> <span class="fu">mean</span>(agea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="annotated-cell-21-8"><a href="#annotated-cell-21-8" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Modal age"</span> <span class="ot">=</span> </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-21-9" class="code-annotation-target"><a href="#annotated-cell-21-9" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">paste</span>(<span class="fu">as.character</span>(<span class="fu">cusmode</span>(agea)<span class="sc">$</span>mode), <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="annotated-cell-21-10"><a href="#annotated-cell-21-10" aria-hidden="true" tabindex="-1"></a>                            ) <span class="sc">%&gt;%</span> </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-21-11" class="code-annotation-target"><a href="#annotated-cell-21-11" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">align =</span> <span class="st">"c"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-21" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-19" data-code-lines="9" data-code-annotation="1">This line helps us create a single text string should we have multiple modes. <code>as.character</code> converts input to a text string, and the <code>paste</code> function with the added option <code>collapse = " "</code> folds the multiple modes into one text string separated by a space.</span>
+<span data-code-cell="annotated-cell-21" data-code-lines="9" data-code-annotation="1">This line helps us create a single text string should we have multiple modes. <code>as.character</code> converts input to a text string, and the <code>paste</code> function with the added option <code>collapse = " "</code> folds the multiple modes into one text string separated by a space.</span>
 </dd>
-<dt data-target-cell="annotated-cell-19" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-21" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-19" data-code-lines="11" data-code-annotation="2">We pass the output dataframe to <code>knitr::kable</code> to make our table neater.</span>
+<span data-code-cell="annotated-cell-21" data-code-lines="11" data-code-annotation="2">We pass the output dataframe to <code>knitr::kable</code> to make our table neater.</span>
 </dd>
 </dl>
 </div>

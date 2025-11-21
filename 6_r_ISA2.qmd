@@ -143,6 +143,63 @@ IQR(wd$wdi_internet, na.rm=TRUE)
 
 ```
 
+## Visualizing relationships between variables
+
+### Scatterplots
+
+Scatterplots are useful for visualizing relationships between interval/ratio variables. In this course, our convention will be to place **independent variables (IVs)** on the x-axis and **dependent variables (DVs)** on the y-axis.
+
+::: {#nte-ivdv .callout-note}
+### IVs and DVs
+An **independent variable** is the presumed cause of effects on a **dependent variable**. See the lecture notes for further information.
+:::
+
+The variables `wdi_lifexp` (life expectancy at birth) and `wdi_water` (percentage of population with access to improved water) are appropriate for scatterplotting, so we will submit these to `ggplot2::geom_point`.
+
+```{r wdscatter, warning = FALSE, fig.cap = "Access to water vs. Life exp."}
+#| label: fig-wdscatter_1
+wd %>% 
+  ggplot2::ggplot(ggplot2::aes(x = wdi_water, y = wdi_lifexp)) +
+  ggplot2::geom_point()
+
+```
+
+We can see a noisy, yet positive relationship between a country's percentage access to an improved water source and its life expectancy at birth. With `ggplot2` we can also run a linear model on data and plot the fit line:
+
+```{r wdscatterlm, message = FALSE, warning = FALSE, fig.cap = "Adding a linear fit line"}
+#| label: fig-wdscatter_2
+wd %>% 
+  ggplot2::ggplot(ggplot2::aes(x = wdi_water, y = wdi_lifexp)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE)
+
+```
+
+
+We could add country labels to the points to tell us more about the relationship, but, with so many points, the labels would become unreadable. Instead, we can take the `region` variable and use this to colour-code clusters of points, like so:
+
+```{r wdscatterlmcol, message = FALSE, warning = FALSE, fig.cap = "Colouring the regions"}
+#| label: fig-wdscatter_3
+wd %>%
+  dplyr::mutate(Region = haven::as_factor(region)) %>%
+  dplyr::filter(!is.na(Region)) %>% 
+  ggplot2::ggplot(ggplot2::aes(x = wdi_water, y = wdi_lifexp)) +
+  ggplot2::geom_point(ggplot2::aes(colour = Region)) +
+  ggplot2::geom_smooth(method = "lm", se = FALSE)
+```
+
+Overall, there is a positive relationship between access to water and life-expectancy, but you can see that its strength varies across different regions of the world. To add yet another dimension, you can visualize the relationship within regions:
+
+```{r wdscatterlmcolline, message = FALSE, warning = FALSE, fig.cap = "Adding fit lines per region"}
+#| label: fig-wdscatter_4
+wd %>%
+  dplyr::mutate(Region = haven::as_factor(region)) %>%
+  dplyr::filter(!is.na(Region)) %>% 
+  ggplot2::ggplot(ggplot2::aes(x = wdi_water, y = wdi_lifexp, colour = Region)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE)
+```
+
 
 ## Datawrangling skills: recoding variables
 
@@ -157,20 +214,27 @@ wd$wef_mobile
 From this interval/ratio level variable, we will create ordinal categories using the `base::cut` function, as below:
 
 ```{r recode}
-# https://davidhughjones.medium.com/case-when-is-a-code-smell-and-across-is-a-code-smell-too-8f8e33429e34
 
 wd$mobile_recode<-cut(x = wd$wef_mobile, breaks = c(0,50,100,150,max(wd$wef_mobile,na.rm=TRUE)), labels = FALSE)
 
 ```
 
-We supply our input data via the `x`, we give our category breakpoints with `breaks`, and we set `labels` to FALSE which means that R will give us simple numerical labels for the output. This function also automatically leaves any `NA` as they are, so we do not need to provide any extra input to handle these.
+We supply our input data via the `x`, we give our category breakpoints with `breaks`, and we set `labels` to FALSE which means that R will give us simple numerical labels for the output. We request here bins of values from 0 up to to and including 50, from greater than 50 up to and including 100 ... and so on, up to the maximum value in `wef_mobile`. This function also automatically leaves any `NA` as they are, so we do not need to provide any extra input to handle these.
+
+We can compare these variables side-by-side to check that our recode worked as intended:
+
+```{r recodeandorig}
+
+wd %>% 
+  dplyr::select(wef_mobile, mobile_recode) %>% 
+  print(., n = 50)
+
+```
 
 
-## To-do:
+## to-do
 
-* finish sim card recode
-* summary
-
+* crosstab
 
 ## Summary
 
