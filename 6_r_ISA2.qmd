@@ -1,4 +1,4 @@
-# ISA 2: measures of dispersion and visualizing relationships
+# ISA 2: measures of dispersion and visualizing relationships {#sec-ISACh2}
 
 ## R outcomes
 

@@ -348,11 +348,11 @@
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "7  Summary",
+    "title": "8  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
@@ -581,6 +581,94 @@
     "crumbs": [
       "Introduction to Statistical Analysis (Y1)",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>ISA 2: measures of dispersion and visualizing relationships</span>"
+    ]
+  },
+  {
+    "objectID": "7_r_ISA3.html",
+    "href": "7_r_ISA3.html",
+    "title": "7  ISA 3: correlation coefficients and working with normal distributions",
+    "section": "",
+    "text": "7.1 R outcomes\nAfter reading this chapter, you can:",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ISA 3: correlation coefficients and working with normal distributions</span>"
+    ]
+  },
+  {
+    "objectID": "7_r_ISA3.html#r-outcomes",
+    "href": "7_r_ISA3.html#r-outcomes",
+    "title": "7  ISA 3: correlation coefficients and working with normal distributions",
+    "section": "",
+    "text": "Calculate and interpret pearson’s \\(r\\)\nZ-transform datapoints and interpret the result",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ISA 3: correlation coefficients and working with normal distributions</span>"
+    ]
+  },
+  {
+    "objectID": "7_r_ISA3.html#required-packages",
+    "href": "7_r_ISA3.html#required-packages",
+    "title": "7  ISA 3: correlation coefficients and working with normal distributions",
+    "section": "7.2 Required packages",
+    "text": "7.2 Required packages\nYou will need the following additional packages:\n\ndplyr (but we will simply install the tidyverse collection so that we also have the pipe operator - %&gt;% - loaded)\nhaven\n\n\nlibrary(tidyverse)\nlibrary(haven)",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ISA 3: correlation coefficients and working with normal distributions</span>"
+    ]
+  },
+  {
+    "objectID": "7_r_ISA3.html#open-up-your-project-and-a-new-script-file",
+    "href": "7_r_ISA3.html#open-up-your-project-and-a-new-script-file",
+    "title": "7  ISA 3: correlation coefficients and working with normal distributions",
+    "section": "7.3 Open up your project and a new script file",
+    "text": "7.3 Open up your project and a new script file\nYou created a R project for your ISA work in the first class, so open this now and also create a new R script (Ctrl\\Cmd + Shift + n) so that you can save today’s work.",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ISA 3: correlation coefficients and working with normal distributions</span>"
+    ]
+  },
+  {
+    "objectID": "7_r_ISA3.html#pearsons-r-correlation-coefficient",
+    "href": "7_r_ISA3.html#pearsons-r-correlation-coefficient",
+    "title": "7  ISA 3: correlation coefficients and working with normal distributions",
+    "section": "7.4 Pearson’s \\(r\\) correlation coefficient",
+    "text": "7.4 Pearson’s \\(r\\) correlation coefficient\nPearson’s \\(r\\) is given by:\n\\[\nr_{xy} = \\frac{\\sum_{i=1}^{n}{(x_i - \\bar{x})(y_i - \\bar{y})}}{{\\sqrt{\\sum_{i=1}^{n}{(x_i - \\bar{x})^2}}}{\\sqrt{\\sum_{i=1}^{n}{(y_i - \\bar{y})^2}}}}\n\\]\nWhere:\n\n\\(x_i\\) = i’th score on variable \\(x\\)\n\n\\(y_i\\) = i’th score on variable \\(y\\)\n\n\\(\\bar{x}\\) = mean of variable \\(x\\)\n\n\\(\\bar{y}\\) = mean of variable \\(y\\)\n\n\\(\\sum_{i=1}^{n}\\) = sum scores from index (element) 1 to \\(n\\)\n\n\\(n\\) = sample size\n\nLet’s now imagine that we develop the following Research Question:Does the average daily time (in minutes) spent using R correlate with the average number of obscenities used per day? We collect some data, which looks like this:\n\ndata&lt;-tibble::tibble(\"Average R minutes\"=c(240,310,230,220),\"Average # obscenities\"=c(3,6,4,3)) %&gt;%\n  knitr::kable(align=\"c\")\ndata\n\n\n\n\n\n\n\nAverage R minutes\nAverage # obscenities\n\n\n\n\n240\n3\n\n\n310\n6\n\n\n230\n4\n\n\n220\n3\n\n\n\n\n\n\nTable 7.1: Average R minutes per week vs. average obscenities uttered\n\n\n\n\nWith the following steps, we can unpack the formula and derive the correlation coefficient:\n\ndata&lt;-tibble::tibble(\"minutes_x\"=c(240,310,230,220),\"words_y\"=c(3,6,4,3))\ndata$x_minus_xbar&lt;-data$minutes_x-mean(data$minutes_x)\ndata$y_minus_ybar&lt;-data$words_y-mean(data$words_y)\ndata$xdev_by_ydev&lt;-data$x_minus_xbar*data$y_minus_ybar\ndata$xdev_square&lt;-data$x_minus_xbar^2\ndata$ydev_square&lt;-data$y_minus_ybar^2\n\ndata %&gt;%\n  knitr::kable(align=\"c\",col.names=c(\"$x_{minutes}$\",\"$y_{words}$\",\"$x-\\\\bar{x}$\",\"$y-\\\\bar{y}$\",\"$(x-\\\\bar{x}).(y-\\\\bar{y})$\",\"$(x-\\\\bar{x})^2$\",\"$(y-\\\\bar{y})^2$\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(x_{minutes}\\)\n\\(y_{words}\\)\n\\(x-\\bar{x}\\)\n\\(y-\\bar{y}\\)\n\\((x-\\bar{x}).(y-\\bar{y})\\)\n\\((x-\\bar{x})^2\\)\n\\((y-\\bar{y})^2\\)\n\n\n\n\n240\n3\n-10\n-1\n10\n100\n1\n\n\n310\n6\n60\n2\n120\n3600\n4\n\n\n230\n4\n-20\n0\n0\n400\n0\n\n\n220\n3\n-30\n-1\n30\n900\n1\n\n\n\n\n\n\nTable 7.2: Correlation steps\n\n\n\n\n\n\\(\\bar{x} = 250\\)\n\n\\(\\bar{y}= 4\\)\n\n\\(\\sum_{i=1}^{n}{(x_i - \\bar{x})(y_i - \\bar{y})}=160\\)\n\n\\(\\sum_{i=1}^{n}{(x_i - \\bar{x})^2} = 5000\\)\n\n\\(\\sum_{i=1}^{n}{(y_i - \\bar{y})^2} = 6\\)\n\n\\[\nr_{xy} = \\frac{160}{\\sqrt{5000}*\\sqrt{6}} = \\frac{160}{173.21} = .92\n\\] We can verify our by-hand calculation using the R function, cor:\n\ndata&lt;-tibble::tibble(\"minutes_x\"=c(240,310,230,220),\"words_y\"=c(3,6,4,3))\ncor(data$minutes_x, data$words_y, \n    method = \"pearson\")\n\n[1] 0.9237604\n\n\nWe will use the following rules-of-thumb for interpreting absolute values of \\(r\\):\n\n\\(r \\le .3\\) = small\n\n\\(.3 &lt; r \\le .6\\) = moderate\n\n\\(.6 &lt; r \\le .8\\) = strong\n\n\\(.8 &lt; r \\le 1\\) = very strong",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ISA 3: correlation coefficients and working with normal distributions</span>"
+    ]
+  },
+  {
+    "objectID": "7_r_ISA3.html#z-transformations",
+    "href": "7_r_ISA3.html#z-transformations",
+    "title": "7  ISA 3: correlation coefficients and working with normal distributions",
+    "section": "7.5 Z-transformations",
+    "text": "7.5 Z-transformations\nImagine we know that income per week (in euro) is normally distributed in the population of Dutch university students who graduated in the last year, such that the mean (\\(\\mu\\)) income is 1,500 EUR, with an SD (\\(\\sigma\\)) of 100.We might wonder: what proportion of the population of new Dutch graduates would have a weekly income of greater than 1,700 EUR?\n\n\n\n\n\n\n\n\nFigure 7.1: Fictional distribution of graduate income scores. Green shading denotes incomes of greater than 1,700 EUR.\n\n\n\n\n\nWe can see the area of interest in the distribution above, in Figure 7.1. To calculate the proportion, we first need to convert the target value into a z-score, which transforms the value into standard deviation units. In this case:\n\\[\nz = \\frac{x-\\mu}{\\sigma} = \\frac{1700-1500}{100} = 2\n\\] To work out the probability associated with a z-score of 2, we can supply the score to the R function, along with information about our distribution:\n\ntarget_income&lt;-1700\nmean_income&lt;-1500\nsd_income&lt;-100\n\npnorm(target_income ,mean = mean_income, sd = sd_income, lower.tail = FALSE)\n\n[1] 0.02275013\n\n# We set 'lower.tail = FALSE' because we want to return probabilities associated with a score *greater* than 1,700, so the upper/right-tail values.\n\nThis allows us to answer our question: there is a 2.28 chance of randomly selecting an individual with an income of above 1,700 EUR per week from the population of new Dutch graduates",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ISA 3: correlation coefficients and working with normal distributions</span>"
+    ]
+  },
+  {
+    "objectID": "7_r_ISA3.html#scatterplots-and-r-with-the-wdi-data",
+    "href": "7_r_ISA3.html#scatterplots-and-r-with-the-wdi-data",
+    "title": "7  ISA 3: correlation coefficients and working with normal distributions",
+    "section": "7.6 Scatterplots and \\(r\\) with the WDI data",
+    "text": "7.6 Scatterplots and \\(r\\) with the WDI data\nLet’s again load in the World Data Indicators (WDI) dataset (World_Data.sav), and revisit our scatterplot from the previous class (see Figure 6.1).\n\nwd&lt;-haven::read_sav(\"World_Data.sav\")\nwd %&gt;% \n  ggplot2::ggplot(ggplot2::aes(x = wdi_water, y = wdi_lifexp)) +\n  ggplot2::geom_point() +\n  ggplot2::geom_smooth(method = \"lm\", se = FALSE)\n\n\n\n\n\n\n\n\n\nFigure 7.2: Access to water vs. Life exp.\n\n\n\n\n\nWe see a noisy, yet positive relationship between a country’s percentage access to an improved water source and its life expectancy at birth. The points do not cling tightly around the linear fit line, but are scattered around it.\nTo give us some more formal information about the relationship strength, we can calculate pearson’s \\(r\\) as before:\n\nwdcor &lt;- cor(wd$wdi_water, wd$wdi_lifexp, use = \"complete.obs\")\n\nwdcor\n\n[1] 0.737482\n\n\nWe can see that the correlation between the variables is 0.74. Following our rules-of-thumb above, we could diagnose this as a moderate, positive relationship between the two variables.",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ISA 3: correlation coefficients and working with normal distributions</span>"
+    ]
+  },
+  {
+    "objectID": "7_r_ISA3.html#summary",
+    "href": "7_r_ISA3.html#summary",
+    "title": "7  ISA 3: correlation coefficients and working with normal distributions",
+    "section": "7.7 Summary",
+    "text": "7.7 Summary\nIn this chapter, we covered:\n\nthings",
+    "crumbs": [
+      "Introduction to Statistical Analysis (Y1)",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ISA 3: correlation coefficients and working with normal distributions</span>"
     ]
   }
 ]

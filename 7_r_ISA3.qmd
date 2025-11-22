@@ -1,0 +1,199 @@
+# ISA 3: correlation coefficients and working with normal distributions
+
+## R outcomes
+
+After reading this chapter, you can: 
+
+1. Calculate and interpret pearson's $r$ 
+2. Z-transform datapoints and interpret the result 
+
+## Required packages
+
+You will need the following additional packages:
+
+-   `dplyr` (but we will simply install the `tidyverse` collection so that we also have the pipe operator - `%>%` - loaded)
+-   `haven`
+
+```{r}
+#| label: install_load
+#| message: FALSE 
+#| warning: FALSE
+
+library(tidyverse)
+library(haven)
+
+```
+
+## Open up your project and a new script file
+
+You created a R project for your ISA work [in the first class](5_r_ISA1.qmd#sec-ISACh1), so open this now and also create a new R script (`Ctrl\Cmd` + `Shift` + `n`) so that you can save today's work.   
+
+## Pearson's $r$ correlation coefficient
+
+Pearson's $r$ is given by:
+
+$$
+r_{xy} = \frac{\sum_{i=1}^{n}{(x_i - \bar{x})(y_i - \bar{y})}}{{\sqrt{\sum_{i=1}^{n}{(x_i - \bar{x})^2}}}{\sqrt{\sum_{i=1}^{n}{(y_i - \bar{y})^2}}}}
+$$ 
+
+Where:
+
+* $x_i$ = i'th score on variable $x$  
+* $y_i$ = i'th score on variable $y$  
+* $\bar{x}$ = mean of variable $x$  
+* $\bar{y}$ = mean of variable $y$  
+* $\sum_{i=1}^{n}$ = sum scores from index (element) 1 to $n$   
+* $n$ = sample size
+
+Let's now imagine that we develop the following Research Question:_Does the average daily time (in minutes) spent using R correlate with the average number of obscenities used per day?_ We collect some data, which looks like this:
+
+```{r}
+#| label: tbl-corrdat
+#| tbl-cap: "Average R minutes per week vs. average obscenities uttered"
+#| tbl-cap-location: bottom 
+
+data<-tibble::tibble("Average R minutes"=c(240,310,230,220),"Average # obscenities"=c(3,6,4,3)) %>%
+  knitr::kable(align="c")
+data
+```
+
+With the following steps, we can unpack the formula and derive the correlation coefficient:
+
+```{r}
+#| label: tbl-corrdat_unpack
+#| tbl-cap: "Correlation steps"
+#| tbl-cap-location: bottom 
+
+data<-tibble::tibble("minutes_x"=c(240,310,230,220),"words_y"=c(3,6,4,3))
+data$x_minus_xbar<-data$minutes_x-mean(data$minutes_x)
+data$y_minus_ybar<-data$words_y-mean(data$words_y)
+data$xdev_by_ydev<-data$x_minus_xbar*data$y_minus_ybar
+data$xdev_square<-data$x_minus_xbar^2
+data$ydev_square<-data$y_minus_ybar^2
+
+data %>%
+  knitr::kable(align="c",col.names=c("$x_{minutes}$","$y_{words}$","$x-\\bar{x}$","$y-\\bar{y}$","$(x-\\bar{x}).(y-\\bar{y})$","$(x-\\bar{x})^2$","$(y-\\bar{y})^2$"))
+```
+
+* $\bar{x} = 250$   
+* $\bar{y}= 4$     
+* $\sum_{i=1}^{n}{(x_i - \bar{x})(y_i - \bar{y})}=160$   
+* $\sum_{i=1}^{n}{(x_i - \bar{x})^2} = 5000$  
+* $\sum_{i=1}^{n}{(y_i - \bar{y})^2} = 6$
+
+$$
+r_{xy} = \frac{160}{\sqrt{5000}*\sqrt{6}} = \frac{160}{173.21} = .92
+$$
+We can verify our by-hand calculation using the R function, `cor`:
+
+```{r}
+data<-tibble::tibble("minutes_x"=c(240,310,230,220),"words_y"=c(3,6,4,3))
+cor(data$minutes_x, data$words_y, 
+    method = "pearson")
+```
+
+We will use the following rules-of-thumb for interpreting **absolute** values of $r$:
+
+* $r \le .3$ = small  
+* $.3 < r \le .6$ = moderate    
+* $.6 < r \le .8$ = strong  
+* $.8 < r \le 1$ =  very strong 
+
+## Z-transformations
+
+Imagine we know that income per week (in euro) is normally distributed in the population of Dutch university students who graduated in the last year, such that the mean ($\mu$) income is  1,500 EUR, with an SD ($\sigma$) of 100.We might wonder: _what proportion of the population of new Dutch graduates would have a weekly income of greater than 1,700 EUR?_
+
+```{r}
+#| label: fig-normdist
+#| fig-cap: "Fictional distribution of graduate income scores. Green shading denotes incomes of greater than 1,700 EUR."
+#| echo: FALSE 
+
+x<-seq(1100,1900,10)
+y<-dnorm(x,1500,100)
+xx<-tibble::tibble("Income"=x,"pdf"=y)
+mulab<- paste("mu[income] == ", 1500)
+siglab<- paste("sigma[income] == ", 100)
+p <- ggplot(xx, aes(x=Income,y=pdf)) +
+  theme_minimal()+
+  geom_line()+
+  geom_segment(x=1500,y=0,xend=1500,yend=max(xx$pdf),linetype="dashed",color="red")+
+  geom_segment(x=1400,y=0,xend=1400,yend=as.numeric(xx[xx$Income==1400,2]),linetype="dashed",color="blue")+
+  geom_segment(x=1600,y=0,xend=1600,yend=as.numeric(xx[xx$Income==1600,2]),linetype="dashed",color="blue")+
+  geom_segment(x=1300,y=0,xend=1300,yend=as.numeric(xx[xx$Income==1300,2]),linetype="dashed",color="blue")+
+  geom_segment(x=1700,y=0,xend=1700,yend=as.numeric(xx[xx$Income==1700,2]),linetype="dashed",color="blue")+
+  annotate("text", x = 1150, y = 0.0041, colour="red", label = mulab,parse=TRUE)+
+  annotate("text", x = 1150, y = 0.0039, colour="blue", label = siglab,parse=TRUE)+
+  geom_ribbon(data=subset(xx,x>=1700),aes(x=Income,ymax=pdf),ymin=0,fill="green")+
+  scale_x_continuous(breaks = seq(1100,1900,100),labels = seq(1100,1900,100))+
+  theme(axis.text.y = element_blank())+
+  ylab("Density")
+p
+```
+
+We can see the area of interest in the distribution above, in @fig-normdist. To calculate the proportion, we first need to convert the target value into a **z-score**, which transforms the value into standard deviation units. In this case:
+
+$$
+z = \frac{x-\mu}{\sigma} = \frac{1700-1500}{100} = 2
+$$
+To work out the probability associated with a z-score of 2, we can supply the score to the R function, along with information about our distribution:
+
+```{r}
+target_income<-1700
+mean_income<-1500
+sd_income<-100
+
+pnorm(target_income ,mean = mean_income, sd = sd_income, lower.tail = FALSE)
+
+# We set 'lower.tail = FALSE' because we want to return probabilities associated with a score *greater* than 1,700, so the upper/right-tail values.
+
+```
+
+This allows us to answer our question: _there is a `{r} round((pnorm(target_income ,mean = mean_income, sd = sd_income, lower.tail = FALSE))*100,2)` chance of randomly selecting an individual with an income of above 1,700 EUR per week from the population of new Dutch graduates_
+
+## Scatterplots and $r$ with the WDI data
+
+Let's again load in the World Data Indicators (WDI) dataset (`World_Data.sav`), and revisit our scatterplot from the previous class (see @fig-wdscatter_1).
+
+```{r}
+#| eval: FALSE
+
+wd<-haven::read_sav("World_Data.sav")
+wd %>% 
+  ggplot2::ggplot(ggplot2::aes(x = wdi_water, y = wdi_lifexp)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE)
+```
+
+```{r}
+#| echo: FALSE
+#| label: fig-wdscatter_ISA3
+#| fig-cap: "Access to water vs. Life exp."
+#| warning: FALSE
+#| message: FALSE
+
+wd<-haven::read_sav("C:/Users/David/OneDrive - UvA/2025_2026/ISA_24_25/Datasets/World_Data.sav")
+
+wd %>% 
+  ggplot2::ggplot(ggplot2::aes(x = wdi_water, y = wdi_lifexp)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm", se = FALSE)
+```
+
+We see a noisy, yet positive relationship between a country's percentage access to an improved water source and its life expectancy at birth. The points do not cling tightly around the linear fit line, but are scattered around it.
+
+To give us some more formal information about the relationship strength, we can calculate pearson's $r$ as before:
+
+```{r}
+
+wdcor <- cor(wd$wdi_water, wd$wdi_lifexp, use = "complete.obs")
+
+wdcor
+```
+
+We can see that the correlation between the variables is `{r} round(wdcor,2)`. Following our rules-of-thumb above, we could diagnose this as a **moderate, positive** relationship between the two variables.
+
+## Summary
+
+In this chapter, we covered:
+
+* things
