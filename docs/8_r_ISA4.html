@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; The basics of datawrangling in the tidyverse – R for the PPL(E)</title>
+<title>8&nbsp; ISA 4: working with normal distributions II - the sampling distribution of means – R for the PPL(E)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./3_r_plotting.html" rel="next">
-<link href="./1_r_markdown_basics.html" rel="prev">
+<link href="./summary.html" rel="next">
+<link href="./7_r_ISA3.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1_r_markdown_basics.html">The basics</a></li><li class="breadcrumb-item"><a href="./2_r_firstdata.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The basics of datawrangling in the <code>tidyverse</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r_ISA_preface.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./8_r_ISA4.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ISA 4: working with normal distributions II - the sampling distribution of means</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -198,7 +198,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_r_firstdata.html" class="sidebar-item-text sidebar-link active">
+  <a href="./2_r_firstdata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The basics of datawrangling in the <code>tidyverse</code></span></span></a>
   </div>
 </li>
@@ -249,12 +249,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ISA 3: correlation coefficients and working with normal distributions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_r_ISA4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ISA 4: working with normal distributions II - the sampling distribution of means</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -273,24 +279,23 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link active" data-scroll-target="#installing-packages"><span class="header-section-number">2.1</span> Installing packages</a></li>
-  <li><a href="#working-with-data" id="toc-working-with-data" class="nav-link" data-scroll-target="#working-with-data"><span class="header-section-number">2.2</span> Working with data</a>
-  <ul class="collapse">
-  <li><a href="#taking-a-glimpse" id="toc-taking-a-glimpse" class="nav-link" data-scroll-target="#taking-a-glimpse"><span class="header-section-number">2.2.1</span> Taking a <code>glimpse</code>…</a></li>
-  <li><a href="#filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest" id="toc-filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest" class="nav-link" data-scroll-target="#filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest"><span class="header-section-number">2.2.2</span> <code>filter</code>ing on values of a specific variable, and <code>pull</code>ing only the variable of interest</a></li>
-  <li><a href="#sec-mut1" id="toc-sec-mut1" class="nav-link" data-scroll-target="#sec-mut1"><span class="header-section-number">2.2.3</span> <code>mutate</code>-ing your data frame</a></li>
-  <li><a href="#select-ing-a-subset-of-variables-from-an-existing-data-frame" id="toc-select-ing-a-subset-of-variables-from-an-existing-data-frame" class="nav-link" data-scroll-target="#select-ing-a-subset-of-variables-from-an-existing-data-frame"><span class="header-section-number">2.2.4</span> <code>select</code>-ing a subset of variables from an existing data frame</a></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">2.3</span> Summary</a></li>
+  <li><a href="#r-outcomes" id="toc-r-outcomes" class="nav-link active" data-scroll-target="#r-outcomes"><span class="header-section-number">8.1</span> R outcomes</a></li>
+  <li><a href="#required-packages" id="toc-required-packages" class="nav-link" data-scroll-target="#required-packages"><span class="header-section-number">8.2</span> Required packages</a></li>
+  <li><a href="#open-up-your-project-and-a-new-script-file" id="toc-open-up-your-project-and-a-new-script-file" class="nav-link" data-scroll-target="#open-up-your-project-and-a-new-script-file"><span class="header-section-number">8.3</span> Open up your project and a new script file</a></li>
+  <li><a href="#recap-z-transformations" id="toc-recap-z-transformations" class="nav-link" data-scroll-target="#recap-z-transformations"><span class="header-section-number">8.4</span> Recap: Z-transformations</a></li>
+  <li><a href="#the-sampling-distribution-of-means" id="toc-the-sampling-distribution-of-means" class="nav-link" data-scroll-target="#the-sampling-distribution-of-means"><span class="header-section-number">8.5</span> The Sampling Distribution (of Means)</a></li>
+  <li><a href="#computing-new-variables" id="toc-computing-new-variables" class="nav-link" data-scroll-target="#computing-new-variables"><span class="header-section-number">8.6</span> Computing new variables</a></li>
+  <li><a href="#to-do" id="toc-to-do" class="nav-link" data-scroll-target="#to-do"><span class="header-section-number">8.7</span> To do:</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.8</span> Summary</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/2_r_firstdata.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/8_r_ISA4.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1_r_markdown_basics.html">The basics</a></li><li class="breadcrumb-item"><a href="./2_r_firstdata.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The basics of datawrangling in the <code>tidyverse</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r_ISA_preface.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./8_r_ISA4.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ISA 4: working with normal distributions II - the sampling distribution of means</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-firstdata" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The basics of datawrangling in the <code>tidyverse</code></span></span></h1>
+<h1 class="title"><span id="sec-ISACh4" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ISA 4: working with normal distributions II - the sampling distribution of means</span></span></h1>
 </div>
 
 
@@ -307,179 +312,170 @@ window.Quarto = {
 </header>
 
 
-<section id="installing-packages" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="installing-packages"><span class="header-section-number">2.1</span> Installing packages</h2>
-<p>While the base R language is powerful and versatile, we can substantially (IOHO) improve our user experience with a few extra packages. Extension packages can be added with the <code>install.packages</code> function in the following manner:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"NameOfPackageThatIReallyWant"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Installed packages can be loaded by using the <code>library</code> function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NameOfPackageThatIReallyWant) <span class="co"># note that the quotes around the package name are not necessary for `library` to work</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Alternatively, functions from a previously installed package can be called by naming the package and function explicitly and separating these with two consecutive colons, without the need to load the package with <code>library</code>. The benefit of this ‘explicit coding’ is that it minimizes the chance that you will see a confusing error message arising from a function naming conflict. (That is, when the same name is given to functions from different packages which expect different input arguments.)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>NameOfPackageThatIReallyWant<span class="sc">::</span><span class="fu">FunctionFromThePackage</span>(ArgumentsForTheFunction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>For the following demonstrations, we will install the <a href="https://tidyverse.org/"><code>tidyverse</code> package</a>, which is actually a compendium of many extremely useful packages. Executing the following commands will install and load the package.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="working-with-data" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="working-with-data"><span class="header-section-number">2.2</span> Working with data</h2>
-<p>The <code>dplyr</code> sub-package from <code>tidyverse</code> includes an abridged version of the <a href="https://swapi.py4e.com/">“Starwars characters” dataset</a>, which we will use here. Datasets loaded with packages do not generally need to be declared as variables in an R session, but we will do this now for consistency with the workflow you will later follow. To create an object in your R environment, you follow the form: <code>name_of_my_object &lt;- stuff_to_go_into_my_object</code>. The <code>&lt;-</code> is R’s <strong>assignment operator</strong>, which you use to tell it to assign values (be they text, numbers, matrices, dataframes, etc.) to an object name.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="ot">&lt;-</span>dplyr<span class="sc">::</span>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This creates an R object named <code>my_starwars</code> which is of the “dataframe” class. We don’t need to discuss this further, other than to say that it is a tabular class (i.e., like .csv, .xls, and the like) where rows represent observations and columns represent variables. In this example, the rows correspond to different characters, whereas the columns hold values for each character across a range of characteristics.</p>
-<section id="taking-a-glimpse" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="taking-a-glimpse"><span class="header-section-number">2.2.1</span> Taking a <code>glimpse</code>…</h3>
-<p>Now that we have created our object, we can take a peek:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(my_starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 87
-Columns: 14
-$ name       &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "Leia Or…
-$ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
-$ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
-$ hair_color &lt;chr&gt; "blond", NA, NA, "none", "brown", "brown, grey", "brown", N…
-$ skin_color &lt;chr&gt; "fair", "gold", "white, blue", "white", "light", "light", "…
-$ eye_color  &lt;chr&gt; "blue", "yellow", "red", "yellow", "brown", "blue", "blue",…
-$ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
-$ sex        &lt;chr&gt; "male", "none", "none", "male", "female", "male", "female",…
-$ gender     &lt;chr&gt; "masculine", "masculine", "masculine", "masculine", "femini…
-$ homeworld  &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alderaan", "T…
-$ species    &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human", "Human", "Huma…
-$ films      &lt;list&gt; &lt;"A New Hope", "The Empire Strikes Back", "Return of the J…
-$ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, "Imp…
-$ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TIE Advanced x1",…</code></pre>
-</div>
-</div>
-<p>The <code>dplyr::glimpse</code> function shows the total number of rows (i.e., the number of characters) in the dataframe, the total number of column variables, and the name of all column variables (these are displayed - somewhat confusingly - as rows with a <code>$</code> prefix). As you should see, this dataset includes 87 characters with values on 14 variables.</p>
-</section>
-<section id="filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="filtering-on-values-of-a-specific-variable-and-pulling-only-the-variable-of-interest"><span class="header-section-number">2.2.2</span> <code>filter</code>ing on values of a specific variable, and <code>pull</code>ing only the variable of interest</h3>
-<p>Say that we wanted to quickly find out how old Yoda is. We can filter on his name to isolate his row in the dataframe, and then drop all other variables apart from his age<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> from our dataset:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>yoda_age <span class="ot">&lt;-</span> my_starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Yoda"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(birth_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Reveal to us, this does, that Yoda 896 years old is.</p>
-<div id="nte-pipe" class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note&nbsp;2.1: Using the “pipe” operator (%&gt;%)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The pipe (<code>%&gt;%</code>) allows you to chain different functions together without having to call the object you want to manipulate for every function. Let’s break down the above chunk line-by-line:</p>
+<section id="r-outcomes" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="r-outcomes"><span class="header-section-number">8.1</span> R outcomes</h2>
+<p>After reading this chapter, you can:</p>
 <ol type="1">
-<li><code>Yoda_age &lt;- my_starwars %&gt;%</code> - this copies <code>my_starwars</code> to a new object named <code>yoda_age</code>, and <code>%&gt;%</code> passes <code>yoda_age</code> onto the next operation.</li>
-<li><code>dplyr::filter(name == "Yoda") %&gt;%</code> - this feeds <code>yoda_age</code> into the function <code>dplyr::filter</code>, which then searches the variable <code>name</code> for the text string “Yoda”, and discards characters with names which are <em>not</em> Yoda. As before, the <code>%&gt;%</code> moves the output along to the next line of code.</li>
-<li><code>dplyr::pull(age)</code> - this “pulls” out the age column variable for Yoda and throws everything else away, leaving us with a value of 896 stored inside <code>yoda_age</code>.</li>
+<li>Understand the difference between a given variable’s distribution and the <strong>sampling distribution of means</strong> for that variable</li>
+<li>Answer questions about proportions/probabilities based on both types of distribution using z-formulae</li>
+<li>Use the <code>dplyr::mutate</code> function to create new variables from existing values</li>
 </ol>
-</div>
-</div>
 </section>
-<section id="sec-mut1" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="sec-mut1"><span class="header-section-number">2.2.3</span> <code>mutate</code>-ing your data frame</h3>
-<p>Let’s imagine that we want to calculate every character’s body mass index (BMI) of every listed character and add this value to their row in the dataframe. The <code>mutate</code> function allows us to easily create new variables, or edit existing ones.</p>
-<p>We define BMI as:</p>
-<p><span class="math display">\[
-BMI = \frac{weight(kg)}{height(m)^2}
-\]</span></p>
-<p>So, to calculate this value, we need to use the <code>height</code> (measured in cm) and <code>mass</code> (in kg) fields.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="ot">&lt;-</span> my_starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">BMI =</span> mass<span class="sc">/</span>(height<span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>As above, we use the pipe to pass <code>my_starwars</code> on to <code>mutate</code>. We create the variable <code>BMI</code> inside the call to <code>mutate</code>, and then perform our calculations.</p>
-<p>To check the operation performed correctly, you can just call up the new variable.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="sc">$</span>BMI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]  26.02758  26.89232  34.72222  33.33007  21.77778  37.87401  27.54821
- [8]  34.00999  25.08286  23.24598  23.76641        NA  21.54509  24.69136
-[15]  24.72518 443.42857  26.64360  33.95062  39.02663  25.95156  23.35095
-[22]  35.00000  31.30194  25.21625  25.79592  25.61728        NA        NA
-[29]  25.82645  26.56250  23.89326  24.67038        NA  13.14828  17.18034
-[36]  16.34247        NA        NA        NA  31.88776        NA        NA
-[43]  26.12245        NA  17.35892  24.03461  50.92802        NA  24.46460
-[50]  23.76641  20.91623  22.64681        NA  14.76843        NA        NA
-[57]  22.63468        NA  24.83565        NA        NA  23.88844  19.44637
-[64]  18.14487        NA  21.47709        NA  23.58984  19.48696  26.01775
-[71]  16.78076        NA        NA        NA  12.88625        NA  17.99015
-[78]  34.07922  24.83746  22.35174  15.14960  18.85192        NA        NA
-[85]        NA        NA        NA</code></pre>
-</div>
-</div>
-<p>(In general, you can index an existing column variable in a dataframe and display it simply by typing <code>name_of_dataframe$name_of_column</code> into the R console.)</p>
-<div id="nte-na" class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note&nbsp;2.2: What does <code>NA</code> mean?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In the <code>BMI</code> printout above, you will see values of <code>NA</code> which means that there is no value available for that character. This has arisen because values of <code>NA</code> were present for that character’s height, mass, or both. If <code>NA</code> values are used as inputs in calculations, then the output will also be <code>NA</code>.</p>
-</div>
-</div>
-</section>
-<section id="select-ing-a-subset-of-variables-from-an-existing-data-frame" class="level3" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="select-ing-a-subset-of-variables-from-an-existing-data-frame"><span class="header-section-number">2.2.4</span> <code>select</code>-ing a subset of variables from an existing data frame</h3>
-<p>To end this section, let’s reduce our dataframe to only the names of our character and their BMIs. To do this, we can use the <code>select</code> function, followed by calling up the whole dataframe to check the output.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>my_starwars<span class="ot">&lt;-</span>my_starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name,BMI)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>my_starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 87 × 2
-   name                 BMI
-   &lt;chr&gt;              &lt;dbl&gt;
- 1 Luke Skywalker      26.0
- 2 C-3PO               26.9
- 3 R2-D2               34.7
- 4 Darth Vader         33.3
- 5 Leia Organa         21.8
- 6 Owen Lars           37.9
- 7 Beru Whitesun Lars  27.5
- 8 R5-D4               34.0
- 9 Biggs Darklighter   25.1
-10 Obi-Wan Kenobi      23.2
-# ℹ 77 more rows</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="summary" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">2.3</span> Summary</h2>
-<p>In this chapter, we have introduced some key functions (“verbs”) from the <code>tidyverse</code> package:</p>
+<section id="required-packages" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="required-packages"><span class="header-section-number">8.2</span> Required packages</h2>
+<p>You will need the following additional packages:</p>
 <ul>
-<li><code>filter</code> allows you to select rows (which in the above examples, represent characters) based on their variable values</li>
-<li><code>pull</code> extracts a single, named variable and converts this to a simple vector</li>
-<li><code>mutate</code> can be used to add new variables to a dataframe, or to modify existing variables</li>
-<li><code>select</code> takes a subset of variables from an existing dataframe and arranges these into a new dataframe</li>
+<li><code>dplyr</code> (but we will simply install the <code>tidyverse</code> collection so that we also have the pipe operator - <code>%&gt;%</code> - loaded)</li>
+<li><code>haven</code></li>
 </ul>
-<p>We also learned about the role of the pipe (<code>%&gt;%</code>) operator in building chains of function calls among the <code>tidyverse</code> packages.</p>
-
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>This is held in the variable <code>birth_year</code> and reflects how many years before the <a href="https://en.wikipedia.org/wiki/Battle_of_Yavin">Battle of Yavin</a> the character was born<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<section id="open-up-your-project-and-a-new-script-file" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="open-up-your-project-and-a-new-script-file"><span class="header-section-number">8.3</span> Open up your project and a new script file</h2>
+<p>You created a R project for your ISA work <a href="./5_r_ISA1.html#sec-ISACh1">in the first class</a>, so open this now and also create a new R script (<code>Ctrl\Cmd</code> + <code>Shift</code> + <code>n</code>) so that you can save today’s work.</p>
+</section>
+<section id="recap-z-transformations" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="recap-z-transformations"><span class="header-section-number">8.4</span> Recap: Z-transformations</h2>
+<p>Imagine we know that income per week (in euro) is normally distributed in the population of Dutch university students who graduated in the last year, such that the mean (<span class="math inline">\(\mu\)</span>) income is 1,500 EUR, with an SD (<span class="math inline">\(\sigma\)</span>) of 100.We might wonder: <em>what proportion of the population of new Dutch graduates would have a weekly income of <strong>less than 1,350 EUR</strong>?</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-normdist_twee" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normdist_twee-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="8_r_ISA4_files/figure-html/fig-normdist_twee-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normdist_twee-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Fictional distribution of graduate income scores. Green shading denotes incomes of less than 1,350 EUR.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see the area of interest in the distribution above, in <a href="#fig-normdist_twee" class="quarto-xref">Figure&nbsp;<span>8.1</span></a>. To calculate the proportion, we first need to convert the target value into a <strong>z-score</strong>, which transforms the value into standard deviation units. In this case:</p>
+<p><span class="math display">\[
+z = \frac{x-\mu}{\sigma} = \frac{1350-1500}{100} = -1.5
+\]</span> To work out the probability associated with a z-score of 2, we can supply the score to the R function, along with information about our distribution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>target_income<span class="ot">&lt;-</span><span class="dv">1350</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mean_income<span class="ot">&lt;-</span><span class="dv">1500</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sd_income<span class="ot">&lt;-</span><span class="dv">100</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(target_income ,<span class="at">mean =</span> mean_income, <span class="at">sd =</span> sd_income, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0668072</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We set 'lower.tail = TRUE' because we want to return probabilities associated with a score *less* than 1,350, so the lower/left-tail values.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This allows us to answer our question: <em>there is a 6.68% chance of randomly selecting an individual with an income below 1,350 EUR per week from the population of new Dutch graduates</em></p>
+</section>
+<section id="the-sampling-distribution-of-means" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="the-sampling-distribution-of-means"><span class="header-section-number">8.5</span> The Sampling Distribution (of Means)</h2>
+<p>Imagine (as before) that we know that income per week (in euro) is normally distributed in the population of Dutch university students who graduated in the last year (<span class="math inline">\(\mu_{income}=  1,500\)</span>, <span class="math inline">\(\sigma_{income}=  100\)</span>). If we <em>repeatedly</em> draw samples of <span class="math inline">\(n\)</span> = 1,000 from the population, then we might see <span class="math inline">\(\bar{x}_1=1,501.93\)</span> , <span class="math inline">\(\bar{x}_2=1,497.62\)</span> ,… and so on. Computing sample means from <strong>all possible samples of size</strong> <span class="math inline">\(n\)</span> <strong>= 1,000</strong> gives the <strong>sampling distribution of means</strong> (for <span class="math inline">\(n\)</span> = 1,000).</p>
+<p>The mean of the sampling distribution = <span class="math inline">\(\mu = 1,500\)</span> and the standard deviation of sampling distribution is known as the <strong>Standard Error (<em>SE</em>)</strong>. While the sampling distribution is purely theoretical (because we usually cannot collect all possible permutations of elements from our population), we can estimate the standard error of the sampling distribution of means with the formula:</p>
+<p><span class="math display">\[
+\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}
+\]</span> Plugging in the values from our current example gives:</p>
+<p><span class="math display">\[
+\sigma_{\bar{x}} = \frac{100}{\sqrt{1000}} = 3.16
+\]</span></p>
+<p>We can now ask the question: <em>what is the probability of drawing a sample (<em>n</em> = 1,000) from this population with a mean of less than 1,489 EUR?</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-sampdist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sampdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="8_r_ISA4_files/figure-html/fig-sampdist-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sampdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: Fictional sampling distrubution of means (n = 1000) for graduate income scores. Area to the left of the green line denotes incomes of less than 1,489 EUR.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can follow exactly the same steps as we did when working above with (fictional) population values:</p>
+<p><span class="math display">\[
+z = \frac{x-\mu}{\frac{\sigma}{\sqrt{n}}} = \frac{1489-1500}{3.16} = -3.48
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>target_income<span class="ot">&lt;-</span><span class="dv">1489</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mean_income<span class="ot">&lt;-</span><span class="dv">1500</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>se_income<span class="ot">&lt;-</span><span class="fl">3.16</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(target_income ,<span class="at">mean =</span> mean_income, <span class="at">sd =</span> se_income, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0002497609</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We set 'lower.tail = TRUE' because we want to return probabilities associated with a score *less* than 1,489, so the lower/left-tail values.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Our answer, then, is: <em>there is a 0.02% chance of randomly drawing a sample (n = 1,000) with a mean income of less than 1,489 EUR from this population (with <span class="math inline">\(\mu = 1,500\)</span> &amp; <span class="math inline">\(\sigma = 100\)</span>)</em></p>
+</section>
+<section id="computing-new-variables" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="computing-new-variables"><span class="header-section-number">8.6</span> Computing new variables</h2>
+<p>Let’s load in the <code>ESS11.sav</code> dataset and examine three variables related to trust in political institutions:</p>
+<ol type="1">
+<li><code>trstprl</code> - “Trust in country’s parliament”</li>
+<li><code>trstprt</code> - “Trust in political parties”</li>
+<li><code>trstplt</code> - “Trust in politicians”</li>
 </ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ESS<span class="ot">&lt;-</span>haven<span class="sc">::</span><span class="fu">read_sav</span>(<span class="st">"ESS11.sav"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>With the <code>attributes</code> function, we can look at a variable’s name label and labels which have been attached to particular values of the variable (where these have been set).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(ESS<span class="sc">$</span>trstplt)<span class="sc">$</span>label <span class="co"># name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Trust in politicians"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(ESS<span class="sc">$</span>trstplt)<span class="sc">$</span>labels <span class="co"># value labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>No trust at all               1               2               3               4 
+              0               1               2               3               4 
+              5               6               7               8               9 
+              5               6               7               8               9 
+ Complete trust         Refusal      Don't know       No answer 
+             10              77              88              99 </code></pre>
+</div>
+</div>
+<p>Above, we show only <code>trstplt</code> but <code>trstprt</code> and <code>trstprl</code> are coded in the same way (you can check this yourself to be sure). All have valid values running from 0 (“No trust at all”) to 10 (“Complete trust”), with three categories of “missing value” defined (77 = “Refusal”, 88 = “Don’t know”, 99 = “No answer”). It appears that higher scores on these variables reflect greater trust in the named institution, so we can use these to create an average “political trust” variable with the <code>dplyr::mutate</code> function. To finish, we will show the first six rows of values from our new variable alongside the original three to verify that the operation was performed correctly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ESS <span class="ot">&lt;-</span> ESS <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(trstprl) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(trstplt) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(trstprt)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">pol_trust =</span> <span class="fu">rowMeans</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(.,trstprl,trstplt,trstprt))) </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ESS <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(trstprl,trstplt,trstprt,pol_trust) <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  trstprl   trstplt   trstprt             pol_trust
+  &lt;dbl+lbl&gt; &lt;dbl+lbl&gt; &lt;dbl+lbl&gt;               &lt;dbl&gt;
+1 6 [6]     5 [5]     5 [5]                    5.33
+2 6 [6]     1 [1]     0 [No trust at all]      2.33
+3 7 [7]     4 [4]     4 [4]                    5   
+4 5 [5]     3 [3]     3 [3]                    3.67
+5 6 [6]     5 [5]     5 [5]                    5.33
+6 3 [3]     5 [5]     5 [5]                    4.33</code></pre>
+</div>
+</div>
+</section>
+<section id="to-do" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="to-do"><span class="header-section-number">8.7</span> To do:</h2>
+<ul>
+<li>add code comments to this chapter</li>
+</ul>
+</section>
+<section id="summary" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.8</span> Summary</h2>
+<p>In this chapter, we covered:</p>
+<ul>
+<li>Using z-transformations to make inferences related to the sampling distribution of means</li>
+<li>Computing new variables from existing data and adding these to an existing dataframe with <code>dplyr::mutate</code></li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -884,13 +880,13 @@ Note&nbsp;2.2: What does <code>NA</code> mean?
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./1_r_markdown_basics.html" class="pagination-link" aria-label="Installation and introduction to R Markdown documents">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation and introduction to R Markdown documents</span></span>
+      <a href="./7_r_ISA3.html" class="pagination-link" aria-label="ISA 3: correlation coefficients and working with normal distributions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ISA 3: correlation coefficients and working with normal distributions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./3_r_plotting.html" class="pagination-link" aria-label="An introduction to graphics with `ggplot2`">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">An introduction to graphics with <code>ggplot2</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -902,7 +898,7 @@ Note&nbsp;2.2: What does <code>NA</code> mean?
     </div>   
     <div class="nav-footer-center">
 <p>CC-BY-SA-4.0 (2025) David Fleming</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/2_r_firstdata.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/dvlaming/R4PPLE/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li><li><a href="https://github.com/dvlaming/R4PPLE/blob/main/8_r_ISA4.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

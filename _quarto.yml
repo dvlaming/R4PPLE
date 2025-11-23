@@ -25,6 +25,7 @@ book:
         - 5_r_ISA1.qmd
         - 6_r_ISA2.qmd
         - 7_r_ISA3.qmd
+        - 8_r_ISA4.qmd
     - summary.qmd
     - references.qmd
 

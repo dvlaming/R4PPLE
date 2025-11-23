@@ -1,4 +1,4 @@
-# An introduction to graphics with `ggplot2`
+# An introduction to graphics with `ggplot2` {#sec-firstplotting}
 
 ## Installing packages
 

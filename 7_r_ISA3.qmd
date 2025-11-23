@@ -1,4 +1,4 @@
-# ISA 3: correlation coefficients and working with normal distributions
+# ISA 3: correlation coefficients and working with normal distributions {#sec-ISACh3}
 
 ## R outcomes
 
@@ -114,7 +114,7 @@ xx<-tibble::tibble("Income"=x,"pdf"=y)
 mulab<- paste("mu[income] == ", 1500)
 siglab<- paste("sigma[income] == ", 100)
 p <- ggplot(xx, aes(x=Income,y=pdf)) +
-  theme_minimal()+
+  theme_classic()+
   geom_line()+
   geom_segment(x=1500,y=0,xend=1500,yend=max(xx$pdf),linetype="dashed",color="red")+
   geom_segment(x=1400,y=0,xend=1400,yend=as.numeric(xx[xx$Income==1400,2]),linetype="dashed",color="blue")+
@@ -148,7 +148,7 @@ pnorm(target_income ,mean = mean_income, sd = sd_income, lower.tail = FALSE)
 
 ```
 
-This allows us to answer our question: _there is a `{r} round((pnorm(target_income ,mean = mean_income, sd = sd_income, lower.tail = FALSE))*100,2)` chance of randomly selecting an individual with an income of above 1,700 EUR per week from the population of new Dutch graduates_
+This allows us to answer our question: _there is a `{r} round((pnorm(target_income ,mean = mean_income, sd = sd_income, lower.tail = FALSE))*100,2)`% chance of randomly selecting an individual with an income above 1,700 EUR per week from the population of new Dutch graduates_
 
 ## Scatterplots and $r$ with the WDI data
 
@@ -196,4 +196,6 @@ We can see that the correlation between the variables is `{r} round(wdcor,2)`. F
 
 In this chapter, we covered:
 
-* things
+* Calculation and interpretation of pearson's $r$
+* Using scatterplots to support our interpretation of $r$
+* Transforming datapoints into z-scores and using these to make statements about the probability of selecting values where the underlying distribution characteristics are known

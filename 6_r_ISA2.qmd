@@ -249,10 +249,14 @@ We can also use stacked barcharts to visualize percentage or proportion differen
 
 ```{r}
 #| label: fig-propbar
-#| fig-cap: "Stacked percentage barchart of region vs. press freedom"
+#| fig-cap: "Stacked percentage barchart of region vs. press freedom (ordered by lowest-to-highest percentage 'Free')"
 
-as.data.frame(prop.table(table(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region)),margin = 2)*100) %>% 
-  ggplot2::ggplot(ggplot2::aes(x = Var2, y = Freq, fill = Var1)) +
+as.data.frame(prop.table(table(haven::as_factor(wd$fhp_status5),haven::as_factor(wd$region)),margin = 2)*100) %>%
+  tidyr::pivot_wider(names_from = Var1, values_from = Freq) %>%
+  dplyr::arrange(desc(Free),desc(`Partly Free`),desc(`Not Free`)) %>%
+  dplyr::mutate(Region=factor(Var2, Var2)) %>%
+  tidyr::pivot_longer(-c(Var2,Region),names_to = "Freedom", values_to = "Freq") %>%
+  ggplot2::ggplot(ggplot2::aes(x = Region, y = Freq, fill = Freedom)) +
   ggplot2::geom_bar(stat = "identity") +
   ggplot2::coord_flip() +
   ggplot2::scale_y_continuous(expand = c(0,0),labels = scales::label_percent(scale = 1, accuracy = 1)) +

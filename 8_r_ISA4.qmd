@@ -1,0 +1,207 @@
+# ISA 4: working with normal distributions II - the sampling distribution of means {#sec-ISACh4}
+
+## R outcomes
+
+After reading this chapter, you can: 
+
+1. Understand the difference between a given variable's distribution and the **sampling distribution of means** for that variable 
+2. Answer questions about proportions/probabilities based on both types of distribution using z-formulae
+3. Use the `dplyr::mutate` function to create new variables from existing values
+
+## Required packages
+
+You will need the following additional packages:
+
+-   `dplyr` (but we will simply install the `tidyverse` collection so that we also have the pipe operator - `%>%` - loaded)
+-   `haven`
+
+```{r}
+#| label: install_load
+#| message: FALSE 
+#| warning: FALSE
+
+library(tidyverse)
+library(haven)
+
+```
+
+## Open up your project and a new script file
+
+You created a R project for your ISA work [in the first class](5_r_ISA1.qmd#sec-ISACh1), so open this now and also create a new R script (`Ctrl\Cmd` + `Shift` + `n`) so that you can save today's work.   
+
+## Recap: Z-transformations
+
+Imagine we know that income per week (in euro) is normally distributed in the population of Dutch university students who graduated in the last year, such that the mean ($\mu$) income is  1,500 EUR, with an SD ($\sigma$) of 100.We might wonder: _what proportion of the population of new Dutch graduates would have a weekly income of **less than 1,350 EUR**?_
+
+```{r}
+#| label: fig-normdist_twee
+#| fig-cap: "Fictional distribution of graduate income scores. Green shading denotes incomes of less than 1,350 EUR."
+#| echo: FALSE 
+
+x<-seq(1100,1900,10)
+y<-dnorm(x,1500,100)
+xx<-tibble::tibble("Income"=x,"pdf"=y)
+mulab<- paste("mu[income] == ", 1500)
+siglab<- paste("sigma[income] == ", 100)
+p <- ggplot(xx, aes(x=Income,y=pdf)) +
+  theme_classic()+
+  geom_line()+
+  geom_segment(x=1500,y=0,xend=1500,yend=max(xx$pdf),linetype="dashed",color="red")+
+  geom_segment(x=1400,y=0,xend=1400,yend=as.numeric(xx[xx$Income==1400,2]),linetype="dashed",color="blue")+
+  geom_segment(x=1600,y=0,xend=1600,yend=as.numeric(xx[xx$Income==1600,2]),linetype="dashed",color="blue")+
+  geom_segment(x=1300,y=0,xend=1300,yend=as.numeric(xx[xx$Income==1300,2]),linetype="dashed",color="blue")+
+  geom_segment(x=1700,y=0,xend=1700,yend=as.numeric(xx[xx$Income==1700,2]),linetype="dashed",color="blue")+
+  annotate("text", x = 1150, y = 0.0041, colour="red", label = mulab,parse=TRUE)+
+  annotate("text", x = 1150, y = 0.0039, colour="blue", label = siglab,parse=TRUE)+
+  geom_ribbon(data=subset(xx,x<=1350),aes(x=Income,ymax=pdf),ymin=0,fill="green")+
+  scale_x_continuous(breaks = seq(1100,1900,100),labels = seq(1100,1900,100))+
+  theme(axis.text.y = element_blank())+
+  ylab("Density")
+p
+```
+
+We can see the area of interest in the distribution above, in @fig-normdist_twee. To calculate the proportion, we first need to convert the target value into a **z-score**, which transforms the value into standard deviation units. In this case:
+
+$$
+z = \frac{x-\mu}{\sigma} = \frac{1350-1500}{100} = -1.5
+$$
+To work out the probability associated with a z-score of 2, we can supply the score to the R function, along with information about our distribution:
+
+```{r}
+target_income<-1350
+mean_income<-1500
+sd_income<-100
+
+pnorm(target_income ,mean = mean_income, sd = sd_income, lower.tail = TRUE)
+
+# We set 'lower.tail = TRUE' because we want to return probabilities associated with a score *less* than 1,350, so the lower/left-tail values.
+
+```
+
+This allows us to answer our question: _there is a `{r} round((pnorm(target_income ,mean = mean_income, sd = sd_income, lower.tail = TRUE))*100,2)`% chance of randomly selecting an individual with an income below 1,350 EUR per week from the population of new Dutch graduates_
+
+## The Sampling Distribution (of Means)
+
+Imagine (as before) that we know that income per week (in euro) is normally distributed in the population of Dutch university students who graduated in the last year ($\mu_{income}=  1,500$, $\sigma_{income}=  100$). If we _repeatedly_ draw samples of $n$ = 1,000 from the population, then we might see $\bar{x}_1=1,501.93$ , $\bar{x}_2=1,497.62$ ,... and so on. Computing sample means from **all possible samples of size** $n$ **= 1,000** gives the **sampling distribution of means** (for $n$ = 1,000). 
+
+The mean of the sampling distribution = $\mu = 1,500$ and the standard deviation of sampling distribution is known as the **Standard Error (_SE_)**. While the sampling distribution is purely theoretical (because we usually cannot collect all possible permutations of elements from our population), we can estimate the standard error of the sampling distribution of means with the formula:
+
+$$
+\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}
+$$
+Plugging in the values from our current example gives:
+
+$$
+\sigma_{\bar{x}} = \frac{100}{\sqrt{1000}} = 3.16
+$$
+
+We can now ask the question: _what is the probability of drawing a sample (_n_ = 1,000) from this population with a mean of less than 1,489 EUR?_
+
+```{r}
+#| label: fig-sampdist
+#| fig-cap: "Fictional sampling distrubution of means (n = 1000) for graduate income scores. Area to the left of the green line denotes incomes of less than 1,489 EUR."
+#| echo: FALSE
+
+x<-seq(1485,1515,.01)
+y<-dnorm(x,1500,3.16)
+se_min1<-1500-3.16
+se_min2<-1500-6.32
+se_plus1<-1500+3.16
+se_plus2<-1500+6.32
+# x<-seq(1100,1900,10)
+# y<-dnorm(x,1500,3.16)
+xx<-tibble::tibble("Income"=x,"pdf"=y)
+mulab<- paste("mu[income] == ", 1500)
+siglab<- paste("SE[income] == ", 3.16)
+p <- ggplot(xx, aes(x=Income,y=pdf)) +
+  theme_classic()+
+  geom_line()+
+  geom_segment(x=1500,y=0,xend=1500,yend=max(xx$pdf),linetype="dashed",color="red")+
+  geom_segment(x=se_min1,y=0,xend=se_min1,yend=as.numeric(xx[xx$Income==se_min1,2])
+               ,linetype="dashed",color="blue")+
+  geom_segment(x=se_min2,y=0,xend=se_min2,yend=as.numeric(xx[xx$Income==se_min2,2])
+               ,linetype="dashed",color="blue")+
+  geom_segment(x=se_plus1,y=0,xend=se_plus1,yend=as.numeric(xx[xx$Income==se_plus1,2])
+               ,linetype="dashed",color="blue")+
+  geom_segment(x=se_plus2,y=0,xend=se_plus2,yend=as.numeric(xx[xx$Income==se_plus2,2])
+               ,linetype="dashed",color="blue")+
+  geom_segment(x=1489,y=0,xend=1489,yend=max(xx$pdf),linetype="dashed",color="green")+
+  annotate("text", x = 1510, y = 0.11, colour="red", label = mulab,parse=TRUE)+
+  annotate("text", x = 1510.25, y = 0.1, colour="blue", label = siglab,parse=TRUE)+
+  scale_x_continuous(breaks = seq(1485,1515,2),labels = seq(1485,1515,2))+
+  theme(axis.text.y = element_blank())+
+  ylab("Density")
+p
+```
+
+We can follow exactly the same steps as we did when working above with (fictional) population values: 
+
+$$
+z = \frac{x-\mu}{\frac{\sigma}{\sqrt{n}}} = \frac{1489-1500}{3.16} = -3.48
+$$
+```{r}
+target_income<-1489
+mean_income<-1500
+se_income<-3.16
+
+pnorm(target_income ,mean = mean_income, sd = se_income, lower.tail = TRUE)
+
+# We set 'lower.tail = TRUE' because we want to return probabilities associated with a score *less* than 1,489, so the lower/left-tail values.
+
+```
+
+
+Our answer, then, is: _there is a `{r} round((pnorm(target_income ,mean = mean_income, sd = se_income, lower.tail = TRUE))*100,2)`% chance of randomly drawing a sample (n = 1,000) with a mean income of less than 1,489 EUR from this population (with $\mu = 1,500$ & $\sigma = 100$)_
+
+## Computing new variables
+
+Let's load in the `ESS11.sav` dataset and examine three variables related to trust in political institutions:
+
+1. `trstprl` - "Trust in country's parliament"
+2. `trstprt` - "Trust in political parties"
+3. `trstplt` - "Trust in politicians"
+
+```{r}
+#| eval: FALSE
+
+ESS<-haven::read_sav("ESS11.sav")
+```
+
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+#| message: FALSE
+
+ESS<-haven::read_sav("C:/Users/David/OneDrive - UvA/2025_2026/ISA_24_25/Datasets/ESS11.sav")
+  
+```
+
+With the `attributes` function, we can look at a variable's name label and labels which have been attached to particular values of the variable (where these have been set).
+
+```{r}
+attributes(ESS$trstplt)$label # name
+attributes(ESS$trstplt)$labels # value labels
+```
+
+Above, we show only `trstplt` but `trstprt` and `trstprl` are coded in the same way (you can check this yourself to be sure). All have valid values running from 0 ("No trust at all") to 10 ("Complete trust"), with three categories of "missing value" defined (77 = "Refusal", 88 = "Don't know", 99 = "No answer"). It appears that higher scores on these variables reflect greater trust in the named institution, so we can use these to create an average "political trust" variable with the `dplyr::mutate` function. To finish, we will show the first six rows of values from our new variable alongside the original three to verify that the operation was performed correctly.   
+
+```{r}
+
+ESS <- ESS %>%
+  dplyr::filter(!is.na(trstprl) & !is.na(trstplt) & !is.na(trstprt)) %>% 
+  dplyr::mutate(pol_trust = rowMeans(dplyr::select(.,trstprl,trstplt,trstprt))) 
+  
+ESS %>% dplyr::select(trstprl,trstplt,trstprt,pol_trust) %>%
+  head()
+```
+
+## To do:
+
+* add code comments to this chapter
+
+## Summary
+
+In this chapter, we covered:
+
+* Using z-transformations to make inferences related to the sampling distribution of means
+* Computing new variables from existing data and adding these to an existing dataframe with `dplyr::mutate` 

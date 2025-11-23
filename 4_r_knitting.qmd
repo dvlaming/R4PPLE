@@ -1,3 +1,3 @@
-# "Knitting" everything togther into a document
+# "Knitting" everything togther into a document {#sec-knitting}
 
 Coming soon!

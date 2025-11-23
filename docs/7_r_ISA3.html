@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./8_r_ISA4.html" rel="next">
 <link href="./6_r_ISA2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -249,12 +249,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ISA 3: correlation coefficients and working with normal distributions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8_r_ISA4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ISA 4: working with normal distributions II - the sampling distribution of means</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -288,7 +294,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r_ISA_preface.html">Introduction to Statistical Analysis (Y1)</a></li><li class="breadcrumb-item"><a href="./7_r_ISA3.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ISA 3: correlation coefficients and working with normal distributions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ISA 3: correlation coefficients and working with normal distributions</span></h1>
+<h1 class="title"><span id="sec-ISACh3" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ISA 3: correlation coefficients and working with normal distributions</span></span></h1>
 </div>
 
 
@@ -540,7 +546,7 @@ z = \frac{x-\mu}{\sigma} = \frac{1700-1500}{100} = 2
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We set 'lower.tail = FALSE' because we want to return probabilities associated with a score *greater* than 1,700, so the upper/right-tail values.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This allows us to answer our question: <em>there is a 2.28 chance of randomly selecting an individual with an income of above 1,700 EUR per week from the population of new Dutch graduates</em></p>
+<p>This allows us to answer our question: <em>there is a 2.28% chance of randomly selecting an individual with an income above 1,700 EUR per week from the population of new Dutch graduates</em></p>
 </section>
 <section id="scatterplots-and-r-with-the-wdi-data" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="scatterplots-and-r-with-the-wdi-data"><span class="header-section-number">7.6</span> Scatterplots and <span class="math inline">\(r\)</span> with the WDI data</h2>
@@ -582,7 +588,9 @@ Figure&nbsp;7.2: Access to water vs.&nbsp;Life exp.
 <h2 data-number="7.7" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.7</span> Summary</h2>
 <p>In this chapter, we covered:</p>
 <ul>
-<li>things</li>
+<li>Calculation and interpretation of pearson’s <span class="math inline">\(r\)</span></li>
+<li>Using scatterplots to support our interpretation of <span class="math inline">\(r\)</span></li>
+<li>Transforming datapoints into z-scores and using these to make statements about the probability of selecting values where the underlying distribution characteristics are known</li>
 </ul>
 
 
@@ -995,8 +1003,8 @@ Figure&nbsp;7.2: Access to water vs.&nbsp;Life exp.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./8_r_ISA4.html" class="pagination-link" aria-label="ISA 4: working with normal distributions II - the sampling distribution of means">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ISA 4: working with normal distributions II - the sampling distribution of means</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
